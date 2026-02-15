@@ -1,0 +1,29 @@
+site_name: My Docs
+site_url: https://example.com
+theme:
+  name: material
+watch:
+  - snippets
+  - mkdocs.yml
+plugins:
+  - autorefs
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            extensions:
+              - griffe_typingdoc
+            import_paths: ["snippets"]
+            paths: ["snippets"]
+            show_if_no_docstring: true
+            show_root_heading: true
+            members: true
+            show_source: true
+            group_by_category: true
+            show_signature_annotations: true
+            signature_crossrefs: true
+            separate_signature: true
+            show_symbol_type_heading: true
+            show_type_annotations: true
+            docstring_section_style: table
