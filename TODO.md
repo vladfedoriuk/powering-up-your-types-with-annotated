@@ -40,9 +40,9 @@ ______________________________________________________________________
 
 - [x] **4.1: Pure Domain Model.** Create base `attrs` or `dataclasses` for a Pizza ordering app (e.g., `Pizza`,
   `Topping`, `Order`).
-- [ ] **4.2: Adding Semantics.** Refactor primitive types to `Annotated` types (e.g., `Price = Annotated[Decimal, Gt(0)]`).
-- [ ] **4.3: Automated Testing with "Polyfactory".** Generate fake pizza data for unit tests using `polyfactory`.
-- [ ] **4.4: Logic & Property-Based Testing.**
+- [x] **4.2: Adding Semantics.** Refactor primitive types to `Annotated` types (e.g., `Price = Annotated[Decimal, Gt(0)]`).
+- [x] **4.3: Automated Testing with "Polyfactory".** Generate fake pizza data for unit tests using `polyfactory`.
+- [x] **4.4: Logic & Property-Based Testing.**
   - Implement a formula (e.g., `calculate_discount`).
   - Use `Hypothesis` to test the logic using the `Annotated` constraints as input strategies.
   - **Note:** Mention Hypothesis' current limitations:
@@ -52,9 +52,9 @@ ______________________________________________________________________
 
 ## Phase 5: First Topping - The Persistence Layer (SQLAlchemy)
 
-- [ ] Enrich domain classes with SQLAlchemy metadata.
-- [ ] Show how `Annotated` types map to database columns.
-- [ ] Generate migrations using `Alembic`.
+- [x] Enrich domain classes with SQLAlchemy metadata.
+- [x] Show how `Annotated` types map to database columns.
+- [x] Generate migrations using `Alembic`.
 
 ______________________________________________________________________
 
