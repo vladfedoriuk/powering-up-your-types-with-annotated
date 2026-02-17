@@ -979,7 +979,26 @@ async def get_order(
 <AdmonitionType title="Customizing Metadata" type="tip" color="orange-light">
   <ul class="text-xs">
     <li><strong>"Topping Level" Overrides:</strong> Specific metadata (e.g., `alias`, `title`, `description`) can be customized directly on the field level.</li>
-    <li><strong>Framework Integration:</strong> This allows frameworks like <code>FastAPI</code> to integrate with our types and provide additional functionality.</li>
+    <li><strong>Framework Integration:</strong> This allows frameworks like `FastAPI` to integrate with our types and provide additional functionality.</li>
   </ul>
 </AdmonitionType>
 </div>
+---
+layout: default
+title: "Comparison & Takeaway"
+transition: slide-left
+color: orange
+---
+
+# Comparison &  Takeaway
+
+- No, it **is not** like ==Django==.
+- No, it **is not** like ==SQLModel==.
+- I don't feel the design pressure*
+  <div class="text-xs italic">*I am now recommending Hynek's talk on Design Pressure to everyone.</div>
+- DB and API schemas can change independently while the domain stays stable.
+- Types are no longer just to make your type checker happy.
+- They are now a first-class citizen in the application, carrying metadata that informs your domain and your infrastructure.
+- Your domain is centric.
+- Frameworks and tools are trying to hook into it via types metadata.
+- Types and domain model dictate how the frameworks and tools should adapt to it, not the other way around.
