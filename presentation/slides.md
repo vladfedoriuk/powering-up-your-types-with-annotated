@@ -403,7 +403,6 @@ def calculate_order_total(
     total = discounted_subtotal * (Decimal(1) + tax_rate)
 
     return total.quantize(Decimal("0.01"))
-
 ```
 
 ```python {3-4,5}
@@ -427,9 +426,6 @@ def calculate_order_total(
     total = discounted_subtotal * (Decimal(1) + tax_rate)
 
     return total.quantize(Decimal("0.01"))
-
-
-
 ```
 
 ````
@@ -710,8 +706,10 @@ TimestampTz = Annotated[
 
 <div class="mt-10">
 
-<AdmonitionType title="Composition" type="tip" color="green-light">
-  The core domain types remain the same, we just "overlay" database metadata using <code>Annotated</code>.
+<AdmonitionType title="Composition" type="tip" color="orange-light">
+  <div class="text-sm">
+    The core domain types remain the same, we just "overlay" database metadata using <code>Annotated</code>.
+  </div>
 </AdmonitionType>
 
 </div>
@@ -726,7 +724,7 @@ color: orange-light
 
 <img src="/assets/some-toppings-nobg.png" class="absolute top-4 right-4 w-25" />
 
-<div class="grid grid-cols-2 gap-4">
+<div class="grid grid-cols-2 gap-4 mt-4">
 
 <div style="transform: scale(0.9); transform-origin: top left;" class="grid-item grid-span-1">
 
@@ -771,7 +769,9 @@ class Pizza:
 
 <div class="mt-10 grid-item grid-span-1">
 <AdmonitionType title="Declarative & Typed" type="important" color="amber-light">
-  With <code>Mapped[T]</code> and <code>mapped_as_dataclass</code>, we get fully typed SQLAlchemy models that behave like standard Python dataclasses.
+  <div class="text-sm">
+    With <code>Mapped[T]</code> and <code>mapped_as_dataclass</code>, we get fully typed SQLAlchemy models that behave like standard Python dataclasses.
+  </div>
 </AdmonitionType>
 </div>
 
@@ -818,3 +818,168 @@ op.create_index(op.f("ix_toppings_name"), "toppings", ["name"], unique=False)
 ...
 ```
 </Transform>
+
+---
+layout: section
+color: orange
+---
+
+# Second Topping: The API Layer
+## Pydantic & FastAPI
+
+<img src="/assets/some-toppings-nobg.png" class="mx-auto h-80" />
+
+---
+layout: two-cols-title
+title: "API Layer: OrderReference & Amount"
+color: orange-light
+align: l-lt-lt
+margin: tight
+columns: is-6
+---
+
+:: title ::
+
+# API Layer: `OrderReference` & `Amount`
+
+:: left ::
+
+<img src="/assets/some-toppings-nobg.png" class="absolute top-4 right-4 w-25" />
+
+<div style="transform: scale(0.75); transform-origin: top left;">
+````md magic-move {duration: 1000, stagger: 0.3}
+
+```python
+OrderReference = Annotated[
+    str,
+    Len(6),
+    IsDigits,
+    mapped_column(sqlalchemy.String(6), nullable=False, index=True, unique=True),
+]
+
+# The Base Layer
+Amount = Annotated[Decimal, IsFinite, IsNotNan]
+```
+
+```python
+def validate_reference(v: Any) -> str:
+    if not isinstance(v, str):
+        raise ValueError("Reference must be a string")
+    return v.replace("#", "").replace("-", "")
+
+
+def serialize_reference(v: str) -> str:
+    return f"#{v[:2]}-{v[2:4]}-{v[4:]}"
+
+
+OrderReference = Annotated[
+    str,
+    Len(6),
+    IsDigits,
+    BeforeValidator(validate_reference),
+    PlainSerializer(serialize_reference, return_type=str, when_used="json"),
+    mapped_column(sqlalchemy.String(6), nullable=False, index=True, unique=True),
+]
+
+
+def serialize_amount(v: Decimal) -> float:
+    return float(v.quantize(Decimal("0.01")))
+
+
+Amount = Annotated[
+    Decimal,
+    IsFinite,
+    IsNotNan,
+    PlainSerializer(serialize_amount, return_type=float, when_used="json"),
+]
+```
+
+````
+
+</div>
+
+:: right ::
+
+<div class="mt-10">
+<AdmonitionType title="API Data Flow" type="tip" color="amber-light">
+  <ul class="text-xs">
+    <li><strong>External vs. Internal:</strong> Data presented to users or consumed often differs from internal domain representation.</li>
+    <li><strong>Bridging the Gap:</strong> <code>Pydantic</code>'s functional validators and serializers extend our types as another metadata layer.</li>
+  </ul>
+</AdmonitionType>
+</div>
+
+---
+layout: two-cols-title
+title: FastAPI Endpoint & Pydantic Schemas
+color: orange-light
+align: l-lt-lt
+margin: tight
+columns: is-4
+---
+
+:: title ::
+
+# FastAPI Endpoint & Pydantic Schemas
+## Types Inform the API
+
+<img src="/assets/some-toppings-nobg.png" class="absolute top-4 right-4 w-25" />
+
+:: left ::
+
+<div style="transform: scale(0.8); transform-origin: top left;">
+```python
+class OrderSchema(BaseModel):
+    model_config = ConfigDict(
+        from_attributes=True,
+        frozen=True,
+        extra="forbid",
+        title="Order",
+    )
+    reference: Annotated[
+        OrderReference,
+        Field(
+            serialization_alias="ref",
+            title="The order reference",
+        ),
+    ]
+    pizza: PizzaSchema
+    extra_toppings: list[ToppingSchema]
+    created_at: TimestampTz
+
+
+class OrderResponse(BaseModel):
+    order: OrderSchema
+    total: Price
+```
+
+</div>
+
+:: right ::
+
+```python
+# FastAPI Endpoint
+@app.get("/orders/", response_model=OrderResponse)
+async def get_order(
+    reference: Annotated[OrderReference, Query(alias="ref")],
+    services: svcs.fastapi.DepContainer,
+) -> dict[str, Any]:
+    repo = await services.aget(OrderRepository)
+    if (order := await repo.get_by_reference(reference)) is None:
+        raise NotFoundError("Order not found")
+
+    return {"order": order, "total": calculate_order_total(order)}
+```
+
+<ArrowDraw color="red" v-drag="[700,168,82,64,194]" />
+<ArrowDraw color="red" v-drag="[172,216,58,40,153]" />
+
+
+<div class="mt-4">
+<AdmonitionType title="Customizing Metadata" type="tip" color="orange-light">
+  <ul class="text-xs">
+    <li><strong>"Topping Level" Overrides:</strong> Specific metadata (e.g., `alias`, `title`, `description`) can be customized directly on the field level.</li>
+    <li><strong>Framework Integration:</strong> This allows frameworks like <code>FastAPI</code> to integrate with our types and provide additional functionality.</li>
+  </ul>
+</AdmonitionType>
+</div>

@@ -65,17 +65,19 @@ ______________________________________________________________________
 
 ## Phase 6: Second Topping - The API Layer (Pydantic & FastAPI)
 
-- [ ] Leverage Pydantic functional validators for advanced logic (e.g., cross-field validation).
-- [ ] Create a FastAPI endpoint that uses these types for automatic request validation and documentation.
-- [ ] Show how `annotated-doc` translates metadata into Swagger/OpenAPI documentation.
-- [ ] Implement automated tests for the API layer.
+- [x] Leverage Pydantic functional validators for advanced logic (e.g., cross-field validation).
+- [x] Create a FastAPI endpoint that uses these types for automatic request validation.
+- [x] Implement automated tests for the API layer.
 
 ## Phase 7: Comparison & Philosophical Takeaway
 
 - [ ] **Comparison:** Contrast this approach with DRF (Django Rest Framework) or SQLModel.
+  \- Add a sentences: "No, it is not like Django", "No, it is not like SQLModel"
 - [ ] **Design Pressure:** Explain why we don't start with the database model (Reference: Hynek's talk on
-  "Design Pressure").
+  "Design Pressure"). Add a sentence: "We start with the domain model, not with the database model". "I don't feel the design pressure\*" (add * with "I am now recommending Hynek's talk on Design Pressure to everyone")
 - [ ] **Independence:** Showcase how DB persistence and API schemas can change independently while the domain stays stable.
+- [ ] **Types as a first-class citizen:** Types are no longer just for static analysis or to make your type checker happy. They are now a first-class citizen in the application, carrying metadata that informs your domain, your database, and your API.
+- [ ] **Domain in the center:** Your domain is centric. Frameworks and tools are trying to hook into it via types metadta. Types and domain model dictates how the frameworks and tools should adapt to it, not the other way around.
 - [ ] **Conclusion:** Recapping `Annotated` as a tool for architectural sanity.
 
 ## Phase 8: The Final Garnish - Documentation with `annotated-doc`
