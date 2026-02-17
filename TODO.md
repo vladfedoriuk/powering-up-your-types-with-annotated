@@ -72,7 +72,7 @@ ______________________________________________________________________
 ## Phase 7: Comparison & Philosophical Takeaway
 
 - [ ] **Comparison:** Contrast this approach with DRF (Django Rest Framework) or SQLModel.
-  \- Add a sentences: "No, it is not like Django", "No, it is not like SQLModel"
+  - Add sentences: "No, it is not like Django", "No, it is not like SQLModel"
 - [ ] **Design Pressure:** Explain why we don't start with the database model (Reference: Hynek's talk on
   "Design Pressure"). Add a sentence: "We start with the domain model, not with the database model". "I don't feel the design pressure\*" (add * with "I am now recommending Hynek's talk on Design Pressure to everyone")
 - [ ] **Independence:** Showcase how DB persistence and API schemas can change independently while the domain stays stable.

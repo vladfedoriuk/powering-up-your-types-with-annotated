@@ -1065,17 +1065,20 @@ class NotFoundError(Exception):
     message: Annotated[str, Doc("The human-readable error message")]
 ```
 
+<img src="/assets/docs.png" class="mt-2 w-2/3" />
+
 </div>
 
 ::right::
 
-<div class="flex flex-col items-center justify-center h-full">
+<div class="flex flex-col items-start justify-center h-full">
 
-<p>
-  This <code>Doc</code> metadata is supported by <code>mkdocstrings[python]</code> for generating rich, type-aware documentation.
-</p>
+==Doc== metadata was early-adopted by `mkdocstrings[python]`.
 
-<img src="/assets/docs.png" class="mx-auto" />
+- `Doc` is part of the broader discussion around Python's type system, including proposals like the **revoked PEP 727**.
+- The concept of `Doc` and its adoption has been championed by **@tiangolo** (Sebastián Ramírez).
+- It powers documentations of ==Typer== and ==FastAPI==.
+
 
 </div>
 ---
