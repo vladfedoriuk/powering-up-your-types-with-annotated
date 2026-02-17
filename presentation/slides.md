@@ -640,9 +640,7 @@ margin: tight
 
 <div style="transform: scale(0.75); transform-origin: top left;">
 
-````md magic-move
-
-
+````md magic-move{duration: 1000}
 
 ```python
 Identity = Annotated[
@@ -721,35 +719,62 @@ TimestampTz = Annotated[
 
 ---
 layout: default
-title: Declarative Mapping
 color: orange-light
 ---
 
-# Declarative Mapping: The Pizza Model
+# Declarative Mapping: Pizza & Topping
 
 <img src="/assets/some-toppings-nobg.png" class="absolute top-4 right-4 w-25" />
 
-<div style="transform: scale(0.9); transform-origin: top left;">
+<div class="grid grid-cols-2 gap-4">
+
+<div style="transform: scale(0.9); transform-origin: top left;" class="grid-item grid-span-1">
+
+````md magic-move {duration: 1000}
+
+```python
+@dataclass
+class Topping:
+    name: Name
+    price: Price
+
+
+@dataclass
+class Pizza:
+    name: Name
+    price: Price
+
+```
 
 ```python
 @registry.mapped_as_dataclass
-class Pizza:
-    """Pizza entity."""
+class Topping:
+    __tablename__ = "toppings"
 
+    id: Mapped[Identity] = mapped_column(init=False)
+    name: Mapped[Name]
+    price: Mapped[Price]
+
+
+@registry.mapped_as_dataclass
+class Pizza:
     __tablename__ = "pizzas"
-    __table_kwargs__ = {"sqlite_autoincrement": True}
 
     id: Mapped[Identity] = mapped_column(init=False)
     name: Mapped[Name]
     price: Mapped[Price]
 ```
 
+````
+
 </div>
 
-<div class="mt-4">
+<div class="mt-10 grid-item grid-span-1">
 <AdmonitionType title="Declarative & Typed" type="important" color="amber-light">
-  With <code>Mapped[T]</code> and <code>mapped_as_dataclass</code>, we get a fully typed SQLAlchemy model that behaves like a standard Python dataclass.
+  With <code>Mapped[T]</code> and <code>mapped_as_dataclass</code>, we get fully typed SQLAlchemy models that behave like standard Python dataclasses.
 </AdmonitionType>
+</div>
+
 </div>
 
 ---
@@ -764,16 +789,32 @@ color: orange-light
 
 Alembic detects the metadata from our models and generates migrations automatically.
 
+<Transform scale="0.9" origin="top left">
 ```bash
 # Generate a new migration
-alembic revision --autogenerate -m "Add pizza table"
+alembic revision --autogenerate -m "Initial migration"
 
 # Apply migrations
-alembic upgrade head
+alembic upgrade heads
 ```
 
-<div class="mt-8">
-<AdmonitionType title="Single Source of Truth" type="tip" color="green-light">
-  Our types define our validation, our testing <strong>and</strong> our database schema.
-</AdmonitionType>
-</div>
+```python
+op.create_table(
+    "pizzas",
+    sa.Column("id", sa.Integer(), sa.Identity(always=False), nullable=False),
+    sa.Column("name", sa.String(length=100), nullable=False),
+    sa.Column("price", sa.Numeric(precision=10, scale=2), nullable=False),
+    sa.PrimaryKeyConstraint("id"),
+)
+op.create_index(op.f("ix_pizzas_name"), "pizzas", ["name"], unique=False)
+op.create_table(
+    "toppings",
+    sa.Column("id", sa.Integer(), sa.Identity(always=False), nullable=False),
+    sa.Column("name", sa.String(length=100), nullable=False),
+    sa.Column("price", sa.Numeric(precision=10, scale=2), nullable=False),
+    sa.PrimaryKeyConstraint("id"),
+)
+op.create_index(op.f("ix_toppings_name"), "toppings", ["name"], unique=False)
+...
+```
+</Transform>
