@@ -988,6 +988,9 @@ layout: default
 transition: slide-left
 color: orange-light
 ---
+
+<img src="/assets/some-toppings-nobg.png" class="absolute top-4 right-4 w-25" />
+
 # API Test Example
 
 <br />
@@ -1020,6 +1023,8 @@ title: "Comparison & Takeaway"
 transition: slide-left
 color: orange
 ---
+
+<img src="/assets/some-toppings-nobg.png" class="absolute top-4 right-4 w-25" />
 
 # Comparison & Takeaway
 
