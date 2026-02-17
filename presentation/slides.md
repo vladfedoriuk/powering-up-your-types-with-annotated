@@ -985,12 +985,43 @@ async def get_order(
 </div>
 ---
 layout: default
+transition: slide-left
+color: orange-light
+---
+# API Test Example
+
+<br />
+
+```python
+@pytest.mark.anyio
+async def test_get_order_api(
+    client: httpx.AsyncClient, add_order: Callable[[Order], Awaitable[None]]
+) -> None:
+    order = OrderFactory.build(reference="123456")
+    await add_order(order)
+
+    response = await client.get("/orders/", params={"ref": order.reference})
+
+    assert response.status_code == status.HTTP_200_OK
+    data = response.json()
+
+    assert data == IsPartialDict(
+        order=IsPartialDict(
+            ref="#12-34-56",
+        ),
+        total=IsPositive,
+    )
+```
+
+
+---
+layout: default
 title: "Comparison & Takeaway"
 transition: slide-left
 color: orange
 ---
 
-# Comparison &  Takeaway
+# Comparison & Takeaway
 
 - No, it **is not** like ==Django==.
 - No, it **is not** like ==SQLModel==.
@@ -1002,3 +1033,65 @@ color: orange
 - Your domain is centric.
 - Frameworks and tools are trying to hook into it via types metadata.
 - Types and domain model dictate how the frameworks and tools should adapt to it, not the other way around.
+---
+layout: top-title-two-cols
+transition: slide-left
+color: orange-light
+---
+
+:: title ::
+
+# Last Basil: ==annotated-doc==
+
+<img src="/assets/some-toppings-nobg.png" class="absolute top-4 right-4 w-25" />
+
+:: left ::
+
+
+<div class="flex flex-col items-start justify-center h-full">
+
+```python
+FIRST_ORDER_DISCOUNT: Annotated[
+    Percentage,
+    Doc("Discount for the first order made by a customer"),
+] = Decimal(10)
+```
+
+```python
+@frozen
+class NotFoundError(Exception):
+    """Exception raised when an entity is not found."""
+
+    message: Annotated[str, Doc("The human-readable error message")]
+```
+
+</div>
+
+::right::
+
+<div class="flex flex-col items-center justify-center h-full">
+
+<p>
+  This <code>Doc</code> metadata is supported by <code>mkdocstrings[python]</code> for generating rich, type-aware documentation.
+</p>
+
+<img src="/assets/docs.png" class="mx-auto" />
+
+</div>
+---
+layout: default
+title: "Thank You!"
+class: text-center
+transition: slide-left
+color: orange-light
+---
+
+# Thank You!
+
+<div class="flex flex-col items-center justify-center mt-10">
+  <QRCode value="https://github.com/vladfedoriuk/powering-up-your-types-with-annotated" :size="256" render-as="svg" />
+</div>
+
+<br />
+
+## Questions?
