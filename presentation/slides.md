@@ -31,6 +31,10 @@ Python 3.9+ / PEP 593
   </div>
 </div>
 
+<!--
+Today, we're going to talk about adding 'extra toppings' to our Python types, specifically using `typing.Annotated`
+-->
+
 ---
 layout: top-title
 color: yellow
@@ -118,6 +122,16 @@ def search(
   </AdmonitionType>
 </div>
 
+<!--
+So, what's `Annotated` all about? It showed up in Python 3.9 (that’s PEP 593), and it really changes how we think about using types in a super practical way.
+
+**Key Points:**
+*   Introduced Python 3.9 / PEP 593
+*   Syntax: `Annotated[T, *Metadata]`
+*   Two main strategies: semantic types & framework metadata
+*   **Breaks the boundary** between static analysis and runtime behavior
+-->
+
 ---
 layout: top-title-two-cols
 color: amber
@@ -159,6 +173,17 @@ color: amber
   <span class="bg-amber-100 text-amber-900 px-2 rounded">IsNotInfinite</span>
 </div>
 
+<!--
+To get the most out of `Annotated`, the community built `annotated-types`. Think of it as our go-to toolbox for defining common rules for our types."
+
+**Key Points:**
+*   Standard definitions for runtime constraints
+*   Built by Pydantic & Hypothesis maintainers at PyCon 2022 sprints
+*   Shared standard for the Python ecosystem (e.g., `Gt`, `MinLen`, `Timezone`)
+
+*Now, let's explore how we can design a very basic pizza ordering app from scratch, layering features on as we go!*
+-->
+
 ---
 layout: section
 color: orange
@@ -168,6 +193,10 @@ color: orange
 ## The Dough: Pure Domain Model
 
 <img src="/assets/dough-nobg.png" class="mx-auto h-80" />
+
+<!--
+Alright, let's dive into building our pizza step-by-step! We’ll kick things off with 'The Dough' – that’s our clean, basic core domain model for a pizza ordering app.
+-->
 
 ---
 layout: default
@@ -212,6 +241,12 @@ class Order:
 
 </div>
 
+<!--
+Here’s how our basic domain model looks. We're using standard Python `dataclass`es for `Topping`, `Pizza`, and `Order`, with just simple, clear types.
+
+Note: The `add_topping` method enforces a self-imposed limit (`MAX_EXTRA_TOPPINGS`) – an imagined constraint.
+-->
+
 ---
 layout: default
 title: Domain Function - calculate_order_total
@@ -247,6 +282,10 @@ def calculate_order_total(
     return total.quantize(Decimal("0.01"))
 ```
 
+<!--
+Now, let's pretend we have this **super complex** (wink, wink) function, `calculate_order_total`, that figures out the final price based on pizza, toppings, discounts, and tax.
+-->
+
 ---
 layout: section
 color: orange
@@ -256,6 +295,10 @@ color: orange
 ## Layering Meaning onto Our Types
 
 <img src="/assets/with-sauce-nobg.png" class="mx-auto h-80" />
+
+<!--
+Dough’s ready! Now for 'The Sauce' – semantic enrichment. This is where we start imposing our specific domain model constraints directly onto our basic types.
+-->
 
 ---
 layout: default
@@ -288,6 +331,16 @@ TaxRate = Annotated[Amount, Ge(0), Le(1)]
 # Ensure timezone-aware date-times
 TimestampTz = Annotated[datetime.datetime, Timezone(...)]
 ```
+
+<!--
+Okay, let’s give our types some real character! We’re transforming those plain `str`s and `Decimal`s into rich, expressive types like `Name`, `Price`, and `Percentage`.
+
+**Key Points:**
+*   Defining reusable semantic types: `Name`, `OrderReference`, `Amount`, `Price`, `Percentage`, `TaxRate`, `TimestampTz`
+*   Combining `annotated-types` constraints (e.g., `MinLen`, `Gt`, `Predicate`)
+*   Layering annotations for complex types
+-->
+
 ---
 layout: default
 title: Shiki Magic Move - Plain to Annotated
@@ -366,6 +419,12 @@ class Order:
 
 </div>
 
+<!--
+**Now watch this**:  (do the animation)
+
+our basic model goes 'Gourmet' just by swapping out those generic types for our new, more descriptive semantic types.
+-->
+
 ---
 layout: default
 title: Function Signatures Get Semantic Too
@@ -432,6 +491,10 @@ def calculate_order_total(
 
 </div>
 
+<!--
+It’s not just our data models that get an upgrade; our function inputs and outputs also become much clearer and more reliable with these enriched types.
+-->
+
 ---
 layout: section
 color: amber
@@ -441,6 +504,10 @@ color: amber
 ## Binding It All Together
 
 <img src="/assets/some-toppings-nobg.png" class="mx-auto h-80" />
+
+<!--
+Alright, time for 'The Cheese'! This part is all about **testing**, and how it really binds everything together, ensuring our smart types truly work as intended.
+-->
 
 ---
 layout: top-title-two-cols
@@ -534,6 +601,17 @@ def test_order_cannot_add_more_than_10_toppings() -> None:
 
 </div>
 
+<!--
+`Polyfactory` makes generating test data super smooth. It often just 'understands' our `Annotated` types and creates valid data without much friction.
+
+**Key Points:**
+*   Generate test data for dataclasses
+*   Automatically respects `Annotated` constraints (e.g., `Price > 0`)
+*   Example: `OrderFactory` with custom `created_at`, `reference`
+*   Unit tests verify properties (`IsPositive`, `HasLen`) - it plays really nicely with `dirty-equals`
+*   **Caveat:** Manual config sometimes needed for complex types
+-->
+
 ---
 layout: top-title-two-cols
 color: amber-light
@@ -606,6 +684,16 @@ def test_no_free_lunch_property(order: Order, discount: Percentage, tax: TaxRate
 
 </div>
 
+<!--
+For really bulletproof testing, `Hypothesis` is fantastic at finding tricky bugs by trying out all sorts of unexpected inputs.
+
+**Key Points:**
+*   Property-based testing: generating diverse inputs
+*   `st.from_type(T)` and `st.builds(T)` from type hints
+*   Example property: `total` must be non-negative
+*   **Limitation:** Basic `annotated-types` support; often requires explicit strategies
+-->
+
 ---
 layout: section
 color: orange
@@ -615,6 +703,12 @@ color: orange
 ## (SQLAlchemy)
 
 <img src="/assets/some-toppings-nobg.png" class="mx-auto h-80" />
+
+<!--
+Next up for 'The Toppings' – our database layer with SQLAlchemy.
+
+This is cool because our types can actually help define our database schema.
+-->
 
 ---
 layout: top-title-two-cols
@@ -714,6 +808,15 @@ TimestampTz = Annotated[
 
 </div>
 
+<!--
+Here’s how `Annotated` lets us embed SQLAlchemy database info directly into our type definitions, telling it exactly how each column should behave.
+
+**Key Points:**
+*   Layering SQLAlchemy metadata (`mapped_column`)
+*   Extending `Identity`, `Name`, `OrderReference`, `TimestampTz`
+*   Specify DB properties: `primary_key`, `nullable`, `index`, `unique`, `server_default`
+*   **Benefit:** Composition – core types remain, DB metadata overlaid
+-->
 
 ---
 layout: default
@@ -777,6 +880,18 @@ class Pizza:
 
 </div>
 
+<!--
+Now, we can really leverage SQLAlchemy's Declarative mapping techniques!
+
+ One awesome way is `mapped_as_dataclass`, which lets us attach SQLAlchemy metadata directly to our domain model to get the persistence schema we need.
+
+**Key Points:**
+*   `registry.mapped_as_dataclass` for ORM models
+*   `Mapped[T]` links Python types to DB columns
+*   Typed SQLAlchemy models behave like `dataclass`es
+*   **Benefit:** Declarative & Typed ORM
+-->
+
 ---
 layout: default
 title: Database Migrations
@@ -819,6 +934,12 @@ op.create_index(op.f("ix_toppings_name"), "toppings", ["name"], unique=False)
 ```
 </Transform>
 
+<!--
+So, how do we know our mapping is just right?
+
+We can verify its correctness by generating database migrations with Alembic, which checks our `Annotated` models and figures out the needed changes.
+-->
+
 ---
 layout: section
 color: orange
@@ -828,6 +949,12 @@ color: orange
 ## Pydantic & FastAPI
 
 <img src="/assets/some-toppings-nobg.png" class="mx-auto h-80" />
+
+<!--
+Our 'Second Topping' is the API layer – how our app talks to the outside world.
+
+Pydantic and FastAPI use our types to make this process really smooth.
+-->
 
 ---
 layout: two-cols-title
@@ -909,6 +1036,18 @@ Amount = Annotated[
 </AdmonitionType>
 </div>
 
+<!--
+APIs sometimes need data presented a bit differently.
+
+`Annotated` lets us 'bake in' `Pydantic` rules for validating and transforming incoming data or formatting it for output.
+
+**Key Points:**
+*   Pydantic-specific metadata for `OrderReference`, `Amount`
+*   `BeforeValidator` for incoming data (e.g., cleaning `reference`)
+*   `PlainSerializer` for outgoing data (e.g., formatting `reference`, `Decimal` to `float`)
+*   **Concept:** API Data Flow – bridging external vs. internal representations
+-->
+
 ---
 layout: two-cols-title
 title: FastAPI Endpoint & Pydantic Schemas
@@ -983,6 +1122,17 @@ async def get_order(
   </ul>
 </AdmonitionType>
 </div>
+
+<!--
+This is where `Annotated` really shines in modern Python! FastAPI uses our detailed types to automatically build our API, check data, and even create the documentation.
+
+**Key Points:**
+*   FastAPI endpoint uses `Annotated` for `Query` params
+*   `Pydantic` `BaseModel`s for `response_model`
+*   Automatic OpenAPI documentation, validation, serialization
+*   **Benefit:** Framework Integration – FastAPI understands embedded metadata
+-->
+
 ---
 layout: default
 transition: slide-left
@@ -1016,6 +1166,14 @@ async def test_get_order_api(
     )
 ```
 
+<!--
+Let’s quickly check if our API works as expected. This test shows how those `Annotated` type changes actually play out when our API runs.
+
+**Key Points:**
+*   Asserts on HTTP `status.HTTP_200_OK`
+*   Verifies *transformed* `ref` (`#12-34-56`)
+*   Confirms `total` is `IsPositive` (type validation, float - not string, which would be typical for `Decimal`)
+-->
 
 ---
 layout: default
@@ -1038,6 +1196,18 @@ color: orange
 - Your domain is centric.
 - Frameworks and tools are trying to hook into it via types metadata.
 - Types and domain model dictate how the frameworks and tools should adapt to it, not the other way around.
+
+<!--
+So, what’s the big picture here? This isn’t just another database tool; it’s a fresh way to think about how we build our Python applications.
+
+**Key Points:**
+*   **Not** Django or SQLModel – this is different.
+*   **Reduces "Design Pressure"**: Drawing inspiration from Hynek Schlawack's great talk. The idea is that your core domain is designed to best represent the problem at hand, while infrastructure (like your DB or API) can evolve around it.
+*   DB & API schemas can change independently from your domain model.
+*   Your types become super important: they're first-class citizens of your domain.
+*   This approach forces you to start by designing your domain model first, and then your tools and frameworks adapt to it, not the other way around!
+-->
+
 ---
 layout: top-title-two-cols
 transition: slide-left
@@ -1086,6 +1256,19 @@ class NotFoundError(Exception):
 
 
 </div>
+
+<!--
+For our final touch, 'The Basil'!
+
+Let me introduce `annotated-doc` and the `Doc` annotation, which are all about putting documentation right inside our types.
+
+**Key Points:**
+*   `Doc` metadata for in-line documentation
+*   Integrated with `mkdocstrings[python]`
+*   Historical context: PEP 727 (revoked), @tiangolo's championing
+*   Powers documentation for Typer, FastAPI
+-->
+
 ---
 layout: default
 title: "Thank You!"
@@ -1103,3 +1286,12 @@ color: orange-light
 <br />
 
 ## Questions?
+
+<!--
+Thank you for joining me today for this quick tour of `typing.Annotated`! I hope you're as excited about its vast possibilities as I am.
+
+**Key Points:**
+*   Thank you
+*   Questions?
+*   GitHub repo QR code
+-->
