@@ -71,25 +71,25 @@ ______________________________________________________________________
 
 ## Phase 7: Comparison & Philosophical Takeaway
 
-- [ ] **Comparison:** Contrast this approach with DRF (Django Rest Framework) or SQLModel.
+- [x] **Comparison:** Contrast this approach with DRF (Django Rest Framework) or SQLModel.
   - Add sentences: "No, it is not like Django", "No, it is not like SQLModel"
-- [ ] **Design Pressure:** Explain why we don't start with the database model (Reference: Hynek's talk on
+- [x] **Design Pressure:** Explain why we don't start with the database model (Reference: Hynek's talk on
   "Design Pressure"). Add a sentence: "We start with the domain model, not with the database model". "I don't feel the design pressure\*" (add * with "I am now recommending Hynek's talk on Design Pressure to everyone")
-- [ ] **Independence:** Showcase how DB persistence and API schemas can change independently while the domain stays stable.
-- [ ] **Types as a first-class citizen:** Types are no longer just for static analysis or to make your type checker happy. They are now a first-class citizen in the application, carrying metadata that informs your domain, your database, and your API.
-- [ ] **Domain in the center:** Your domain is centric. Frameworks and tools are trying to hook into it via types metadta. Types and domain model dictates how the frameworks and tools should adapt to it, not the other way around.
-- [ ] **Conclusion:** Recapping `Annotated` as a tool for architectural sanity.
+- [x] **Independence:** Showcase how DB persistence and API schemas can change independently while the domain stays stable.
+- [x] **Types as a first-class citizen:** Types are no longer just for static analysis or to make your type checker happy. They are now a first-class citizen in the application, carrying metadata that informs your domain, your database, and your API.
+- [x] **Domain in the center:** Your domain is centric. Frameworks and tools are trying to hook into it via types metadta. Types and domain model dictates how the frameworks and tools should adapt to it, not the other way around.
+- [x] **Conclusion:** Recapping `Annotated` as a tool for architectural sanity.
 
 ## Phase 8: The Final Garnish - Documentation with `annotated-doc`
 
-- [ ] **The Analogy:** "A drizzle of hot honey" or "a sprinkle of parmesan" to finish — elevating the types with documentation.
-- [ ] **Context:** Introduce `annotated-doc` and the revoked PEP 727.
-- [ ] **History:** Mention @tiangolo's role and adoption in Typer/FastAPI.
-- [ ] **Implementation:** Use `Doc` to add human-readable descriptions to our pizza types.
-- [ ] **Tooling:** Showcase the MkDocs plugin and how it automatically renders these descriptions.
-- [ ] **Integration:** Show how `annotated-doc` integrates with MkDocs to produce beautiful, type-driven documentation.
+- [x] **The Analogy:** "A drizzle of hot honey" or "a sprinkle of parmesan" to finish — elevating the types with documentation.
+- [x] **Context:** Introduce `annotated-doc` and the revoked PEP 727.
+- [x] **History:** Mention @tiangolo's role and adoption in Typer/FastAPI.
+- [x] **Implementation:** Use `Doc` to add human-readable descriptions to our pizza types.
+- [x] **Tooling:** Showcase the MkDocs plugin and how it automatically renders these descriptions.
+- [x] **Integration:** Show how `annotated-doc` integrates with MkDocs to produce beautiful, type-driven documentation.
   - **Note:** Use `Doc` directly for constants/args instead of through Aliases. It must be the first member of a top-level annotation to ensure documentation tools pick it up correctly.
-- [ ] Provide docstrings for all code snippets.
+- [x] Provide docstrings for all code snippets.
 
 ______________________________________________________________________
 
@@ -98,10 +98,10 @@ ______________________________________________________________________
 - [x] **README.md:** Rewrite to reflect the presentation goals and project structure.
 - [x] **Pre-commit:** Set up hooks (Ruff, Mypy, etc.) to ensure code snippet quality.
 - [x] **Reference Links:** Create an MD file with all reference links and resources.
-- [ ] **Final Garnish:** Add a QR code to the repository at the end of the presentation.
+- [x] **Final Garnish:** Add a QR code to the repository at the end of the presentation.
 - [ ] **Presentation Framework:**
   - [x] Set up [Slidev](https://sli.dev/) for the main presentation.
-  - [ ] Explore [Marimo](https://marimo.io/) for interactive code examples/notebooks.
-- [ ] **Code Samples:** Ensure all snippets are concise, "Pizza-themed", and fit on a slide.
+  - [x] Explore [Marimo](https://marimo.io/) for interactive code examples/notebooks.
+- [x] **Code Samples:** Ensure all snippets are concise, "Pizza-themed", and fit on a slide.
 - [x] **Environment:** Finalize `pyproject.toml` with all dependencies (FastAPI, Pydantic, SQLAlchemy, Polyfactory,
   Hypothesis, etc.).

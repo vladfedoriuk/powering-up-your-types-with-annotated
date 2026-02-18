@@ -8,3 +8,35 @@
   - Official documentation for the `Annotated` type, explaining how to use it to add context-specific metadata to your Python type hints.
 - [annotated-types](https://github.com/annotated-types/annotated-types)
   - Reusable constraint types (like `Gt`, `Lt`, `Len`) for `typing.Annotated`, designed to be used by runtime libraries for validation and other metadata-driven behaviors.
+- [mkdocstrings-python docstrings configuration](https://mkdocstrings.github.io/python/usage/configuration/docstrings/)
+  - Guide to configuring docstrings within `mkdocstrings-python` for generating API documentation from Python code.
+- [mkdocstrings GitHub Repository](https://github.com/mkdocstrings/mkdocstrings)
+  - The official GitHub repository for `mkdocstrings`, a tool for generating documentation from Python docstrings.
+- [zensical.org mkdocstrings configuration](https://zensical.org/docs/setup/extensions/mkdocstrings/#configuration-mkdocsyml)
+  - Example configuration for `mkdocstrings` within `mkdocs.yml` on the Zensical documentation site.
+- [MkDocs-Material](https://squidfunk.github.io/mkdocs-material/)
+  - A popular Material Design theme for MkDocs, enhancing the aesthetics and functionality of technical documentation.
+- [PEP 727 – Marking function parameters as 'required' or 'optional'](https://peps.python.org/pep-0727/)
+  - A (withdrawn) PEP proposing syntax to explicitly mark function parameters as required or optional, relevant to type hinting.
+- [mkdocstrings-griffe-typingdoc API Reference](https://mkdocstrings.github.io/griffe-typingdoc/reference/api/)
+  - API reference for `griffe-typingdoc`, an extension for `mkdocstrings` that improves handling of type annotations in documentation.
+- [annotated-doc PyPI](https://pypi.org/project/annotated-doc/)
+  - PyPI page for `annotated-doc`, a library to add human-readable descriptions to `Annotated` types for documentation generation.
+- [Polyfactory Issue #347 - Support for Annotated Types](https://github.com/litestar-org/polyfactory/issues/347)
+  - A GitHub issue discussing the support for `Annotated` types within the Polyfactory library for data generation.
+- [SQLAlchemy 2.0 ORM Annotated Declarative Guide](https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-annotated-declarative-complete-guide)
+  - Comprehensive guide on using `Annotated` with SQLAlchemy's ORM for declarative table definitions.
+- [Hypothesis Issues with annotated_types](https://github.com/HypothesisWorks/hypothesis/issues?q=annotated_types)
+  - GitHub issues related to `annotated_types` integration and challenges within the Hypothesis property-based testing library.
+- [Hypothesis strategies.from_type](https://hypothesis.readthedocs.io/en/latest/reference/strategies.html#hypothesis.strategies.from_type)
+  - Documentation for `hypothesis.strategies.from_type`, which infers strategies from type hints for property-based testing.
+- [Polyfactory usage with fields](https://polyfactory.litestar.dev/latest/usage/fields.html)
+  - Documentation on how to use fields in Polyfactory for generating test data, often relevant for `Annotated` types.
+- [Pydantic Functional Validators API](https://docs.pydantic.dev/latest/api/functional_validators/)
+  - API documentation for Pydantic's functional validators, allowing custom validation logic for models.
+- [Pydantic Functional Serializers API](https://docs.pydantic.dev/latest/api/functional_serializers/)
+  - API documentation for Pydantic's functional serializers, for customizing how model data is serialized.
+- [FastAPI Type Hints with Metadata Annotations](https://fastapi.tiangolo.com/python-types/#type-hints-with-metadata-annotations)
+  - FastAPI documentation explaining how to use `Annotated` to add metadata to type hints for request validation and dependency injection.
+- [Pydantic v2.8 Validators Concepts](https://docs.pydantic.dev/2.8/concepts/validators/#before-after-wrap-and-plain-validators)
+  - Pydantic v2.8 concepts explaining different types of validators (before, after, wrap, plain) for data processing.

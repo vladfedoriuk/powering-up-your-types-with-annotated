@@ -15,4 +15,5 @@ just
 ## Structure
 
 - `snippets/`: Python examples demonstrating `Annotated` for validation, persistence, and APIs.
-- `docs/`: Presentation documentation and index.
+- `docs/`: Example `mkdocs` site with `mkdocstrings[python]` and `annotated-doc` + links to related resources.
+- `presentation/`: Slides for the talk.
