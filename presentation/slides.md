@@ -2,12 +2,12 @@
 theme: neversink
 title: Extra Toppings - Powering Up Your Types with Annotated
 info: |
-  ## Extra Toppings
-  Powering Up Your Types with Annotated in Python
+    ## Extra Toppings
+    Powering Up Your Types with Annotated in Python
 # apply UnoCSS classes to the current slide
 class: text-center
 drawings:
-  persist: false
+    persist: false
 transition: slide-left
 mdc: true
 layout: intro
@@ -181,6 +181,8 @@ To get the most out of `Annotated`, the community built `annotated-types`. Think
 *   Built by Pydantic & Hypothesis maintainers at PyCon 2022 sprints
 *   Shared standard for the Python ecosystem (e.g., `Gt`, `MinLen`, `Timezone`)
 
+## Transition
+
 *Now, let's explore how we can design a very basic pizza ordering app from scratch, layering features on as we go!*
 -->
 
@@ -338,7 +340,7 @@ Okay, let’s give our types some real character! We’re transforming those pla
 **Key Points:**
 *   Defining reusable semantic types: `Name`, `OrderReference`, `Amount`, `Price`, `Percentage`, `TaxRate`, `TimestampTz`
 *   Combining `annotated-types` constraints (e.g., `MinLen`, `Gt`, `Predicate`)
-*   Layering annotations for complex types
+*   Layering, **mixing and matching annotations** for complex and **expressive** types
 -->
 
 ---
@@ -492,7 +494,7 @@ def calculate_order_total(
 </div>
 
 <!--
-It’s not just our data models that get an upgrade; our function inputs and outputs also become much clearer and more reliable with these enriched types.
+It’s not just our data models that get an upgrade; our function inputs and outputs also become much clearer and more **explicit** with these enriched types.
 -->
 
 ---
@@ -506,7 +508,7 @@ color: amber
 <img src="/assets/some-toppings-nobg.png" class="mx-auto h-80" />
 
 <!--
-Alright, time for 'The Cheese'! This part is all about **testing**, and how it really binds everything together, ensuring our smart types truly work as intended.
+Alright, time for 'The Cheese'! This part is all about **testing**, and how it **really binds everything together**, ensuring our smart types truly work as intended.
 -->
 
 ---
@@ -809,7 +811,7 @@ TimestampTz = Annotated[
 </div>
 
 <!--
-Here’s how `Annotated` lets us embed SQLAlchemy database info directly into our type definitions, telling it exactly how each column should behave.
+Here’s how `Annotated` lets us embed SQLAlchemy  metadata directly into our type definitions, telling it exactly how each Python type should be mapped into a database type or column.
 
 **Key Points:**
 *   Layering SQLAlchemy metadata (`mapped_column`)
