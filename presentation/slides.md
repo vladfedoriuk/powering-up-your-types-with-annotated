@@ -183,7 +183,7 @@ To get the most out of `Annotated`, the community built `annotated-types`. Think
 
 ## Transition
 
-*Now, let's explore how we can design a very basic pizza ordering app from scratch, layering features on as we go!*
+*Now, **let's explore how we can approach designing a very basic pizza ordering app from scratch**, layering features on as we go!*
 -->
 
 ---
@@ -335,7 +335,7 @@ TimestampTz = Annotated[datetime.datetime, Timezone(...)]
 ```
 
 <!--
-Okay, let’s give our types some real character! We’re transforming those plain `str`s and `Decimal`s into rich, expressive types like `Name`, `Price`, and `Percentage`.
+Okay, **let’s give our types some real character**!  We’re transforming those plain `str`s and `Decimal`s into rich, expressive types like `Name`, `Price`, and `Percentage`.
 
 **Key Points:**
 *   Defining reusable semantic types: `Name`, `OrderReference`, `Amount`, `Price`, `Percentage`, `TaxRate`, `TimestampTz`
@@ -610,7 +610,7 @@ def test_order_cannot_add_more_than_10_toppings() -> None:
 *   Generate test data for dataclasses
 *   Automatically respects `Annotated` constraints (e.g., `Price > 0`)
 *   Example: `OrderFactory` with custom `created_at`, `reference`
-*   Unit tests verify properties (`IsPositive`, `HasLen`) - it plays really nicely with `dirty-equals`
+*   Unit tests verify properties (`IsPositive`, `HasLen`) - **it plays really nicely with `dirty-equals`**
 *   **Caveat:** Manual config sometimes needed for complex types
 -->
 
@@ -1132,7 +1132,7 @@ This is where `Annotated` really shines in modern Python! FastAPI uses our detai
 *   FastAPI endpoint uses `Annotated` for `Query` params
 *   `Pydantic` `BaseModel`s for `response_model`
 *   Automatic OpenAPI documentation, validation, serialization
-*   **Benefit:** Framework Integration – FastAPI understands embedded metadata
+*   **Benefit:** Framework Integration – **FastAPI understands embedded metadata**
 -->
 
 ---
