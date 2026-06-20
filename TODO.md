@@ -1,9 +1,9 @@
-# TODO: Extra Toppings: Powering Up Your Types with Annotated
+# TODO: Powering Up Your Types with Annotated
 
 ## Presentation Overview
 
-**Title:** Extra Toppings: Powering Up Your Types with Annotated
-**Target:** Python Pizza
+**Title:** Powering Up Your Types with Annotated
+**Target:** EuroPython
 **Core Message:** `Annotated` is a universal metadata engine that enables cleaner architecture through composition and
 metadata layering, breaking the boundary between static analysis and runtime execution.
 
@@ -35,6 +35,39 @@ ______________________________________________________________________
 - [x] Adoption by major libraries (Pydantic, etc.).
 - [x] Showcase core metadata objects: `Gt`, `Lt`, `MinLen`, `MaxLen`, `Predicate`.
 - [x] **Technical Deep Dive:** Discuss the "Nested Annotated" pitfall and the flattening debate (CPython issue #63041).
+
+## Phase 3.5: Working with Annotations at Runtime (NEW — EuroPython addition)
+
+- [ ] **Slide: `Annotated` internals — `__origin__`, `__metadata__`, and flattening.**
+  - `__origin__` — the unwrapped base type (`str`, `Decimal`, …). Distinct from `get_origin()`, which returns `Annotated` itself.
+  - `__metadata__` — tuple of all metadata arguments in order. Never deduplicated.
+  - Metadata order matters for equality: `Annotated[int, MinLen(1), MaxLen(100)] != Annotated[int, MaxLen(100), MinLen(1)]`.
+  - Nested `Annotated` types **are flattened** (innermost metadata first): `Annotated[Annotated[int, MinLen(1)], MaxLen(100)] == Annotated[int, MinLen(1), MaxLen(100)]`.
+  - **Exception:** flattening does **not** occur through a PEP 695 `TypeAliasType` — the alias is preserved as an opaque argument to avoid forcing evaluation.
+- [ ] **Slide: Introspecting Annotated types.** Show how to work with annotations programmatically, covering the key
+  runtime tools:
+  - `typing.get_origin()` — detect whether a type is `Annotated`
+  - `typing.get_args()` — unpack `(base_type, *metadata)` from an `Annotated` type
+  - `get_constraints()` pattern (from `annotated-types`) — iterate over `BaseMetadata` / `GroupedMetadata`
+  - `typing.get_type_hints(include_extras=True)` — resolve annotations across the MRO, optionally preserving metadata
+  - `annotationlib.get_annotations()` (Python 3.14+) — the new preferred API with `Format.VALUE / FORWARDREF / STRING`
+- [ ] **Slide: get_type_hints vs get_annotations — key differences.**
+  Contrast the two APIs on a single slide:
+  | Feature | `get_type_hints` | `get_annotations` |
+  |---|---|---|
+  | Strips `Annotated` metadata | YES (default) | NO (always preserved) |
+  | Keep metadata toggle | `include_extras=True` | n/a |
+  | Merges base-class annotations | YES (full MRO) | NO (own only) |
+  | Evaluates string annotations | YES (always) | only with `eval_str=True` |
+  | Format support | — | VALUE / FORWARDREF / STRING |
+  | Available since | Python 3.5 | Python 3.14 |
+- [ ] **Caveat: `from __future__ import annotations` (PEP 563).** Explain that string-stored annotations are returned
+  as-is by `get_annotations(Format.VALUE)` — `eval_str=True` or `get_type_hints` is needed to resolve them.
+- [ ] **Caveat: ForwardRef and FORWARDREF format.** Show that `Format.FORWARDREF` returns proxy objects instead of
+  raising `NameError` when names are undefined, useful for metaclass/framework machinery.
+- [ ] **PEP 747 — TypeForm** (accepted, Python 3.15). Mention briefly that annotating functions that *accept* type form
+  objects now has a proper spelling: `TypeForm[T]`.
+- [ ] **Code snippet:** Reference `snippets/introspection/annotations_introspection.py` (33 test cases, all passing).
 
 ## Phase 4: Building the Pizza: The Dough, The Sauce, and The Cheese
 
@@ -102,6 +135,7 @@ ______________________________________________________________________
 - [ ] **Presentation Framework:**
   - [x] Set up [Slidev](https://sli.dev/) for the main presentation.
   - [x] Explore [Marimo](https://marimo.io/) for interactive code examples/notebooks.
-- [x] **Code Samples:** Ensure all snippets are concise, "Pizza-themed", and fit on a slide.
+- [ ] **Code Samples:** Remove pizza theme from snippets file names and wording; adapt for EuroPython audience.
+- [ ] **Slide Theme:** Remove pizza-themed assets, puns, and branding from the Slidev presentation.
 - [x] **Environment:** Finalize `pyproject.toml` with all dependencies (FastAPI, Pydantic, SQLAlchemy, Polyfactory,
   Hypothesis, etc.).

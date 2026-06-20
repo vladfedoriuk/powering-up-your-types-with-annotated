@@ -1,4 +1,4 @@
-set dotenv-load := true
+set dotenv-load
 set shell := ["bash", "-c"]
 
 [doc("List available recipes")]

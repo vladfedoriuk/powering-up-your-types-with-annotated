@@ -4,10 +4,10 @@ from typing import Callable, Awaitable
 
 import httpx
 import pytest
-from sqlalchemy.ext.asyncio import AsyncSession
 from dirty_equals import IsPartialDict, IsPositive
 from polyfactory import Use
 from polyfactory.factories.sqlalchemy_factory import SQLAlchemyFactory
+from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
 from .api_pizza import (
@@ -15,6 +15,8 @@ from .api_pizza import (
     Pizza,
     Topping,
 )
+
+pytestmark = pytest.mark.usefixtures("_override_registry")
 
 
 class ToppingFactory(SQLAlchemyFactory[Topping]):
