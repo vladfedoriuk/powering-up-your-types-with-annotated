@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: direction description: Navigation direction-based styling
+---
+name: direction
+description: Navigation direction-based styling
+---
 
 # Navigation Direction Variants
 

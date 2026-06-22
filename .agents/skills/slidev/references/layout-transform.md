@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: transform-component description: Scale elements without affecting slide layout using the Transform component
+---
+name: transform-component
+description: Scale elements without affecting slide layout using the Transform component
+---
 
 # Transform Component
 

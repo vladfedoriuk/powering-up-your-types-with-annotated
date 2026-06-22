@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: drawing description: Draw and annotate slides during presentation
+---
+name: drawing
+description: Draw and annotate slides during presentation
+---
 
 # Drawing & Annotations
 
@@ -30,7 +31,6 @@ Drawings saved to `.slidev/drawings/`.
 ## Disable Drawing
 
 Entirely:
-
 ```md
 ---
 drawings:
@@ -39,7 +39,6 @@ drawings:
 ```
 
 Only in development:
-
 ```md
 ---
 drawings:
@@ -48,7 +47,6 @@ drawings:
 ```
 
 Only in presenter mode:
-
 ```md
 ---
 drawings:

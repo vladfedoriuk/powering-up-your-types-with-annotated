@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: import-snippet description: Import code from external files into slides with optional region selection
+---
+name: import-snippet
+description: Import code from external files into slides with optional region selection
+---
 
 # Import Code Snippets
 

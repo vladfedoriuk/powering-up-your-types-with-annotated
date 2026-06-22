@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: magic-move description: Animate code changes with smooth transitions between code blocks
+---
+name: magic-move
+description: Animate code changes with smooth transitions between code blocks
+---
 
 # Shiki Magic Move
 

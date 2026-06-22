@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: presenter-timer description: Timer and progress bar in presenter mode
+---
+name: presenter-timer
+description: Timer and progress bar in presenter mode
+---
 
 # Presenter Timer
 

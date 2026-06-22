@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: remote-assets description: Bundle remote images and assets for offline use
+---
+name: remote-assets
+description: Bundle remote images and assets for offline use
+---
 
 # Bundle Remote Assets
 

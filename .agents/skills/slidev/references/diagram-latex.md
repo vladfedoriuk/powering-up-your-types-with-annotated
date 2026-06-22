@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: latex description: Render mathematical equations using KaTeX
+---
+name: latex
+description: Render mathematical equations using KaTeX
+---
 
 # LaTeX
 

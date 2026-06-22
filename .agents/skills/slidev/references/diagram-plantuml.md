@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: plantuml description: Create UML diagrams from text descriptions
+---
+name: plantuml
+description: Create UML diagrams from text descriptions
+---
 
 # PlantUML Diagrams
 

@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: og-image description: Configure Open Graph preview image for social sharing
+---
+name: og-image
+description: Configure Open Graph preview image for social sharing
+---
 
 # Open Graph Image
 

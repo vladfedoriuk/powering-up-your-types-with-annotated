@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: recording description: Record presentations with camera and screen capture
+---
+name: recording
+description: Record presentations with camera and screen capture
+---
 
 # Recording
 
@@ -19,7 +20,6 @@ Click the camera icon in navigation bar to show camera overlay.
 Click the video icon in navigation bar.
 
 Options:
-
 - Camera embedded in slides
 - Separate video files for camera and slides
 

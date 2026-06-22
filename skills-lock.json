@@ -1,0 +1,17 @@
+{
+  "skills": {
+    "slidev": {
+      "computedHash": "4973bc1baf08fa1303f99ef3abce8ec3aedfb2637e4315de30a2421746b610e3",
+      "skillPath": "skills/slidev/SKILL.md",
+      "source": "antfu/skills",
+      "sourceType": "github"
+    },
+    "slidev-styling": {
+      "computedHash": "398269f9565bd7632e85cb4b6b1b3b1ca596b8cc484f809e287afc6091fa5818",
+      "skillPath": "skills/customization/slidev-styling/SKILL.md",
+      "source": "yoanbernabeu/slidev-skills",
+      "sourceType": "github"
+    }
+  },
+  "version": 1
+}

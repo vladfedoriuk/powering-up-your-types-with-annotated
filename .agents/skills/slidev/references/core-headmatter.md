@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: headmatter description: Deck-wide configuration options in the first frontmatter block
+---
+name: headmatter
+description: Deck-wide configuration options in the first frontmatter block
+---
 
 # Headmatter Configuration
 

@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: global-context description: Access navigation, slide info, and configuration programmatically
+---
+name: global-context
+description: Access navigation, slide info, and configuration programmatically
+---
 
 # Global Context & API
 
@@ -59,7 +60,6 @@ Current page number (1-indexed).
 ### $renderContext
 
 Current render context:
-
 - `'slide'` - Normal slide view
 - `'overview'` - Overview mode
 - `'presenter'` - Presenter mode

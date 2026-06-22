@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: zoom-slides description: Scale individual slide content using the zoom frontmatter option
+---
+name: zoom-slides
+description: Scale individual slide content using the zoom frontmatter option
+---
 
 # Zoom Slides
 

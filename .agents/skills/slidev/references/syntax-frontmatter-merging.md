@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: frontmatter-merging description: Priority rules when importing slides with conflicting frontmatter
+---
+name: frontmatter-merging
+description: Priority rules when importing slides with conflicting frontmatter
+---
 
 # Frontmatter Merging
 
@@ -9,7 +10,6 @@ When importing slides, frontmatter from main entry takes priority.
 ## Example
 
 Main file (`slides.md`):
-
 ```md
 ---
 src: ./cover.md
@@ -19,7 +19,6 @@ class: text-center
 ```
 
 Imported file (`cover.md`):
-
 ```md
 ---
 layout: cover

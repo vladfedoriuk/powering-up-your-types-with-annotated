@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: scoped description: Slide-scoped CSS styles
+---
+name: scoped
+description: Slide-scoped CSS styles
+---
 
 # Slide Scope Styles
 

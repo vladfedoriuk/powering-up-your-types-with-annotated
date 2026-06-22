@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: importing-slides description: Split presentations into multiple files for reusability
+---
+name: importing-slides
+description: Split presentations into multiple files for reusability
+---
 
 # Importing Slides
 

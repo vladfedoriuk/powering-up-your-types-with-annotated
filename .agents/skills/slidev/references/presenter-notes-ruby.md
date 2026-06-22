@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: notes-auto-ruby description: Automatically add ruby text (pronunciation guides) to presenter notes
+---
+name: notes-auto-ruby
+description: Automatically add ruby text (pronunciation guides) to presenter notes
+---
 
 # Notes Auto Ruby
 
@@ -19,7 +20,6 @@ notesAutoRuby:
 ## Example
 
 Notes:
-
 ```md
 <!--
 私は日本語を勉強しています。

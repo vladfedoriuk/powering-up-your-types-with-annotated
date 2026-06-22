@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: syntax description: Core Markdown syntax for Slidev presentations
+---
+name: syntax
+description: Core Markdown syntax for Slidev presentations
+---
 
 # Slidev Markdown Syntax
 
@@ -77,7 +78,6 @@ const hello = 'world'
 ````
 
 With features:
-
 ````md
 ```ts {2,3}              // Line highlighting
 ```ts {1|2-3|all}        // Click-based highlighting
@@ -92,7 +92,6 @@ With features:
 Inline: `$E = mc^2$`
 
 Block:
-
 ```md
 $$
 \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
@@ -102,7 +101,6 @@ $$
 ## Diagrams
 
 Mermaid:
-
 ````md
 ```mermaid
 graph LR
@@ -111,7 +109,6 @@ graph LR
 ````
 
 PlantUML:
-
 ````md
 ```plantuml
 @startuml
@@ -120,9 +117,9 @@ Alice -> Bob : Hello
 ```
 ````
 
-## MDC Syntax
+## Comark Syntax
 
-Enable with `mdc: true`:
+Enable with `comark: true`:
 
 ```md
 [styled text]{style="color:red"}
@@ -151,7 +148,6 @@ src: ./pages/intro.md
 ```
 
 Import specific slides:
-
 ```md
 ---
 src: ./other.md#2,5-7

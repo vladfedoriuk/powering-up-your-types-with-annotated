@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: frontmatter description: Configuration options for individual slides
+---
+name: frontmatter
+description: Configuration options for individual slides
+---
 
 # Per-Slide Frontmatter
 

@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: hosting description: Build and deploy Slidev presentations
+---
+name: hosting
+description: Build and deploy Slidev presentations
+---
 
 # Hosting & Deployment
 

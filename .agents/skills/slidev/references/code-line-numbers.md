@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: line-numbers description: Enable line numbering for code blocks globally or per-block
+---
+name: line-numbers
+description: Enable line numbering for code blocks globally or per-block
+---
 
 # Code Block Line Numbers
 

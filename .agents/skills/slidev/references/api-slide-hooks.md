@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: slide-hooks description: Lifecycle hooks for slide components
+---
+name: slide-hooks
+description: Lifecycle hooks for slide components
+---
 
 # Slide Hooks
 

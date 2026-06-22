@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: code-groups description: Group multiple code blocks with tabs and automatic icons
+---
+name: code-groups
+description: Group multiple code blocks with tabs and automatic icons
+---
 
 # Code Groups
 
@@ -8,11 +9,11 @@ Group multiple code blocks with tabs and automatic icons.
 
 ## Requirements
 
-Enable MDC syntax in headmatter:
+Enable Comark syntax in headmatter:
 
 ```md
 ---
-mdc: true
+comark: true
 ---
 ```
 
@@ -53,7 +54,6 @@ console.log('Hello!')
 ````
 
 Requires:
-
 1. Install icon collection: `pnpm add @iconify-json/uil`
 2. Add to safelist in `uno.config.ts`:
 
