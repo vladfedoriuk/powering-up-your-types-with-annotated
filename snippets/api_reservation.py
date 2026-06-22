@@ -11,10 +11,23 @@ import svcs.fastapi
 from annotated_doc import Doc
 from annotated_types import Ge, Gt, IsFinite, IsNotNan, Le, MaxLen, MinLen, Timezone
 from attrs import frozen
-from fastapi import FastAPI, Path, status
-from pydantic import BaseModel, ConfigDict, Field, PlainSerializer
+from fastapi import FastAPI, HTTPException, Path, status
+from pydantic import (
+    BaseModel,
+    BeforeValidator,
+    ConfigDict,
+    Field,
+    PlainSerializer,
+    model_validator,
+)
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import (
+    DeclarativeBase,
+    Mapped,
+    MappedAsDataclass,
+    mapped_column,
+    relationship,
+)
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
@@ -38,8 +51,14 @@ Identity = Annotated[
     ),
 ]
 
+
+def trim_str(v: str) -> str:
+    return v.strip()
+
+
 RoomId = Annotated[
     str,
+    BeforeValidator(trim_str),
     MinLen(1),
     MaxLen(20),
     mapped_column(sqlalchemy.String(20), nullable=False, index=True, unique=True),
@@ -90,12 +109,15 @@ TimestampTz = Annotated[
     ),
 ]
 
-metadata = sqlalchemy.MetaData()
-registry = sqlalchemy.orm.registry(metadata=metadata)
+
+class Base(DeclarativeBase, MappedAsDataclass):
+    pass
 
 
-@registry.mapped_as_dataclass
-class Room:
+metadata = Base.metadata
+
+
+class Room(Base):
     __tablename__ = "rooms"
     __table_kwargs__ = {"sqlite_autoincrement": True}
 
@@ -121,8 +143,7 @@ class Room:
             self.reservations.append(reservation)
 
 
-@registry.mapped_as_dataclass
-class Reservation:
+class Reservation(Base):
     __tablename__ = "reservations"
     __table_kwargs__ = {"sqlite_autoincrement": True}
 
@@ -171,6 +192,33 @@ class ReservationSchema(BaseModel):
     created_at: TimestampTz
     night_count: NightCount = Field(title="Nights")
 
+    @model_validator(mode="after")
+    def check_dates(self) -> "ReservationSchema":
+        if self.ends_at <= self.starts_at:
+            raise ValueError("ends_at must be after starts_at")
+        expected = self.ends_at.toordinal() - self.starts_at.toordinal()
+        if self.night_count != expected:
+            raise ValueError(
+                f"night_count={self.night_count} does not match date range ({expected})"
+            )
+        return self
+
+
+class CreateReservationSchema(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True, title="Create Reservation")
+
+    room_id: RoomId
+    guest_count: GuestCount
+    starts_at: StayDate
+    ends_at: StayDate
+    rate: RoomRate
+
+    @model_validator(mode="after")
+    def check_dates(self) -> "CreateReservationSchema":
+        if self.ends_at <= self.starts_at:
+            raise ValueError("ends_at must be after starts_at")
+        return self
+
 
 class RoomSchema(BaseModel):
     model_config = ConfigDict(
@@ -215,6 +263,10 @@ class RoomRepository:
     """Repository for room aggregates."""
 
     _session: AsyncSession
+
+    async def save(self, room: Room) -> None:
+        self._session.add(room)
+        await self._session.flush()
 
     async def get_by_room_id(self, room_id: RoomId) -> Room | None:
         stmt = (
@@ -261,6 +313,41 @@ async def get_room(
         "totals": [
             calculate_stay_total(reservation) for reservation in room.reservations
         ],
+    }
+
+
+@app.post("/reservations/", status_code=status.HTTP_201_CREATED)
+async def create_reservation(
+    data: CreateReservationSchema,
+    services: svcs.fastapi.DepContainer,
+) -> dict[str, Any]:
+    repo = await services.aget(RoomRepository)
+    room = await repo.get_by_room_id(data.room_id)
+    if room is None:
+        raise NotFoundError("Room not found")
+
+    reservation = Reservation(
+        room_id=data.room_id,
+        guest_count=data.guest_count,
+        starts_at=data.starts_at,
+        ends_at=data.ends_at,
+        rate=data.rate,
+    )
+
+    try:
+        room.add_reservation(reservation)
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc))
+
+    await repo.save(room)
+
+    return {
+        "id": reservation.id,
+        "room_id": data.room_id,
+        "guest_count": data.guest_count,
+        "starts_at": data.starts_at.isoformat(),
+        "ends_at": data.ends_at.isoformat(),
+        "rate": serialize_amount(data.rate),
     }
 
 

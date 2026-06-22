@@ -73,3 +73,92 @@ async def test_get_room_api(
         ),
         totals=[IsPositive],
     )
+
+
+@pytest.mark.anyio
+async def test_create_reservation_success(
+    client: httpx.AsyncClient, add_room: Callable[[Room], Awaitable[None]]
+) -> None:
+    room = RoomFactory.build(room_id="B-202")
+    room.reservations.clear()
+    await add_room(room)
+
+    response = await client.post(
+        "/reservations/",
+        json={
+            "room_id": "B-202",
+            "guest_count": 2,
+            "starts_at": "2026-08-01",
+            "ends_at": "2026-08-05",
+            "rate": 150.00,
+        },
+    )
+
+    assert response.status_code == status.HTTP_201_CREATED
+    data = response.json()
+    assert data["room_id"] == "B-202"
+    assert data["guest_count"] == 2
+    assert data["rate"] == 150.0
+
+
+@pytest.mark.anyio
+async def test_create_reservation_rejects_bad_dates(
+    client: httpx.AsyncClient, add_room: Callable[[Room], Awaitable[None]]
+) -> None:
+    room = RoomFactory.build(room_id="C-303")
+    room.reservations.clear()
+    await add_room(room)
+
+    response = await client.post(
+        "/reservations/",
+        json={
+            "room_id": "C-303",
+            "guest_count": 2,
+            "starts_at": "2026-08-10",
+            "ends_at": "2026-08-05",
+            "rate": 100.00,
+        },
+    )
+
+    assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+
+
+@pytest.mark.anyio
+async def test_create_reservation_rejects_over_capacity(
+    client: httpx.AsyncClient, add_room: Callable[[Room], Awaitable[None]]
+) -> None:
+    room = RoomFactory.build(room_id="D-404", capacity=2)
+    room.reservations.clear()
+    await add_room(room)
+
+    response = await client.post(
+        "/reservations/",
+        json={
+            "room_id": "D-404",
+            "guest_count": 5,
+            "starts_at": "2026-09-01",
+            "ends_at": "2026-09-03",
+            "rate": 100.00,
+        },
+    )
+
+    assert response.status_code == status.HTTP_409_CONFLICT
+    assert "exceeds room capacity" in response.text
+
+
+@pytest.mark.anyio
+async def test_create_reservation_rejects_missing_room(
+    client: httpx.AsyncClient,
+) -> None:
+    response = await client.post(
+        "/reservations/",
+        json={
+            "room_id": "NONEXISTENT",
+            "guest_count": 2,
+            "starts_at": "2026-10-01",
+            "ends_at": "2026-10-03",
+            "rate": 100.00,
+        },
+    )
+
+    assert response.status_code == status.HTTP_404_NOT_FOUND
