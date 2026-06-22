@@ -5,10 +5,8 @@ from typing import Annotated
 from annotated_types import Ge, Le
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from nanodjango import Django
-
-
 from django.urls import include as django_include
+from nanodjango import Django
 
 
 _ROOT = Path(__file__).resolve().parent.parent
