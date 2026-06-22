@@ -408,3 +408,4 @@ ______________________________________________________________________
   - Reference: [Bauhaus color palette](https://hueatlas.com/color-palettes/bauhaus-color-palette/),
     [DESIGN.md Bauhaus tokens](https://designmd.app/library/bauhaus),
     [Bauhaus grid guide](https://laboostudio.com/blogs/news/bauhaus-grid).
+- [ ] **Split cluttered slides into smaller focused slides.** Prefer many readable slides over dense ones: short title, one code snippet or visual, and maybe one tiny note. Move extra context into speaker notes instead of crowding the slide.

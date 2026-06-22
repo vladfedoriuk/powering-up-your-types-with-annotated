@@ -1,1 +1,1 @@
-::: snippets.api_pizza
+::: snippets.api_reservation

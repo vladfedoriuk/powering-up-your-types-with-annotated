@@ -13,10 +13,13 @@ dependencies = [
     "annotated-doc>=0.0.4",
     "anyio>=4.12.1",
     "asgi-lifespan>=2.1",
+    "djangorestframework>=3.16",
     "fastapi[standard]>=0.129",
     "httpx>=0.28.1",
+    "nanodjango>=0.11.2",
     "pydantic>=2.12.5",
     "sqlalchemy[aiosqlite,asyncio,mypy]>=2.0.46",
+    "sqlmodel>=0.0.27",
     "svcs>=25.1",
     "typer>=0.23.1",
     "typing-extensions>=4.15",
@@ -45,8 +48,14 @@ lint = [
 ]
 
 [tool.mypy]
+exclude = [
+    "^snippets/comparison_django.py$",
+    "^snippets/conftest.py$",
+    "^snippets/migrations$",
+    "^snippets/test_.*\\.py$"
+]
 strict = true
-plugins = [ "pydantic.mypy" ]
+plugins = [ "pydantic.mypy", "sqlalchemy.ext.mypy.plugin" ]
 enable_incomplete_feature = [ "TypeForm" ]
 
 [[tool.mypy.overrides]]

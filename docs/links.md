@@ -65,6 +65,14 @@
 - [hynek/svcs discussion #74 — Type errors using `Annotated[some_type, …]` as type argument](https://github.com/hynek/svcs/discussions/74)
   - Real-world report of the issue: passing `Annotated[int, "my_int"]` to a `type[T]` parameter in `svcs.Registry.register_value`
     now raises a Pyright error. Led directly to the typing-council discussion and the `svcs` documentation change.
+- [microsoft/pyright issue #7238 — `Annotated` not assignable to `type[T]`](https://github.com/microsoft/pyright/issues/7238)
+  - Pyright issue tracking checker behavior around `Annotated[...]` as a runtime type argument, later aligned with typing-council clarification that `Annotated` is a special form, not a `type`.
+- [microsoft/pyright discussion #9397 — `Annotated` and type-form assignability](https://github.com/microsoft/pyright/discussions/9397)
+  - Pyright discussion covering how `Annotated`, `type[T]`, and future `TypeForm`-style APIs should interact in static checking.
+- [Python.org discussion — Is `Annotated` compatible with `type[T]`?](https://discuss.python.org/t/is-annotated-compatible-with-type-t/43898)
+  - Typing discussion on whether `Annotated[T, ...]` should be accepted where `type[T]` is expected. Useful background for why runtime-introspection APIs need `TypeForm` instead of `type[T]`.
+- [Pyright configuration — main configuration options](https://microsoft.github.io/pyright/#/configuration?id=main-configuration-options)
+  - Reference for Pyright configuration flags, useful when demonstrating strict-checking behavior around `Annotated`, `type[T]`, and experimental typing features.
 - [hynek/svcs pull #92 — Warn against `Annotated` & PEP 695 as registry keys](https://github.com/hynek/svcs/pull/92)
   - The resolution: `svcs` adds a warning in its docs that `Annotated[…]` and PEP 695 `type` aliases should not be used as
     registry keys under strict type checking, because neither is a `type`. The proper fix requires `TypeForm` (Python 3.15+).

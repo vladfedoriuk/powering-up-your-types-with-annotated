@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from .api_pizza import app, lifespan, metadata
+from .api_reservation import app, lifespan, metadata
 
 
 @pytest.fixture
