@@ -1,17 +1,31 @@
 from decimal import Decimal
+from pathlib import Path
+from typing import Annotated
 
+from annotated_types import Ge, Le
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from nanodjango import Django
-from rest_framework import serializers, status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+
+
+from django.urls import include as django_include
+
+
+_ROOT = Path(__file__).resolve().parent.parent
+
+# --- Semantic types (documentation only — Django defines its own constraints via Field) ---
+NightCount = Annotated[int, Ge(1), Le(365)]
+Percentage = Annotated[Decimal, Ge(0), Le(100)]
+TaxRate = Annotated[Decimal, Ge(0), Le(1)]
 
 app = Django(
-    SQLITE_DATABASE="nanodjango_reservations.sqlite3",
-    MIGRATIONS_DIR="nanodjango_reservation_migrations",
-    INSTALLED_APPS=["rest_framework"],
+    SQLITE_DATABASE=str(_ROOT / "reservations_django.db"),
+    INSTALLED_APPS=lambda apps: apps + ["rest_framework"],
+    MIGRATIONS_DIR="django_migrations",
 )
+
+from rest_framework import serializers, viewsets  # noqa: E402
+from rest_framework.routers import DefaultRouter  # noqa: E402
 
 
 @app.admin(list_display=["room_id", "capacity"])
@@ -26,8 +40,20 @@ class Room(models.Model):
     def __str__(self) -> str:
         return self.room_id
 
+    def add_reservation(self, reservation: "Reservation") -> None:
+        if reservation.room_id != self.room_id:
+            raise ValueError("Reservation belongs to another room")
+        if reservation.guest_count > self.capacity:
+            raise ValueError("Reservation exceeds room capacity")
+        if reservation.night_count < 1:
+            raise ValueError("Reservation must last at least one night")
+        if any(reservation.overlaps(existing) for existing in self.reservations.all()):
+            raise ValueError("Reservation overlaps existing reservation")
+        reservation.room = self
+        reservation.save()
 
-@app.admin(list_display=["room", "guest_count", "rate"])
+
+@app.admin(list_display=["room", "guest_count", "rate", "starts_at", "ends_at"])
 class Reservation(models.Model):
     room = models.ForeignKey(
         Room, related_name="reservations", on_delete=models.CASCADE
@@ -40,6 +66,16 @@ class Reservation(models.Model):
         decimal_places=2,
         validators=[MinValueValidator(Decimal("0.01"))],
     )
+    starts_at = models.DateField()
+    ends_at = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def night_count(self) -> NightCount:
+        return self.ends_at.toordinal() - self.starts_at.toordinal()
+
+    def overlaps(self, other: "Reservation") -> bool:
+        return self.starts_at < other.ends_at and other.starts_at < self.ends_at
 
 
 class RoomSerializer(serializers.ModelSerializer):
@@ -49,34 +85,49 @@ class RoomSerializer(serializers.ModelSerializer):
 
 
 class ReservationSerializer(serializers.ModelSerializer):
+    night_count = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Reservation
-        fields = ["id", "room", "guest_count", "rate"]
+        fields = [
+            "id",
+            "room",
+            "guest_count",
+            "rate",
+            "starts_at",
+            "ends_at",
+            "created_at",
+            "night_count",
+        ]
 
 
-@app.route("/api/rooms/", name="room-list")
-@api_view(["GET", "POST"])
-def room_list(request):
-    if request.method == "GET":
-        serializer = RoomSerializer(Room.objects.all(), many=True)
-        return Response(serializer.data)
-
-    serializer = RoomSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class RoomViewSet(viewsets.ModelViewSet):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
 
 
-@app.route("/api/reservations/", name="reservation-list")
-@api_view(["GET", "POST"])
-def reservation_list(request):
-    if request.method == "GET":
-        serializer = ReservationSerializer(Reservation.objects.all(), many=True)
-        return Response(serializer.data)
+class ReservationViewSet(viewsets.ModelViewSet):
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationSerializer
 
-    serializer = ReservationSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+router = DefaultRouter()
+router.register(r"rooms", RoomViewSet, basename="room")
+router.register(r"reservations", ReservationViewSet, basename="reservation")
+
+app.route("/api/", include=django_include(router.urls))
+
+
+def calculate_stay_total(
+    reservation: Reservation,
+    discount_percent: Percentage = Decimal(0),
+    tax_rate: TaxRate = Decimal("0.1"),
+) -> Decimal:
+    subtotal = reservation.rate * Decimal(reservation.night_count)
+    discount_amount = subtotal * (discount_percent / Decimal(100))
+    total = (subtotal - discount_amount) * (Decimal(1) + tax_rate)
+    return total.quantize(Decimal("0.01"))
+
+
+if __name__ == "__main__":
+    app.run()

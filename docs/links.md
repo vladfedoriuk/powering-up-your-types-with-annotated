@@ -148,6 +148,38 @@
   - Pydantic v2.8 concepts explaining different types of validators (before, after, wrap, plain) for data processing.
 - [FastAPI Type Hints with Metadata Annotations](https://fastapi.tiangolo.com/python-types/#type-hints-with-metadata-annotations)
   - FastAPI documentation explaining how to use `Annotated` to add metadata to type hints for request validation and dependency injection.
+- [Pydantic — `TypeAdapter`](https://docs.pydantic.dev/latest/api/pydantic/type_adapter/)
+  - API reference for `TypeAdapter`: validate, serialize, or generate JSON schema for any `Annotated` type standalone,
+    outside of a `BaseModel`. Useful for ad-hoc validation of semantic types like `RoomRate` or `Percentage`.
+- [Pydantic — `GetPydanticSchema`](https://docs.pydantic.dev/latest/api/pydantic/types/#pydantic.types.GetPydanticSchema)
+  - Lighter-weight shorthand for `__get_pydantic_core_schema__`: express a custom schema as a simple callable instead
+    of a full marker class.
+- [Pydantic — `__get_pydantic_core_schema__` on metadata classes](https://docs.pydantic.dev/latest/concepts/types/#as-an-annotation)
+  - The extensibility hook that powers built-in validators. Implement it on a frozen dataclass inside `Annotated` to
+    integrate third-party types or build custom validation — the canonical approach without subclassing.
+- [Pydantic — Named recursive types](https://docs.pydantic.dev/latest/concepts/types/#named-recursive-types)
+  - Named type aliases via PEP 695 `type` / `TypeAliasType` enable recursive types (e.g. `type JSON = ...`) and
+    produce `$defs`/`$ref` entries in JSON Schema instead of inlining.
+- [Pydantic — Functional validators API](https://docs.pydantic.dev/latest/api/functional_validators/)
+  - API reference for `BeforeValidator`, `AfterValidator`, `WrapValidator`, `PlainValidator`, and `WithJsonSchema` —
+    all composable inside `Annotated` as reusable transform metadata.
+- [Pydantic — Functional serializers API](https://docs.pydantic.dev/latest/api/functional_serializers/)
+  - API reference for `PlainSerializer` and `WrapSerializer` for custom serialization inside `Annotated`.
+- [Pydantic — Validators concepts](https://docs.pydantic.dev/latest/concepts/validators/)
+  - Conceptual guide to Pydantic's validator system: before, after, wrap, and plain validators, including
+    `Annotated`-based usage.
+- [FastAPI — Advanced Dependencies](https://fastapi.tiangolo.com/advanced/advanced-dependencies/)
+  - Advanced dependency patterns: parameterised dependencies with `__call__`, using `Annotated` with `Depends()` for
+    reusable injection, and dependency callables that accept their own sub-dependencies.
+- [FastAPI — Dependencies with `Annotated`](https://fastapi.tiangolo.com/tutorial/dependencies/)
+  - The canonical FastAPI pattern: `Annotated[T, Depends(callable)]` as the declarative DI spelling used throughout
+    the framework.
+- [FastAPI — Using Dataclasses](https://fastapi.tiangolo.com/advanced/dataclasses/)
+  - How FastAPI supports `dataclasses` (and `attrs`) as request/response models alongside Pydantic `BaseModel`,
+    relevant when combining domain `@dataclass` models with FastAPI endpoints.
+- [FastAPI — Advanced Python Types](https://fastapi.tiangolo.com/advanced/advanced-python-types/)
+  - Handling generic types, `NewType`, `Union`, `Optional`, and `Annotated` in FastAPI route parameters— useful
+    when domain types carry `Annotated` constraints that must be understood at the API boundary.
 
 ## Presentation Design — Bauhaus Theme
 

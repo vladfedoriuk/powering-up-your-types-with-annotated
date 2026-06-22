@@ -43,3 +43,13 @@ zensical:
 [group("alembic")]
 upgrade-heads:
     @uv run alembic upgrade heads
+
+[doc("Run Django comparison app (nanodjango dev server)")]
+[group("django")]
+run-django:
+    @uv run python snippets/comparison_django.py
+
+[doc("Run FastAPI reservation API (uvicorn dev server)")]
+[group("api")]
+run-api:
+    @uv run python snippets/api_reservation.py

@@ -49,9 +49,10 @@ lint = [
 
 [tool.mypy]
 exclude = [
-    "^snippets/comparison_django.py$",
-    "^snippets/conftest.py$",
-    "^snippets/migrations$",
+    "^snippets/comparison_django\\.py$",
+    "^snippets/conftest\\.py$",
+    "^snippets/django_migrations/",
+    "^snippets/sqlalchemy_migrations/",
     "^snippets/test_.*\\.py$"
 ]
 strict = true
