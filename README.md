@@ -1,6 +1,17 @@
-# Extra Toppings: Powering Up Your Types with Annotated
+# Powering Up Your Types with Annotated
 
-Code samples and materials for the talk **"Extra Toppings: Powering Up Your Types with Annotated"**.
+Code samples and materials for the EuroPython talk **"Powering Up Your Types with Annotated"**.
+
+## Overview
+
+This talk explores `typing.Annotated` (PEP 593) as a universal metadata engine that breaks the boundary between static analysis and runtime behavior. We cover:
+
+- **Semantic Types**: Using `Annotated` to express domain meaning without subclassing
+- **Framework Metadata**: How Pydantic, FastAPI, and SQLAlchemy read `Annotated` metadata
+- **Internals**: `__origin__`, `__metadata__`, flattening, and introspection APIs
+- **TypeForm**: PEP 747 and the solution for accepting type-form objects
+- **Dependency Injection**: Building DI systems with `Annotated` metadata
+- **Domain Architecture**: Clean architecture through metadata layering
 
 ## Development
 
@@ -14,6 +25,18 @@ just
 
 ## Structure
 
-- `snippets/`: Python examples demonstrating `Annotated` for validation, persistence, and APIs.
-- `docs/`: Example `mkdocs` site with `mkdocstrings[python]` and `annotated-doc` + links to related resources.
-- `presentation/`: Slides for the talk.
+- `snippets/`: Python examples demonstrating `Annotated` for validation, persistence, APIs, and dependency injection
+- `docs/`: Example `mkdocs` site with `mkdocstrings[python]` and `annotated-doc`
+- `presentation/`: Slidev slides with Bauhaus design system
+
+## Presentation
+
+To view the slides:
+
+```bash
+cd presentation
+pnpm install
+pnpm run dev
+```
+
+Navigate to `http://localhost:3030`

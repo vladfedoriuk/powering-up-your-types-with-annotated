@@ -1,0 +1,284 @@
+/* ==========================================================================
+   Bauhaus Design System — Slidev Global Styles
+   Based on Johannes Itten's primary triad, Hue Atlas reference palette.
+   ========================================================================== */
+
+:root {
+  /* ── Primary Triad ─────────────────────────────────────────────────────── */
+  --bauhaus-red: #E63946;
+  --bauhaus-yellow: #F4D35E;
+  --bauhaus-blue: #1D3557;
+
+  /* ── Structural Neutrals ───────────────────────────────────────────────── */
+  --bauhaus-black: #000000;
+  --bauhaus-white: #FFFFFF;
+  --bauhaus-concrete: #2B2B2B;
+
+  /* ── Extended Palette ──────────────────────────────────────────────────── */
+  --bauhaus-grey: #E8E8E8;
+  --bauhaus-beige: #F5F0E1;
+
+  /* ── Functional Mappings ───────────────────────────────────────────────── */
+  --color-primary: var(--bauhaus-blue);
+  --color-accent: var(--bauhaus-red);
+  --color-highlight: var(--bauhaus-yellow);
+  --color-bg: var(--bauhaus-white);
+  --color-text: var(--bauhaus-black);
+  --color-muted: var(--bauhaus-concrete);
+}
+
+.dark {
+  --color-primary: var(--bauhaus-yellow);
+  --color-accent: var(--bauhaus-red);
+  --color-highlight: var(--bauhaus-blue);
+  --color-bg: var(--bauhaus-black);
+  --color-text: var(--bauhaus-white);
+  --color-muted: var(--bauhaus-concrete);
+}
+
+/* ── Slide Canvas ──────────────────────────────────────────────────────── */
+
+.slidev-layout {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Josefin Sans', sans-serif;
+  letter-spacing: 0.01em;
+}
+
+/* ── Typography Hierarchy ──────────────────────────────────────────────── */
+
+.slidev-layout h1 {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.slidev-layout h2 {
+  color: var(--bauhaus-concrete);
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.slidev-layout p,
+.slidev-layout li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* ── Inline Highlights ─────────────────────────────────────────────────── */
+
+.slidev-layout mark,
+.slidev-layout .highlight {
+  background: var(--color-highlight);
+  color: var(--bauhaus-black);
+  padding: 0.05em 0.3em;
+  border-radius: 0;
+  /* hard-edged, no rounding */
+}
+
+/* ── Code Blocks ───────────────────────────────────────────────────────── */
+
+.slidev-layout pre,
+.slidev-layout code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.slidev-layout pre {
+  background: var(--bauhaus-white) !important;
+  color: var(--bauhaus-black);
+  border-radius: 0;
+  border: 1px solid var(--bauhaus-concrete);
+  border-left: 4px solid var(--bauhaus-red);
+  padding: 1rem 1.25rem;
+}
+
+.dark .slidev-layout pre {
+  background: #1E1E1E !important;
+  color: var(--bauhaus-white);
+  border-color: #444444;
+}
+
+.slidev-layout :not(pre) > code {
+  background: rgba(138, 134, 128, 0.15);
+  color: var(--bauhaus-red);
+  padding: 0.1rem 0.3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  border-radius: 0;
+}
+
+.dark .slidev-layout :not(pre) > code {
+  background: rgba(245, 240, 225, 0.15);
+  color: var(--bauhaus-yellow);
+}
+
+/* ── Tables ────────────────────────────────────────────────────────────── */
+
+.slidev-layout table {
+  font-size: 0.8rem;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.slidev-layout th {
+  background: var(--bauhaus-blue);
+  color: var(--bauhaus-white);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  letter-spacing: 0.03em;
+  border: 1px solid var(--bauhaus-blue);
+}
+
+.slidev-layout td {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--bauhaus-concrete);
+  color: var(--color-text);
+}
+
+.slidev-layout tr:nth-child(even) td {
+  background: rgba(138, 134, 128, 0.05);
+}
+
+.dark .slidev-layout tr:nth-child(even) td {
+  background: rgba(245, 240, 225, 0.05);
+}
+
+/* ── Pill / Badge ──────────────────────────────────────────────────────── */
+
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border: 2px solid var(--bauhaus-black);
+  background: var(--bauhaus-white);
+  color: var(--bauhaus-black);
+}
+
+.pill--red {
+  background: var(--bauhaus-red);
+  color: var(--bauhaus-white);
+  border-color: var(--bauhaus-red);
+}
+
+.pill--yellow {
+  background: var(--bauhaus-yellow);
+  color: var(--bauhaus-black);
+  border-color: var(--bauhaus-yellow);
+}
+
+.pill--blue {
+  background: var(--bauhaus-blue);
+  color: var(--bauhaus-white);
+  border-color: var(--bauhaus-blue);
+}
+
+/* ── Section Marker Shapes ─────────────────────────────────────────────── */
+/* Kandinsky's doctrine: yellow-triangle, red-square, blue-circle          */
+
+.marker-triangle,
+.marker-square,
+.marker-circle {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+}
+
+.marker-circle {
+  background: var(--bauhaus-blue);
+  border-radius: 50%;
+}
+
+.marker-square {
+  background: var(--bauhaus-red);
+  border-radius: 0;
+}
+
+.marker-triangle {
+  width: 0;
+  height: 0;
+  border-left: 0.55rem solid transparent;
+  border-right: 0.55rem solid transparent;
+  border-bottom: 1rem solid var(--bauhaus-yellow);
+  background: transparent;
+}
+
+/* ── Color Block Divider ───────────────────────────────────────────────── */
+
+.divider-red {
+  height: 4px;
+  background: var(--bauhaus-red);
+  margin: 1rem 0;
+}
+
+.divider-yellow {
+  height: 4px;
+  background: var(--bauhaus-yellow);
+  margin: 1rem 0;
+}
+
+.divider-blue {
+  height: 4px;
+  background: var(--bauhaus-blue);
+  margin: 1rem 0;
+}
+
+/* ── Compact Bullet Lists ──────────────────────────────────────────────── */
+
+.slidev-layout ul {
+  padding-left: 1.2rem;
+}
+
+.slidev-layout li {
+  margin-bottom: 0.3rem;
+}
+
+.slidev-layout li::marker {
+  color: var(--bauhaus-red);
+}
+
+/* ── Cover Slide ───────────────────────────────────────────────────────── */
+
+.cover-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--bauhaus-blue);
+  letter-spacing: 0.03em;
+  text-transform: lowercase;
+  line-height: 1.15;
+}
+
+.cover-subtitle {
+  font-size: 1.1rem;
+  color: var(--bauhaus-concrete);
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+
+.cover-author {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--bauhaus-black);
+  margin-top: 2rem;
+}
+
+/* ── Slide Number ──────────────────────────────────────────────────────── */
+
+.slidev-page-number {
+  color: var(--bauhaus-concrete);
+  font-size: 0.75rem;
+}

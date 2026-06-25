@@ -17,6 +17,8 @@ dependencies = [
     "fastapi[standard]>=0.129",
     "httpx>=0.28.1",
     "nanodjango>=0.11.2",
+    "pandas>=3.0.3",
+    "pandera>=0.32",
     "pydantic>=2.12.5",
     "sqlalchemy[aiosqlite,asyncio,mypy]>=2.0.46",
     "sqlmodel>=0.0.27",
@@ -41,6 +43,7 @@ docs = [
 ]
 lint = [
     "mypy>=1.19.1",
+    "pandas-stubs>=3.0.3.260530",
     "pyrefly>=1.1.1",
     "pyright>=1.1.410",
     "ty>=0.0.51",
