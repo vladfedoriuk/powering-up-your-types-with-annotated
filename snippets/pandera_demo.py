@@ -1,13 +1,14 @@
 from typing import Annotated
+
 import pandas as pd
-import pandera as pa
-from pandera.typing import Series
+import pandera.errors as errors
+import pandera.pandas as pa
 
 
 class ReservationModel(pa.DataFrameModel):
-    room_id: Annotated[Series[str], pa.Field(unique=True)]
-    guest_count: Annotated[Series[int], pa.Field(ge=1, le=10)]
-    rate: Annotated[Series[float], pa.Field(gt=0)]
+    room_id: Annotated[str, pa.Field(unique=True)]
+    guest_count: Annotated[int, pa.Field(ge=1, le=10)]
+    rate: Annotated[float, pa.Field(gt=0)]
 
 
 # Valid DataFrame
@@ -35,7 +36,7 @@ if __name__ == "__main__":
 
     try:
         print("Validating invalid_df...")
-        ReservationModel.validate(invalid_df)
-    except pa.errors.SchemaErrors as err:
+        ReservationModel.validate(invalid_df, lazy=True)
+    except errors.SchemaErrors as err:
         print("invalid_df validation failed as expected:")
         print(err.failure_cases)
