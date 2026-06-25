@@ -1,12 +1,14 @@
 ---
 layout: default
+class: code-center
 ---
+
 
 # use case: framework metadata
 
 <div class="divider-red"></div>
 
-Attach instructions for tools — Pydantic, FastAPI, SQLAlchemy.
+<p class="slide-tagline">Attach instructions for tools — Pydantic, FastAPI, SQLAlchemy.</p>
 
 ```python
 from typing import Annotated

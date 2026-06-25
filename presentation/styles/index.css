@@ -22,7 +22,7 @@
   --color-primary: var(--bauhaus-blue);
   --color-accent: var(--bauhaus-red);
   --color-highlight: var(--bauhaus-yellow);
-  --color-bg: var(--bauhaus-white);
+  --color-bg: var(--bauhaus-beige);
   --color-text: var(--bauhaus-black);
   --color-muted: var(--bauhaus-concrete);
 }
@@ -64,6 +64,35 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: 1rem;
+}
+
+.slide-tagline {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--bauhaus-concrete);
+  margin: -0.25rem 0 0.75rem;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+.slide-tagline em {
+  font-style: italic;
+}
+
+/* Code-primary slides: center block in remaining space */
+.slidev-layout.code-center {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  align-content: start;
+  min-height: 100%;
+}
+
+.slidev-layout.code-center pre,
+.slidev-layout.code-center .shiki-magic-move {
+  align-self: center;
+  width: 100%;
+  max-width: 100%;
 }
 
 .slidev-layout p,
@@ -252,13 +281,48 @@
 
 /* ── Cover Slide ───────────────────────────────────────────────────────── */
 
+.cover-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 3rem;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.cover-shapes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.cover-shape {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  margin-right: 0;
+}
+
+.cover-shape.marker-triangle {
+  width: 0 !important;
+  height: 0 !important;
+  border-left-width: 1.3rem;
+  border-right-width: 1.3rem;
+  border-bottom-width: 2.5rem;
+}
+
 .cover-title {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--bauhaus-blue);
   letter-spacing: 0.03em;
-  text-transform: lowercase;
   line-height: 1.15;
+}
+
+.slidev-layout.cover,
+.slidev-layout.intro {
+  background: var(--bauhaus-beige);
 }
 
 .cover-subtitle {

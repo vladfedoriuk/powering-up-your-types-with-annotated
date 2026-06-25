@@ -2,13 +2,14 @@
 layout: default
 ---
 
+
 # annotated-types
 
 <div class="divider-yellow"></div>
 
-Standard constraint definitions — PyCon 2022 sprints, by the maintainers of Pydantic & Hypothesis.
+<p class="slide-tagline">Shared constraint vocabulary — PyCon 2022 sprints.</p>
 
-<div class="flex flex-wrap gap-x-3 gap-y-3 mt-6 font-mono text-sm">
+<div class="flex flex-wrap gap-x-3 gap-y-3 mt-4 font-mono text-sm">
   <span class="pill pill--red">Gt</span>
   <span class="pill pill--red">Ge</span>
   <span class="pill pill--red">Lt</span>
@@ -20,9 +21,6 @@ Standard constraint definitions — PyCon 2022 sprints, by the maintainers of Py
   <span class="pill pill--yellow">Len</span>
   <span class="pill">Timezone</span>
   <span class="pill">Predicate</span>
-  <span class="pill">LowerCase</span>
-  <span class="pill">UpperCase</span>
-  <span class="pill">IsDigits</span>
   <span class="pill">IsFinite</span>
   <span class="pill">IsNotNan</span>
 </div>

@@ -1,12 +1,14 @@
 ---
 layout: default
+class: code-center
 ---
+
 
 # use case: semantic types
 
 <div class="divider-blue"></div>
 
-Name what data _is_ — disambiguate identical base types.
+<p class="slide-tagline">Name what data <em>is</em> — disambiguate identical base types.</p>
 
 ```python
 from typing import Annotated

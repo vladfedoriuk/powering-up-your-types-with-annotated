@@ -1,15 +1,14 @@
 ---
 layout: default
+class: code-center
 ---
+
 
 # pandera: dataframe validation
 
 <div class="divider-blue"></div>
 
-## tabular data metadata
-
-- **Tabular type safety**: validate DataFrame columns and types at runtime
-- **Single source of truth**: embed column ranges, unique checks, and descriptions
+<p class="slide-tagline"><code>Series[T]</code> + <code>pa.Field</code> for tabular constraints.</p>
 
 ```python
 import pandera as pa
@@ -20,7 +19,6 @@ class ReservationModel(pa.DataFrameModel):
     guest_count: Annotated[Series[int], pa.Field(ge=1, le=10)]
     rate: Annotated[Series[float], pa.Field(gt=0)]
 
-# Validates column types, unique constraints, and min/max ranges
 ReservationModel.validate(dataframe)
 ```
 

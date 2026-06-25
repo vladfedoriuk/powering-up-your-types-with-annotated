@@ -1,19 +1,18 @@
 ---
-layout: default
+layout: cover
+class: text-left
 ---
 
-<div class="flex flex-col justify-center h-full">
-  <div class="flex items-start gap-8">
-    <div class="flex-1">
-      <div class="cover-title">powering up your types<br/>with <mark>annotated</mark></div>
-      <div class="cover-subtitle">typing.Annotated · python 3.9+ · PEP 593</div>
-      <div class="cover-author">Vlad Fedoriuk</div>
-    </div>
-    <div class="flex flex-col items-center gap-3 mt-4">
-      <div class="marker-circle" style="width:2.5rem;height:2.5rem;"></div>
-      <div class="marker-square" style="width:2.5rem;height:2.5rem;"></div>
-      <div class="marker-triangle" style="border-left-width:1.3rem;border-right-width:1.3rem;border-bottom-width:2.5rem;"></div>
-    </div>
+<div class="cover-grid">
+  <div class="cover-content">
+    <div class="cover-title">Powering Up Your Types<br/>with <mark>Annotated</mark></div>
+    <div class="cover-subtitle">typing.Annotated · python 3.9+ · PEP 593</div>
+    <div class="cover-author">Vlad Fedoriuk</div>
+  </div>
+  <div class="cover-shapes">
+    <div class="marker-circle cover-shape"></div>
+    <div class="marker-square cover-shape"></div>
+    <div class="marker-triangle cover-shape"></div>
   </div>
 </div>
 

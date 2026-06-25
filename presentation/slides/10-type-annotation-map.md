@@ -1,0 +1,32 @@
+---
+layout: default
+class: code-center
+---
+
+
+# mapping types: `type_annotation_map`
+
+<div class="divider-blue"></div>
+
+<p class="slide-tagline">Global Python type → SQL column mapping.</p>
+
+```python
+class Base(DeclarativeBase):
+    type_annotation_map = {
+        RoomId: sqlalchemy.String(20),
+        RoomRate: sqlalchemy.Numeric(precision=10, scale=2),
+        StayDate: sqlalchemy.Date(),
+    }
+
+@registry.mapped_as_dataclass
+class Reservation:
+    id: Mapped[Identity] = mapped_column(init=False)
+    room_id: Mapped[RoomId]
+    rate: Mapped[RoomRate]
+```
+
+<!--
+SQLAlchemy's type_annotation_map lets us configure global column rules.
+
+We map our semantic types directly to database column types in the Declarative base class. At model declaration time, typing Mapped[RoomId] is enough for SQLAlchemy to resolve it to a VARCHAR(20) column. This eliminates field-level column declarations completely.
+-->
