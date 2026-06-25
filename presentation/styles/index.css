@@ -1,39 +1,53 @@
 /* ==========================================================================
    Bauhaus Design System — Slidev Global Styles
-   Based on Johannes Itten's primary triad, Hue Atlas reference palette.
+   Tokens: DESIGN.md (Josefin Sans, primary triad, Warm Beige canvas)
    ========================================================================== */
 
 :root {
-  /* ── Primary Triad ─────────────────────────────────────────────────────── */
-  --bauhaus-red: #E63946;
-  --bauhaus-yellow: #F4D35E;
-  --bauhaus-blue: #1D3557;
+  /* ── DESIGN.md §6 — Primary Triad ──────────────────────────────────────── */
+  --color-red: #E63946;
+  --color-blue: #1D3557;
+  --color-yellow: #F4D35E;
+  --color-white: #FFFFFF;
+  --color-black: #000000;       /* raw token — prefer --color-deep-grey (#2B2B2B) in practice */
 
-  /* ── Structural Neutrals ───────────────────────────────────────────────── */
-  --bauhaus-black: #000000;
-  --bauhaus-white: #FFFFFF;
-  --bauhaus-concrete: #2B2B2B;
+  /* ── DESIGN.md §9 — Neutrals ───────────────────────────────────────────── */
+  --color-grey: #E8E8E8;
+  --color-beige: #F5F0E1;
+  --color-deep-grey: #2B2B2B;
 
-  /* ── Extended Palette ──────────────────────────────────────────────────── */
-  --bauhaus-grey: #E8E8E8;
-  --bauhaus-beige: #F5F0E1;
+  /* ── Legacy aliases (slides/components) ────────────────────────────────── */
+  --bauhaus-red: var(--color-red);
+  --bauhaus-yellow: var(--color-yellow);
+  --bauhaus-blue: var(--color-blue);
+  --bauhaus-black: var(--color-deep-grey);
+  --bauhaus-white: var(--color-white);
+  --bauhaus-concrete: var(--color-deep-grey);
+  --bauhaus-grey: var(--color-grey);
+  --bauhaus-beige: var(--color-beige);
 
-  /* ── Functional Mappings ───────────────────────────────────────────────── */
-  --color-primary: var(--bauhaus-blue);
-  --color-accent: var(--bauhaus-red);
-  --color-highlight: var(--bauhaus-yellow);
-  --color-bg: var(--bauhaus-beige);
-  --color-text: var(--bauhaus-black);
-  --color-muted: var(--bauhaus-concrete);
+  /* ── DESIGN.md §6 — Structural ───────────────────────────────────────── */
+  --border-width: 3px;
+  --border-color: var(--color-deep-grey);
+  --spacing: 2rem;
+
+  /* ── Functional mappings ───────────────────────────────────────────────── */
+  --color-primary: var(--color-blue);
+  --color-accent: var(--color-red);
+  --color-highlight: var(--color-yellow);
+  --color-bg: var(--color-beige);
+  --color-text: var(--color-deep-grey);
+  --color-muted: var(--color-deep-grey);
+  --font-primary: 'Josefin Sans', sans-serif;
 }
 
 .dark {
-  --color-primary: var(--bauhaus-yellow);
-  --color-accent: var(--bauhaus-red);
-  --color-highlight: var(--bauhaus-blue);
-  --color-bg: var(--bauhaus-black);
-  --color-text: var(--bauhaus-white);
-  --color-muted: var(--bauhaus-concrete);
+  --color-primary: var(--color-yellow);
+  --color-accent: var(--color-red);
+  --color-highlight: var(--color-blue);
+  --color-bg: var(--color-deep-grey);
+  --color-text: var(--color-white);
+  --color-muted: var(--color-grey);
 }
 
 /* ── Slide Canvas ──────────────────────────────────────────────────────── */
@@ -45,35 +59,52 @@
   letter-spacing: 0.01em;
 }
 
-/* ── Typography Hierarchy ──────────────────────────────────────────────── */
+/* ── Typography Hierarchy (DESIGN.md §10) ─────────────────────────────── */
+/* Display / slide h1: Josefin Sans 700 · code in titles: JetBrains Mono   */
 
 .slidev-layout h1 {
+  font-family: var(--font-primary);
   color: var(--color-primary);
   font-weight: 700;
-  font-size: 2rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: 2.25rem;
+  letter-spacing: 0.01em;
   margin-bottom: 0.75rem;
   line-height: 1.2;
 }
 
 .slidev-layout h2 {
+  font-family: var(--font-primary);
   color: var(--bauhaus-concrete);
-  font-weight: 400;
-  font-size: 1.1rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.01em;
   margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+/* Identifiers in titles — JetBrains Mono (DESIGN.md §10 Monospace) */
+.slidev-layout h1 .slide-title-code,
+.slidev-layout h2 .slide-title-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0;
+  font-size: 0.9em;
 }
 
 .slide-tagline {
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: var(--bauhaus-concrete);
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-deep-grey);
   margin: -0.25rem 0 0.75rem;
   line-height: 1.45;
-  letter-spacing: 0.01em;
-  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.slide-tagline code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  font-weight: 500;
 }
 
 .slide-tagline em {
@@ -97,7 +128,7 @@
 
 .slidev-layout p,
 .slidev-layout li {
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--color-text);
 }
@@ -107,7 +138,7 @@
 .slidev-layout mark,
 .slidev-layout .highlight {
   background: var(--color-highlight);
-  color: var(--bauhaus-black);
+  color: var(--color-deep-grey);
   padding: 0.05em 0.3em;
   border-radius: 0;
   /* hard-edged, no rounding */
@@ -149,37 +180,60 @@
   color: var(--bauhaus-yellow);
 }
 
-/* ── Tables ────────────────────────────────────────────────────────────── */
+/* ── Tables (DESIGN.md §11 Cards — white surface, 1px stroke, accent rule) ─ */
 
 .slidev-layout table {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   border-collapse: collapse;
   width: 100%;
   margin: 1rem 0;
+  background: var(--color-white);
+  border: 1px solid var(--color-deep-grey);
 }
 
 .slidev-layout th {
-  background: var(--bauhaus-blue);
-  color: var(--bauhaus-white);
+  font-family: var(--font-primary);
+  background: var(--color-beige);
+  color: var(--color-blue);
   font-weight: 600;
+  font-size: 0.875rem;
   text-align: left;
   padding: 0.5rem 0.75rem;
-  letter-spacing: 0.03em;
-  border: 1px solid var(--bauhaus-blue);
+  letter-spacing: 0.04em;
+  border: none;
+  border-bottom: var(--border-width) solid var(--color-blue);
+}
+
+.dark .slidev-layout th {
+  background: var(--color-deep-grey);
+  color: var(--color-yellow);
+  border-bottom-color: var(--color-yellow);
 }
 
 .slidev-layout td {
   padding: 0.4rem 0.75rem;
-  border: 1px solid var(--bauhaus-concrete);
+  border: 1px solid var(--color-grey);
   color: var(--color-text);
+  background: var(--color-white);
 }
 
 .slidev-layout tr:nth-child(even) td {
-  background: rgba(138, 134, 128, 0.05);
+  background: var(--color-beige);
+}
+
+.dark .slidev-layout table {
+  border-color: #444444;
+  background: var(--color-deep-grey);
+}
+
+.dark .slidev-layout td {
+  border-color: #444444;
+  background: var(--color-deep-grey);
+  color: var(--color-white);
 }
 
 .dark .slidev-layout tr:nth-child(even) td {
-  background: rgba(245, 240, 225, 0.05);
+  background: #333333;
 }
 
 /* ── Pill / Badge ──────────────────────────────────────────────────────── */
@@ -190,9 +244,10 @@
   font-size: 0.8rem;
   font-weight: 600;
   padding: 0.2rem 0.6rem;
-  border: 2px solid var(--bauhaus-black);
-  background: var(--bauhaus-white);
-  color: var(--bauhaus-black);
+  border: 2px solid var(--color-deep-grey);
+  background: var(--color-white);
+  color: var(--color-deep-grey);
+  border-radius: 0;
 }
 
 .pill--red {
@@ -279,6 +334,81 @@
   color: var(--bauhaus-red);
 }
 
+/* ── Section Slide ─────────────────────────────────────────────────────── */
+
+.slidev-layout.section {
+  background: var(--bauhaus-beige);
+}
+
+.slidev-layout.section h1 {
+  letter-spacing: 0.02em;
+  margin-bottom: 2rem;
+}
+
+.section-patterns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: min(48rem, 90%);
+  margin: 0 auto;
+}
+
+.section-pattern {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  border: var(--border-width) solid var(--color-deep-grey);
+  background: var(--color-white);
+  text-align: left;
+}
+
+.section-pattern--blue {
+  border-top: 6px solid var(--bauhaus-blue);
+}
+
+.section-pattern--red {
+  border-top: 6px solid var(--bauhaus-red);
+}
+
+.section-pattern--yellow {
+  border-top: 6px solid var(--bauhaus-yellow);
+}
+
+.section-pattern-marker {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  margin-right: 0;
+  margin-bottom: 0.25rem;
+}
+
+.section-pattern-label {
+  font-family: var(--font-primary);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--bauhaus-blue);
+  letter-spacing: 0.04em;
+  text-transform: uppercase; /* UI label exception — intentional for section cards */
+}
+
+.section-pattern--red .section-pattern-label {
+  color: var(--bauhaus-red);
+}
+
+.section-pattern--yellow .section-pattern-label {
+  color: var(--color-deep-grey);
+}
+
+.section-pattern-detail {
+  font-size: 0.95rem;
+  color: var(--bauhaus-concrete);
+  line-height: 1.4;
+}
+
+.section-pattern-detail em {
+  font-style: italic;
+}
+
 /* ── Cover Slide ───────────────────────────────────────────────────────── */
 
 .cover-grid {
@@ -313,10 +443,11 @@
 }
 
 .cover-title {
-  font-size: 2.5rem;
+  font-family: var(--font-primary);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   color: var(--bauhaus-blue);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.01em;
   line-height: 1.15;
 }
 
@@ -326,6 +457,7 @@
 }
 
 .cover-subtitle {
+  font-family: var(--font-primary);
   font-size: 1.1rem;
   color: var(--bauhaus-concrete);
   letter-spacing: 0.08em;
@@ -334,15 +466,17 @@
 }
 
 .cover-author {
+  font-family: var(--font-primary);
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--bauhaus-black);
+  color: var(--color-deep-grey);
   margin-top: 2rem;
 }
 
 /* ── Slide Number ──────────────────────────────────────────────────────── */
 
 .slidev-page-number {
+  font-family: var(--font-primary);
   color: var(--bauhaus-concrete);
   font-size: 0.75rem;
 }

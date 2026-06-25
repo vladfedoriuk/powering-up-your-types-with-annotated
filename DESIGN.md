@@ -83,6 +83,37 @@ Scale:
 - Body: 1rem / 1.6
 - Small: 0.875rem
 
+### Slide titles (Slidev)
+
+| Element | Font | Weight | Size |
+|---------|------|--------|------|
+| Slide `h1` | Josefin Sans | 700 | 2.25rem |
+| Slide `h2` | Josefin Sans | 600 | 1.5rem |
+| `.slide-title-code` in titles | JetBrains Mono | 600 | 0.9em |
+| `.slide-tagline` | Josefin Sans | 500 | 0.875rem |
+| `<code>` in taglines | JetBrains Mono | 500 | 0.9em |
+| `.cover-title` (hero) | Josefin Sans | 700 | `clamp(2.5rem, 5vw, 4rem)` |
+
+Fonts load via `slides.md` headmatter (`fonts.sans` / `fonts.mono`, Google provider).
+
+Titles use **natural casing** — write `# Aliases block flattening` in markdown; CSS does not
+transform case.
+
+```markdown
+# Aliases block flattening
+
+# <span class="slide-title-code">typing.get_type_hints</span>
+
+# Mapping types: <span class="slide-title-code">type_annotation_map</span>
+```
+
+Rules:
+
+- **Prose takeaway** — sentence case in markdown; no `text-transform` in CSS.
+- **Code / API identifier** — `slide-title-code` span for monospace; same casing you type.
+- **Taglines** — use `<code>` for inline identifiers (unchanged).
+- **Section & cover** — cover uses `.cover-title` (same natural-casing rule).
+
 ## 11. Component Stylings
 
 - **Primary Button:** Sharp edges (0px) shape. Accent color fill. Hover: 8% darken + subtle lift shadow. Active: -1px translate tactile press. Font weight 600. No outer glows.

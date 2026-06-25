@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# implicit vs named type aliases
+# Implicit vs named type aliases
 
 <div class="divider-yellow"></div>
 

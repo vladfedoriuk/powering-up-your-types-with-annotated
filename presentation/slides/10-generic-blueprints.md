@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# generic column blueprints
+# Generic column blueprints
 
 <div class="divider-blue"></div>
 

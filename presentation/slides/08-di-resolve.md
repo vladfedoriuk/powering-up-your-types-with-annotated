@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# resolve dependencies
+# Resolve dependencies
 
 <div class="divider-blue"></div>
 
@@ -12,9 +12,7 @@ class: code-center
 
 ```python
 @contextmanager
-def resolve_dependencies[**Params, ReturnType](
-    fn: Callable[Params, ReturnType],
-) -> Iterator[dict[str, Any]]:
+def resolve_dependencies(fn: Callable) -> Iterator[dict[str, Any]]:
     yield _resolve(fn)
 ```
 

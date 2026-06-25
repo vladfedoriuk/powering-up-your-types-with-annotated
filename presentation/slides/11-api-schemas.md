@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# composable api schemas
+# Composable API schemas
 
 <div class="divider-yellow"></div>
 

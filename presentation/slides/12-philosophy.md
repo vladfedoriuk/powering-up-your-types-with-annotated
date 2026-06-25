@@ -3,7 +3,7 @@ layout: default
 ---
 
 
-# philosophical takeaway
+# Philosophical takeaway
 
 <div class="divider-red"></div>
 

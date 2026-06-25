@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# ~~DI~~ auto-wiring with Annotated
+# Auto-wiring with <span class="slide-title-code">Annotated</span>
 
 <div class="divider-blue"></div>
 

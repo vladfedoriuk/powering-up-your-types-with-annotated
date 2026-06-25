@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# from primitive to semantic
+# From primitive to semantic
 
 <div class="divider-red"></div>
 

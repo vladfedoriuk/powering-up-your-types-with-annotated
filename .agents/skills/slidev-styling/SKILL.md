@@ -1,11 +1,106 @@
 ---
 name: slidev-styling
-description: Style Slidev slides with UnoCSS and custom CSS. Use this skill for custom colors, typography, animations, and responsive designs.
+description: Style Slidev slides with UnoCSS and custom CSS. Use this skill for custom colors, typography, animations, and responsive designs. For this repo, follow Bauhaus tokens in DESIGN.md and presentation/styles/index.css.
 ---
 
 # Styling in Slidev
 
 This skill covers all styling options in Slidev, including UnoCSS utilities, custom CSS, scoped styles, and advanced styling techniques.
+
+## This repository — Bauhaus deck
+
+**Authoritative sources:** [DESIGN.md](../../DESIGN.md) (tokens & rules) · `presentation/styles/index.css` (implementation).
+
+This deck does **not** use `uno.config.ts` or Tailwind-style shortcuts. Styling is almost entirely global CSS + a few reusable classes. Prefer extending `index.css` over per-slide `<style>` unless a one-off is unavoidable.
+
+### Headmatter (already in `presentation/slides.md`)
+
+```yaml
+fonts:
+  sans: 'Josefin Sans'
+  mono: 'JetBrains Mono'
+  provider: google
+mdc: true
+transition: slide-left
+```
+
+### Slide anatomy (standard content slide)
+
+```markdown
+---
+layout: default
+class: code-center   # optional — vertically centers code block
+---
+
+# prose takeaway title
+# <span class="slide-title-code">typing.get_type_hints</span>   # mixed title
+
+<div class="divider-blue"></div>   <!-- or divider-red / divider-yellow -->
+
+<p class="slide-tagline">One-line context — <code>identifiers</code> in mono.</p>
+
+```python
+# code from ../snippets/ when possible
+```
+
+<!--
+Speaker notes: full prose, links, delivery cues — not on slide.
+-->
+```
+
+### Title casing (`slide-title-code`)
+
+No CSS `text-transform` on titles — write the casing you want in markdown.
+
+| Pattern | Markdown |
+|---------|----------|
+| Prose takeaway | `# Aliases block flattening` |
+| Code only | `# <span class="slide-title-code">typing.get_type_hints</span>` |
+| Mixed | `# Mapping types: <span class="slide-title-code">type_annotation_map</span>` |
+
+`.slide-title-code` → JetBrains Mono 600, 0.9em — identifiers only.
+
+**Taglines** — Josefin Sans 500; `<code>` in taglines uses JetBrains Mono. **Cover** — `.cover-title` hero scale per table above.
+
+### Layout classes
+
+| Class | Purpose |
+|-------|---------|
+| `code-center` | Grid layout; centers `pre` / magic-move in remaining viewport |
+| `section-patterns` | Section slide with two pattern cards (`01-section-two-patterns.md`) |
+| `text-left` | Cover content alignment |
+
+### Bauhaus components (`index.css`)
+
+| Class | Use |
+|-------|-----|
+| `divider-red` / `divider-yellow` / `divider-blue` | 4px accent rule under title |
+| `marker-circle` / `marker-square` / `marker-triangle` | Kandinsky markers (blue / red / yellow) |
+| `pill` / `pill--red` / `pill--yellow` / `pill--blue` | Badges |
+| `cover-grid`, `cover-title`, `cover-author`, `cover-shapes` | Cover layout |
+| `section-patterns-grid`, `section-pattern`, `section-pattern-label` | Section divider cards |
+
+### Code blocks
+
+- Light background (`#FFFFFF`), red left border — **not** dark theme blocks (user preference).
+- Inline `` `code` `` in prose: red tint on beige; dark mode variants exist.
+- Tables: beige header, blue bottom rule, white surface — see `index.css` § Tables.
+
+### Bauhaus anti-patterns (from DESIGN.md §14)
+
+Do **not** use on slides: gradients, heavy shadows, rounded “card” aesthetic, emoji UI, generic Tailwind gray palette as primary look. Keep flat color, sharp edges, primary triad.
+
+### Dark mode
+
+`.dark` overrides exist for code, tables, canvas. Test presenter view if toggling theme.
+
+### Verify
+
+```bash
+cd presentation && pnpm run build
+```
+
+---
 
 ## When to Use This Skill
 

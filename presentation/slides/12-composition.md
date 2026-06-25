@@ -3,7 +3,7 @@ layout: default
 ---
 
 
-# composition-based design
+# Composition-based design
 
 <div class="divider-red"></div>
 

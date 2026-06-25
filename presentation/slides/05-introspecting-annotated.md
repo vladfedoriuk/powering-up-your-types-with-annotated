@@ -4,11 +4,11 @@ class: code-center
 ---
 
 
-# introspecting annotated
+# The <span class="slide-title-code">get_constraints</span> idiom
 
 <div class="divider-red"></div>
 
-<p class="slide-tagline"><code>get_constraints()</code> — pattern Pydantic uses.</p>
+<p class="slide-tagline">Suggested by <code>annotated-types</code> — walk metadata that implements <code>BaseMetadata</code> or <code>GroupedMetadata</code>.</p>
 
 ```python
 from typing import Annotated, get_args, get_origin
@@ -24,15 +24,11 @@ def get_constraints(tp):
 ```
 
 <!--
-Here's the canonical pattern that Pydantic and other Annotated-aware libraries use to extract constraints from type annotations.
+This is not a stdlib API — it is the consumption idiom annotated-types documents for library authors. Walk an Annotated type's metadata tuple and dispatch on the two contracts the package defines.
 
-The function takes an Annotated type and yields all the BaseMetadata and GroupedMetadata objects from its metadata tuple.
+BaseMetadata covers simple constraints: Gt, Le, MinLen, and so on. GroupedMetadata covers composites that unpack via __iter__ — Interval yields Gt and Lt, Len yields MinLen and MaxLen.
 
-The key insight is in how get_args works. The first element, at index zero, is the base type — str, int, Decimal, whatever your values actually are. Everything from index one onwards is metadata.
+get_args(tp)[0] is always the base type; everything from index 1 onward is metadata. Your library yields what it understands and ignores the rest — that is the loose coupling.
 
-For simple constraints like Gt or MinLen, they're instances of BaseMetadata, so you yield them directly.
-
-For grouped constraints like Interval or Len, they implement the GroupedMetadata protocol, which means they're iterable. Interval yields Gt and Lt. Len yields MinLen and MaxLen. So you yield from them to unpack the individual constraints.
-
-This is the contract that annotated-types establishes for the whole ecosystem. If you're a constraint, you're either BaseMetadata or GroupedMetadata. Libraries do isinstance checks against these two contracts, and the whole system stays loosely coupled.
+Pydantic, SQLAlchemy, and Hypothesis all follow variants of this same isinstance loop. The annotated-types test suite shows the reference implementation. If your metadata objects implement BaseMetadata or GroupedMetadata, any consumer using this idiom can read them without importing your types.
 -->

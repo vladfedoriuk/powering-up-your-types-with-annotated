@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# mapping types: `type_annotation_map`
+# Mapping types: <span class="slide-title-code">type_annotation_map</span>
 
 <div class="divider-blue"></div>
 

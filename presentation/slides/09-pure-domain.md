@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# pure domain model
+# Pure domain model
 
 <div class="divider-red"></div>
 

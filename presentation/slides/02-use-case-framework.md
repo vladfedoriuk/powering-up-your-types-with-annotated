@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# use case: framework metadata
+# Use case: framework metadata
 
 <div class="divider-red"></div>
 

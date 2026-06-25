@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# "no, it is not like django"
+# "No, it is not like Django"
 
 <div class="divider-red"></div>
 

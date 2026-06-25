@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# standalone validation
+# Standalone validation
 
 <div class="divider-yellow"></div>
 

@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# "no, it is not like sqlmodel"
+# "No, it is not like SQLModel"
 
 <div class="divider-red"></div>
 

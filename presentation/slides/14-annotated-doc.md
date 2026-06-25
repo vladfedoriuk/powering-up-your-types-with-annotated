@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# documentation: `annotated-doc`
+# Documentation: <span class="slide-title-code">annotated-doc</span>
 
 <div class="divider-yellow"></div>
 

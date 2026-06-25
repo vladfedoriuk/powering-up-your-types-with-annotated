@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# call with injected deps
+# Call with injected deps
 
 <div class="divider-blue"></div>
 

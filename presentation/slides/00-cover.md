@@ -6,7 +6,6 @@ class: text-left
 <div class="cover-grid">
   <div class="cover-content">
     <div class="cover-title">Powering Up Your Types<br/>with <mark>Annotated</mark></div>
-    <div class="cover-subtitle">typing.Annotated · python 3.9+ · PEP 593</div>
     <div class="cover-author">Vlad Fedoriuk</div>
   </div>
   <div class="cover-shapes">

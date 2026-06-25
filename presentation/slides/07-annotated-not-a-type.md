@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# annotated is not a type
+# <span class="slide-title-code">Annotated</span> is not a type
 
 <div class="divider-red"></div>
 

@@ -4,40 +4,39 @@ class: code-center
 ---
 
 
-# PEP 563 caveat
+# PEP 563 stores strings
 
 <div class="divider-yellow"></div>
 
-<p class="slide-tagline"><code>from __future__ import annotations</code> stores strings.</p>
+<p class="slide-tagline"><code>get_annotations(format.value)</code> returns strings — use <code>eval_str=True</code> or <code>get_type_hints</code>.</p>
 
 ```python
 from __future__ import annotations
-from typing import Annotated, get_type_hints
-from annotated_types import MinLen, MaxLen, Gt
-
-Name = Annotated[str, MinLen(1), MaxLen(100)]
+import annotationlib
+from annotationlib import Format
+from typing import get_type_hints
 
 class Product:
     name: Name
-    price: Annotated[Decimal, Gt(0)]
+    price: Price
 
 Product.__annotations__
-# {'name': 'Name', 'price': 'Annotated[Decimal, Gt(0)]'}  ← strings!
+# {'name': 'Name', 'price': 'Price'}  ← strings
 
-get_type_hints(Product, include_extras=True)
-# {'name': Annotated[str, MinLen(1), MaxLen(100)], ...}    ← resolved
+annotationlib.get_annotations(Product, format=Format.VALUE, eval_str=True)
+get_type_hints(Product, include_extras=True)  # resolved Annotated types
+
+Product.__annotate__ is None  # no PEP 649 evaluator under PEP 563
 ```
 
 <!--
-There's an important caveat when working with PEP 563 — the from __future__ import annotations statement that many projects use.
+This is the PEP 563 caveat many codebases still hit because they use from __future__ import annotations.
 
-When this future import is active, Python stores all annotations as raw strings. It never evaluates them. So Product.__annotations__ gives you the dictionary with string values: 'Name' and 'Annotated[Decimal, Gt(0)]'.
+When that future import is active, annotations are stored as strings and never evaluated at definition time. Product.__annotations__ gives you 'Name' and 'Price' as string values, not Annotated objects.
 
-If you call annotationlib.get_annotations with Format.VALUE, you get these strings as-is — it does not evaluate them. You need to pass eval_str=True to make it resolve the strings against the module globals.
+annotationlib.get_annotations with Format.VALUE returns those strings as-is — it does not magically evaluate them. Pass eval_str=True to resolve against module globals. Alternatively, get_type_hints always evaluates strings and with include_extras=True gives you the full Annotated types with metadata.
 
-Alternatively, typing.get_type_hints always evaluates strings — it was designed for this. With include_extras=True, you get the fully resolved Annotated types with all their metadata intact.
+One more detail from our tests: under PEP 563 on Python 3.14, __annotate__ exists but is None. The compiler did not generate a PEP 649 lazy evaluator. hasattr returns True, but there is no callable to invoke.
 
-One more thing: under PEP 563, Python 3.14 sets __annotate__ to None rather than a callable function. This is because the compiler never generates the PEP 649 lazy evaluator when annotations are stored as strings. So if you're checking for __annotate__, be aware it exists but is None.
-
-The good news is that PEP 649, which is the default in Python 3.14, fixes all of this with true lazy evaluation.
+The good news: PEP 649 is the default in Python 3.14 without that future import. You get lazy evaluation, a real __annotate__ callable, and Format.VALUE returns actual objects. PEP 563 is the legacy path you need to understand, not the direction of travel.
 -->

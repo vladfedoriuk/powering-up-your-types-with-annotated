@@ -3,7 +3,7 @@ layout: cover
 class: text-center
 ---
 
-# thank you!
+# Thank you!
 
 <div class="flex flex-col items-center justify-center mt-10">
   <QRCode value="https://github.com/vladfedoriuk/powering-up-your-types-with-annotated" :size="200" render-as="svg" />

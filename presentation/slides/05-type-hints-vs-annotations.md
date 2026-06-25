@@ -3,28 +3,27 @@ layout: default
 ---
 
 
-# get_type_hints vs get_annotations
+# Three ways to read annotations
 
 <div class="divider-red"></div>
 
-<p class="slide-tagline">Pick the right introspection API.</p>
+<p class="slide-tagline">Different contracts — pick the API that matches your job.</p>
 
-| | `get_type_hints` | `get_annotations` |
+| | get_type_hints | get_annotations |
 |---|---|---|
 | strips `Annotated` | yes (default) | no |
 | keep metadata | `include_extras=True` | always |
-| merges MRO | yes | no |
+| merges MRO | yes | no (own only) |
+| `format=` control | — | value / string / forwardref |
 | evaluates strings | always | `eval_str=True` |
-| since | python 3.5 | python 3.14 |
+| since | Python 3.5 | Python 3.14 (`annotationlib`) |
 
 <!--
-Now let's compare the two main APIs for getting annotations from Python objects, since choosing the right one matters for Annotated-aware code.
+Here is the cheat sheet tying the last two slides together.
 
-typing.get_type_hints has been around since Python 3.5. By default, it strips Annotated wrappers — you just get the base type. To keep the metadata, you need to pass include_extras=True. It always evaluates string annotations, and it merges annotations across the entire method resolution order — so you see parent class annotations too.
+get_type_hints is the framework author's tool — DI, validation, anything that needs fully resolved types across inheritance. get_annotations is the introspection author's tool — own annotations, format control, no silent MRO merge.
 
-annotationlib.get_annotations is new in Python 3.14. It never strips Annotated metadata. It only returns own annotations, not inherited ones. It doesn't evaluate strings by default — you need to pass eval_str=True. And it has the Format parameter: VALUE gives you actual objects, STRING gives you source text, and FORWARDREF gives you proxy objects that don't raise NameError when names are undefined.
+The evolution across Python versions: raw __annotations__ before 3.10 had inheritance bugs. inspect.get_annotations from 3.10 to 3.13 was the safe own-only API. annotationlib.get_annotations in 3.14 adds Format and becomes what inspect re-exports.
 
-In Python 3.14, inspect.get_annotations is literally the same function as annotationlib.get_annotations — they point to the same object.
-
-For Annotated-aware code, use get_type_hints with include_extras=True. For format-controlled access to own annotations, use get_annotations.
+For Annotated-aware libraries: get_type_hints with include_extras=True for runtime resolution on callables and classes where you need the full MRO. get_annotations with format=Format.VALUE for precise own-field introspection. Never assume they are interchangeable.
 -->

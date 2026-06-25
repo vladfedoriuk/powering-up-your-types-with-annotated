@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# polyfactory: test data
+# Polyfactory: test data
 
 <div class="divider-red"></div>
 

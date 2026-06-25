@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# validators as metadata
+# Validators as metadata
 
 <div class="divider-yellow"></div>
 

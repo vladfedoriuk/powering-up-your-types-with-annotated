@@ -1,11 +1,95 @@
 ---
 name: slidev
-description: Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features. Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks.
+description: Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features. Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks. For this repo, deck lives in presentation/ with one slide per file under slides/.
 ---
 
 # Slidev - Presentation Slides for Developers
 
 Web-based slides maker built on Vite, Vue, and Markdown.
+
+## This repository — deck layout
+
+```
+presentation/
+├── slides.md              # headmatter + ordered src: imports only
+├── slides/
+│   ├── 00-cover.md
+│   ├── 01-section-two-patterns.md
+│   ├── 04-annotated-101.md
+│   └── …                  # one slide per file (~45 files)
+├── styles/index.css       # Bauhaus global styles — see slidev-styling skill
+└── package.json           # pnpm dev | build | export
+```
+
+**Content sources:** `DESCRIPTION.md` (narrative arc) · `TODO.md` (checklist) · `snippets/` (runnable code — slides should match).
+
+### `slides.md` pattern
+
+Headmatter closes with `---`, then **only** `src:` imports — no inline slide bodies (cover stays in `00-cover.md`).
+
+```markdown
+---
+theme: default
+title: Powering Up Your Types with Annotated
+fonts:
+  sans: 'Josefin Sans'
+  mono: 'JetBrains Mono'
+  provider: google
+mdc: true
+---
+
+---
+src: ./slides/00-cover.md
+---
+
+---
+src: ./slides/01-section-two-patterns.md
+---
+```
+
+**Known quirk:** Slidev may render an empty slide 1 at `/1`; cover appears at `/2`. Accepted — do not inline cover into `slides.md`.
+
+### File naming
+
+`{phase}-{topic}.md` — e.g. `04-flattening-direct.md`, `05-get-type-hints.md`. Number prefix = talk section; multiple files share a prefix when one idea = one slide.
+
+### Slide content rules
+
+1. **One takeaway per slide** — title + optional tagline + minimal code.
+2. **Speaker notes** in HTML comments — depth, PEP links, delivery; not duplicated on slide.
+3. **Code** — prefer copying from `snippets/`; keep runnable and tested.
+4. **magic-move** — sparingly (type evolution: semantic types, validators, typeform fix). Not for teaching exceptions (flattening uses separate static slides).
+5. **Layouts used here:** `cover`, `section`, `default` (+ `class: code-center`).
+
+### Styling
+
+See [.agents/skills/slidev-styling/SKILL.md](../slidev-styling/SKILL.md) — `slide-title-code`, `slide-tagline`, dividers, DESIGN.md tokens.
+
+### Commands
+
+```bash
+cd presentation
+pnpm install
+pnpm dev          # http://localhost:3030
+pnpm run build    # verify after structural changes
+pnpm run export   # PDF — needs playwright-chromium (in devDependencies)
+```
+
+### Features used in this deck
+
+| Feature | Where |
+|---------|--------|
+| `src:` imports | `slides.md` |
+| `mdc: true` | headmatter |
+| `magic-move` | semantic types, column blueprints, validators, typeform |
+| HTML in titles | `<span class="slide-title-code">` |
+| Presenter notes | `<!-- -->` on every content slide |
+
+### Features **not** used (available via references)
+
+Monaco run, twoslash, `<<<` snippet import, v-click stepping, Mermaid, two-cols — add only if they improve a specific slide.
+
+---
 
 ## When to Use
 

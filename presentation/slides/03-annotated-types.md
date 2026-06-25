@@ -3,7 +3,7 @@ layout: default
 ---
 
 
-# annotated-types
+# <span class="slide-title-code">annotated-types</span>
 
 <div class="divider-yellow"></div>
 

@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# hypothesis: property-based testing
+# Hypothesis: property-based testing
 
 <div class="divider-red"></div>
 

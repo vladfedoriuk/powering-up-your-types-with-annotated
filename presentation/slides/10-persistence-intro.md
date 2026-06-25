@@ -3,7 +3,7 @@ layout: default
 ---
 
 
-# persistence layer: sqlalchemy
+# Persistence layer: <span class="slide-title-code">SQLAlchemy</span>
 
 <div class="divider-blue"></div>
 

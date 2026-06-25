@@ -166,6 +166,34 @@ def test_get_constraints(tp: type, expected_constraints: list[object]) -> None:
 
 
 @pytest.mark.parametrize(
+    "tp, expected_constraints",
+    [
+        pytest.param(
+            _flattened,
+            [MinLen(1), MaxLen(100)],
+            id="nested-flattened",
+        ),
+        pytest.param(
+            _not_flattened,
+            [MaxLen(100)],
+            id="type-alias",
+        ),
+        pytest.param(
+            _generic_not_flattened,
+            [MinLen(1)],
+            id="generic-type-alias",
+        ),
+    ],
+)
+def test_get_constraints_with_type_aliases(
+    tp: type, expected_constraints: list[object]
+) -> None:
+    # The naive idiom walks __metadata__ only. Lazy PEP 695 aliases stay
+    # opaque — inner constraints are not yielded unless you evaluate the alias.
+    assert list(get_constraints(tp)) == expected_constraints
+
+
+@pytest.mark.parametrize(
     "cls, include_extras, expected",
     [
         pytest.param(

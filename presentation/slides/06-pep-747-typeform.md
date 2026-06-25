@@ -4,11 +4,11 @@ class: code-center
 ---
 
 
-# PEP 747 — TypeForm
+# PEP 747 — <span class="slide-title-code">TypeForm</span>
 
 <div class="divider-yellow"></div>
 
-<p class="slide-tagline"><code>TypeForm[T]</code> accepts type expressions, not just classes.</p>
+<p class="slide-tagline"><code>typeform[T]</code> accepts type expressions, not just classes.</p>
 
 ```python
 from typing import TypeForm  # Python 3.15, or typing_extensions

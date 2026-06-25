@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# generating migrations
+# Generating migrations
 
 <div class="divider-blue"></div>
 

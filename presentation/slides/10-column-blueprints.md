@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# reusable column blueprints
+# Reusable column blueprints
 
 <div class="divider-blue"></div>
 

@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# use case: semantic types
+# Use case: semantic types
 
 <div class="divider-blue"></div>
 

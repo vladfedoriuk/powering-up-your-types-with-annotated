@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# the svcs problem
+# The problem
 
 <div class="divider-red"></div>
 

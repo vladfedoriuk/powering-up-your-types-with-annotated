@@ -3,7 +3,7 @@ layout: default
 ---
 
 
-# api layer: pydantic & fastapi
+# API layer: <span class="slide-title-code">Pydantic</span> & <span class="slide-title-code">FastAPI</span>
 
 <div class="divider-yellow"></div>
 

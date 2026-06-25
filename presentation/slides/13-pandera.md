@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# pandera: dataframe validation
+# <span class="slide-title-code">Pandera</span>: DataFrame validation
 
 <div class="divider-blue"></div>
 
