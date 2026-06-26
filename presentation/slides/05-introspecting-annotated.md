@@ -14,13 +14,14 @@ class: code-center
 from typing import Annotated, get_args, get_origin
 from annotated_types import BaseMetadata, GroupedMetadata
 
+
 def get_constraints(tp):
     assert get_origin(tp) is Annotated
-    for arg in get_args(tp)[1:]:        # [0] is the base type
+    for arg in get_args(tp)[1:]:  # [0] is the base type
         if isinstance(arg, BaseMetadata):
             yield arg
         elif isinstance(arg, GroupedMetadata):
-            yield from arg              # e.g. Interval → Gt + Lt
+            yield from arg  # e.g. Interval → Gt + Lt
 ```
 
 <!--

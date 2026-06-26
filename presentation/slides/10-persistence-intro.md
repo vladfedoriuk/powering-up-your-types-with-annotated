@@ -3,14 +3,12 @@ layout: default
 ---
 
 
-# Persistence layer: <span class="slide-title-code">SQLAlchemy</span>
+# <span class="slide-title-code">SQLAlchemy</span>: column info in the type
 
 <div class="divider-blue"></div>
 
-<p class="slide-tagline">Layer ORM metadata onto types, not base classes.</p>
+<p class="slide-tagline">ORM metadata in the annotation, not the base class.</p>
 
 <!--
-Now we look at the persistence layer using SQLAlchemy.
-
-Rather than polluting our pure domain model by inheriting from a database-specific base model, we use composition. We overlay persistence metadata using typing.Annotated, allowing our models to be mapped to tables while keeping them clean.
+Add SQLAlchemy metadata to the same Annotated types. No new base class. The type already carries the constraint — now it also carries the column config.
 -->

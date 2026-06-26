@@ -382,6 +382,15 @@
   margin-bottom: 0.25rem;
 }
 
+/* Triangle uses border trick — must keep width/height at 0 */
+.marker-triangle.section-pattern-marker {
+  width: 0 !important;
+  height: 0 !important;
+  border-left-width: 0.625rem;
+  border-right-width: 0.625rem;
+  border-bottom-width: 1.25rem;
+}
+
 .section-pattern-label {
   font-family: var(--font-primary);
   font-size: 1.15rem;

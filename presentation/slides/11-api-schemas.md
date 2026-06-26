@@ -4,27 +4,27 @@ class: code-center
 ---
 
 
-# Composable API schemas
+# <span class="slide-title-code">Pydantic</span> & <span class="slide-title-code">FastAPI</span>: composable schemas
 
 <div class="divider-yellow"></div>
 
-<p class="slide-tagline">Reuse domain aliases in Pydantic schemas.</p>
+<p class="slide-tagline">Same types — validation and OpenAPI for free.</p>
 
 ```python
-class ReservationSchema(BaseModel):
-    model_config = ConfigDict(from_attributes=True, frozen=True)
+class CreateReservationSchema(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True)
 
-    reference: Annotated[
-        OrderReference,
-        Field(serialization_alias="ref", title="The reservation reference"),
-    ]
+    room_id: RoomId
     guest_count: GuestCount
+    starts_at: StayDate
+    ends_at: StayDate
     rate: RoomRate
-    created_at: TimestampTz
 ```
 
 <!--
-Pydantic schemas leverage the exact same semantic type aliases defined in our domain.
+Same Annotated types, new reader. Pydantic validates incoming data and FastAPI generates OpenAPI docs — nothing new to declare.
 
-By using RoomId, GuestCount, and RoomRate inside our BaseModel, we inherit validation and serialization rules. If we need to customize API-specific parameters (like a JSON serialization alias), we just stack a Pydantic Field on top.
+RoomId, GuestCount, StayDate, RoomRate are the exact same aliases used in the SQLAlchemy models. Pydantic reads the annotated_types constraints (MinLen, Ge, Le, Gt) for validation. It silently ignores the mapped_column() metadata — each tool reads only what it understands.
+
+When adding API-specific metadata (description, title, alias), wrap with Annotated and stack a Field — don't use field = Field(...) assignment syntax. The domain alias stays unchanged.
 -->

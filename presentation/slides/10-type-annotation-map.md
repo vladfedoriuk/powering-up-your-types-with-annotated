@@ -18,6 +18,7 @@ class Base(DeclarativeBase):
         StayDate: sqlalchemy.Date(),
     }
 
+
 @registry.mapped_as_dataclass
 class Reservation:
     id: Mapped[Identity] = mapped_column(init=False)
@@ -26,7 +27,5 @@ class Reservation:
 ```
 
 <!--
-SQLAlchemy's type_annotation_map lets us configure global column rules.
-
-We map our semantic types directly to database column types in the Declarative base class. At model declaration time, typing Mapped[RoomId] is enough for SQLAlchemy to resolve it to a VARCHAR(20) column. This eliminates field-level column declarations completely.
+Register Annotated types → SQL column types once in the base class. Writing Mapped[RoomId] is enough — SQLAlchemy resolves VARCHAR(20) automatically. No per-field declarations.
 -->

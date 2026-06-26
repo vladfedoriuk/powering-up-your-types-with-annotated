@@ -15,8 +15,10 @@ class: code-center
 class BaseMetadata:
     """Base for simple constraints: Gt, Le, MinLen, …"""
 
+
 class GroupedMetadata(Protocol):
     def __iter__(self) -> Iterator[BaseMetadata]: ...
+
     # Interval → Gt + Lt, Len → MinLen + MaxLen
 ```
 

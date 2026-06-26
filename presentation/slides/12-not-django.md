@@ -17,6 +17,7 @@ class Room(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(10)]
     )
 
+
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room

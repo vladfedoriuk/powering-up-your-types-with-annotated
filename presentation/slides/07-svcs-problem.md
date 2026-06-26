@@ -13,6 +13,7 @@ class: code-center
 ```python
 def register_value(svc_type: type[T], value: T) -> None: ...
 
+
 register_value(Annotated[int, "my_int"], 42)
 # ↑ type error in mypy, pyright, ty, pyrefly
 ```

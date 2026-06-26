@@ -17,6 +17,7 @@ def handle_request(
 ) -> str:
     return f"{user} via {env}"
 
+
 with resolve_dependencies(handle_request) as deps:
     result = handle_request(**deps)
 ```

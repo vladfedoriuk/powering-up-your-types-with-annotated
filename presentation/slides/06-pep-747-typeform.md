@@ -13,10 +13,12 @@ class: code-center
 ```python
 from typing import TypeForm  # Python 3.15, or typing_extensions
 
+
 def accepts_type_form(tp: TypeForm[int]) -> None: ...
 
-accepts_type_form(int)                      # ✓ OK
-accepts_type_form(Annotated[int, "tag"])     # ✓ OK
+
+accepts_type_form(int)  # ✓ OK
+accepts_type_form(Annotated[int, "tag"])  # ✓ OK
 ```
 
 <!--

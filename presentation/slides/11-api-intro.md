@@ -3,14 +3,12 @@ layout: default
 ---
 
 
-# API layer: <span class="slide-title-code">Pydantic</span> & <span class="slide-title-code">FastAPI</span>
+# <span class="slide-title-code">Pydantic</span> & <span class="slide-title-code">FastAPI</span>
 
 <div class="divider-yellow"></div>
 
-<p class="slide-tagline">Same semantic types — validation & OpenAPI.</p>
+<p class="slide-tagline">Same types — validation and OpenAPI for free.</p>
 
 <!--
-Now let's look at the API layer with FastAPI and Pydantic.
-
-Just like the persistence layer, the API layer hooks into our domain models and semantic types. Pydantic reads the annotations to validate incoming HTTP requests and serialize outgoing JSON payloads automatically.
+Same Annotated types, new reader. Pydantic validates incoming data against the constraints. FastAPI generates OpenAPI docs from them. Nothing new to declare.
 -->

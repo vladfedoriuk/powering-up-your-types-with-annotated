@@ -15,10 +15,13 @@ from typing import Annotated
 from pydantic import BaseModel, Field
 from fastapi import FastAPI, Query
 
+
 class SearchResult(BaseModel):
     total: Annotated[int, Field(ge=0)]
 
+
 app = FastAPI()
+
 
 @app.get("/search/")
 def search(

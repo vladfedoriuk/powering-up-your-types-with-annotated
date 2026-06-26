@@ -111,7 +111,11 @@ src: ./slides/08-production-di.md
 ---
 
 ---
-src: ./slides/09-building-domain.md
+src: ./slides/08-production-di-libs.md
+---
+
+---
+src: ./slides/09-section-lets-build.md
 ---
 
 ---
@@ -131,27 +135,11 @@ src: ./slides/09-hypothesis.md
 ---
 
 ---
-src: ./slides/10-persistence-intro.md
----
-
----
 src: ./slides/10-column-blueprints.md
 ---
 
 ---
-src: ./slides/10-type-annotation-map.md
----
-
----
-src: ./slides/10-generic-blueprints.md
----
-
----
 src: ./slides/10-migrations.md
----
-
----
-src: ./slides/11-api-intro.md
 ---
 
 ---
@@ -163,11 +151,7 @@ src: ./slides/11-validators-metadata.md
 ---
 
 ---
-src: ./slides/11-named-aliases.md
----
-
----
-src: ./slides/11-type-adapter.md
+src: ./slides/11-fastapi-endpoint.md
 ---
 
 ---

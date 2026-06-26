@@ -4,23 +4,42 @@ class: code-center
 ---
 
 
-# Polyfactory: test data
+# Polyfactory: almost zero config
 
 <div class="divider-red"></div>
 
-<p class="slide-tagline">Factories read constraints from types — zero config.</p>
+<p class="slide-tagline"><code>Ge</code>, <code>Le</code>, <code>Gt</code>, <code>MinLen</code>, <code>MaxLen</code> — resolved automatically.</p>
 
 ```python
-from polyfactory.factories.dataclasses import DataclassFactory
-
 class ReservationFactory(DataclassFactory[Reservation]):
     __model__ = Reservation
+    # PostGenerated: ends_at must follow starts_at
+    ends_at = PostGenerated(
+        lambda name, values, **kw: values["starts_at"]
+        + datetime.timedelta(days=random.randint(1, 14))
+    )
+    # Timezone(...) bug: polyfactory passes ... as tzinfo
+    created_at = Use(
+        faker.date_time_between, start_date="-30d", end_date="now", tzinfo=UTC
+    )
 
-mock_res = ReservationFactory.build()
+
+# auto-resolved from Annotated constraints:
+res = ReservationFactory.build()
+assert res.guest_count == IsPositiveInt  # Ge(1), Le(10)
+assert res.rate == IsPositive  # Gt(0)
+assert res.room_id == IsStr(min_length=1, max_length=20)  # MinLen, MaxLen
 ```
 
 <!--
-For automated testing, polyfactory reads the Annotated constraints.
+Polyfactory reads Ge, Le, Gt, MinLen, MaxLen from Annotated automatically. No overrides needed for those fields.
 
-Since the constraints are part of the type signature, the ReservationFactory can automatically generate mock reservations that comply with the GuestCount limit and RoomRate constraints without requiring any manual configuration.
+Two manual overrides remain:
+1. ends_at — cross-field dependency (must follow starts_at). PostGenerated computes it after starts_at is resolved.
+2. created_at — Timezone(...) means "any timezone". Polyfactory bug: passes ellipsis as tzinfo → ParameterException. Workaround: Use() with explicit tzinfo=UTC.
+
+Predicate constraints (lambda-based) are silently skipped — polyfactory can't satisfy arbitrary callables. Works in practice because random Decimals are finite and not NaN.
+
+See: polyfactory.litestar.dev/latest/usage/fields.html — PostGenerated, Use.
+Issue #347: github.com/litestar-org/polyfactory/issues/347 — Annotated type support.
 -->

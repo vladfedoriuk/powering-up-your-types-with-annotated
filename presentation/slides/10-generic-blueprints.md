@@ -13,8 +13,9 @@ class: code-center
 ```python
 type PrimaryKey[T] = Annotated[
     T,
-    mapped_column(primary_key=True, autoincrement=True),
+    mapped_column(sa.Integer(), sa.Identity(always=False), primary_key=True),
 ]
+
 
 @registry.mapped_as_dataclass
 class Room:
@@ -23,7 +24,5 @@ class Room:
 ```
 
 <!--
-With PEP 695, we can write generic column blueprints using type aliases.
-
-The PrimaryKey[T] alias wraps a mapped_column primary key definition. We can use it as PrimaryKey[int] or PrimaryKey[uuid.UUID]. SQLAlchemy 2.0.44+ resolves these generic aliases cleanly, ensuring that we write primary key declarations once and reuse them across all models.
+PrimaryKey[T] — write the column options once, reuse across any type. PrimaryKey[int], PrimaryKey[uuid.UUID] — same blueprint, different base type. Requires SQLAlchemy 2.0.44+.
 -->

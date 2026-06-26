@@ -15,6 +15,7 @@ class: code-center
 class Depends(BaseMetadata):
     dependency: Callable
 
+
 def _resolve(fn):
     injected = {}
     for name, hint in get_type_hints(fn, include_extras=True).items():

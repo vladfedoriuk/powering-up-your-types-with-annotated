@@ -8,21 +8,29 @@ class: code-center
 
 <div class="divider-red"></div>
 
-<p class="slide-tagline">Strategies inferred from <code>Annotated</code> aliases.</p>
+<p class="slide-tagline"><code>st.builds</code> for objects, <code>st.from_type</code> reads <code>Annotated</code> constraints directly.</p>
 
 ```python
 @given(
-    reservation=st.builds(Reservation),
+    starts_at=st.dates(),
+    nights=st.integers(min_value=1, max_value=30),
+    guest_count=st.from_type(GuestCount),
     discount=st.from_type(Percentage),
     tax=st.from_type(TaxRate),
 )
-def test_stay_total_non_negative(reservation, discount, tax):
-    total = calculate_stay_total(reservation, discount, tax)
-    assert total >= 0
+def test_stay_total_never_negative(starts_at, nights, guest_count, discount, tax):
+    reservation = Reservation(
+        room_id="101",
+        guest_count=guest_count,
+        starts_at=starts_at,
+        ends_at=starts_at + timedelta(days=nights),
+        rate=Decimal("100"),
+    )
+    assert calculate_stay_total(reservation, discount, tax) >= 0
 ```
 
 <!--
-For bulletproof testing, we use Hypothesis.
+st.from_type(GuestCount) generates integers between 1 and 10 — straight from the Annotated constraints. Same for Percentage and TaxRate.
 
-By running st.from_type, Hypothesis automatically generates arbitrary valid inputs matching the Gt, Le, and Ge constraints of our type aliases. This makes it easy to assert properties like stay totals always remaining non-negative. Note that for complex nested annotations, custom strategies are sometimes still needed.
+Limitation: nested or flattened Annotated aliases like RoomRate (which has Predicate metadata) may fail with ResolutionFailed in some Hypothesis versions. Timezone, IsNotNan, IsFinite are also not supported. Use explicit strategies (st.decimals, st.dates) for those cases — as shown here with rate fixed to a safe value.
 -->

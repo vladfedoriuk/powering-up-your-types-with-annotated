@@ -3,18 +3,16 @@ layout: default
 ---
 
 
-# Philosophical takeaway
+# Three ways to do the same thing
 
 <div class="divider-red"></div>
 
-<p class="slide-tagline">Three patterns — table-driven, shared inheritance, composition.</p>
+<p class="slide-tagline">Different tradeoffs, same goal.</p>
 
-- Django/DRF — table-driven active record
-- SQLModel — shared inheritance
-- Annotated — metadata-layered composition
+- Django/DRF — one model rules everything
+- SQLModel — one class, ORM + schema
+- `Annotated` — each layer reads what it needs
 
 <!--
-Let's zoom out and look at the architectural philosophy.
-
-We will contrast our composition-based design using typing.Annotated with two very popular patterns in Python: Django/DRF and SQLModel.
+Quick comparison before the code. Not "X is bad" — just different coupling strategies. Django and SQLModel trade flexibility for convenience. Annotated keeps layers independent.
 -->

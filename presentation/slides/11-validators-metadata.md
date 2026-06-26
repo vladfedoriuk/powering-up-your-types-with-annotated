@@ -21,8 +21,10 @@ Amount = Annotated[Decimal, IsFinite, IsNotNan]
 def trim_str(v: str) -> str:
     return v.strip()
 
+
 def serialize_amount(v: Decimal) -> float:
     return float(v.quantize(Decimal("0.01")))
+
 
 RoomId = Annotated[str, BeforeValidator(trim_str), MinLen(1), MaxLen(20)]
 

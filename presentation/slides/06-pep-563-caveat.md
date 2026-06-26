@@ -16,9 +16,11 @@ import annotationlib
 from annotationlib import Format
 from typing import get_type_hints
 
+
 class Product:
     name: Name
     price: Price
+
 
 Product.__annotations__
 # {'name': 'Name', 'price': 'Price'}  ← strings

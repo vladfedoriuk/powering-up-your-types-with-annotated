@@ -14,10 +14,12 @@ class: code-center
 import pandera.pandas as pa
 from typing import Annotated
 
+
 class ReservationModel(pa.DataFrameModel):
     room_id: Annotated[str, pa.Field(unique=True)]
     guest_count: Annotated[int, pa.Field(ge=1, le=10)]
     rate: Annotated[float, pa.Field(gt=0)]
+
 
 ReservationModel.validate(dataframe)
 ```

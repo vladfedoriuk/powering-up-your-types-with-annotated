@@ -4,11 +4,11 @@ class: code-center
 ---
 
 
-# Pure domain model
+# Start with plain dataclasses
 
 <div class="divider-red"></div>
 
-<p class="slide-tagline">Raw primitives — business rules in class methods.</p>
+<p class="slide-tagline">No framework. Just data and rules.</p>
 
 ```python
 @dataclass
@@ -32,7 +32,7 @@ class Room:
 ```
 
 <!--
-Here is our initial pure domain model. Note that fields like room_id and capacity are typed as raw strings and integers.
+Start here. No database, no framework. Plain dataclasses with raw primitives.
 
-The Room class aggregates its Reservations and enforces rules like capacity validation directly inside its add_reservation method. There is no infrastructure logic here.
+Room enforces capacity inside add_reservation. That's the only business rule shown. Everything else is just data.
 -->

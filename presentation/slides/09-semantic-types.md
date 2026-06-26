@@ -4,11 +4,11 @@ class: code-center
 ---
 
 
-# From primitive to semantic
+# Make your types mean something
 
 <div class="divider-red"></div>
 
-<p class="slide-tagline">Swap primitives for constraint-rich aliases.</p>
+<p class="slide-tagline">Name what data is — and what's valid.</p>
 
 ````md magic-move {lines: true}
 ```python
@@ -28,6 +28,7 @@ GuestCount = Annotated[int, Ge(1), Le(10)]
 RoomRate = Annotated[Amount, Gt(0)]
 TimestampTz = Annotated[datetime.datetime, Timezone(...)]
 
+
 @dataclass
 class Reservation:
     room_id: RoomId
@@ -38,7 +39,5 @@ class Reservation:
 ````
 
 <!--
-Using shiki-magic-move, we can transition from primitive types to semantic type aliases parameterized with annotated-types constraints.
-
-By swapping out raw primitives for rich aliases like RoomId, GuestCount, and RoomRate, the domain constraints become self-documenting and are declared directly in the type system.
+Swap raw primitives for Annotated aliases. RoomId is still a str — GuestCount is still an int — but now the constraints live in the type itself, not in docstrings or scattered validation code.
 -->

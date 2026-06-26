@@ -16,14 +16,17 @@ class: code-center
 # Before — rejects Annotated
 def register_value(svc_type: type[T], value: T) -> None: ...
 
+
 register_value(Annotated[int, "x"], 42)  # ✗ type error
 ```
 
 ```python
 # After — PEP 747, Python 3.15+
-from typing import TypeForm          # or: from typing_extensions import TypeForm
+from typing import TypeForm  # or: from typing_extensions import TypeForm
+
 
 def register_value(svc_type: TypeForm[T], value: T) -> None: ...
+
 
 register_value(Annotated[int, "x"], 42)  # ✓ OK
 ```

@@ -48,7 +48,9 @@ class ReservationQuote(TypeMapBase):
 
 # Variant B: Whole mapped_column() embedded in Annotated. This is the canonical
 # reusable column blueprint form for repeated model attributes.
-RoomIdColumn = Annotated[str, mapped_column(sa.String(20), unique=True, index=True)]
+# Only type-level config lives in the alias — table-specific constraints
+# (unique, index) go on the model field where they actually apply.
+RoomIdColumn = Annotated[str, mapped_column(sa.String(20))]
 CreatedAtColumn = Annotated[
     datetime.datetime,
     mapped_column(
@@ -70,7 +72,8 @@ class RoomTable(BlueprintBase):
     __tablename__ = "rooms_blueprint"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    room_id: Mapped[RoomIdColumn]
+    # unique=True, index=True are table-specific — not part of the type alias
+    room_id: Mapped[RoomIdColumn] = mapped_column(unique=True, index=True)
     rate: Mapped[RoomRateColumn]
     created_at: Mapped[CreatedAtColumn]
 

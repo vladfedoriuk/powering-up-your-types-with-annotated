@@ -16,10 +16,10 @@ from annotated_types import MinLen, MaxLen
 
 Name = Annotated[str, MinLen(1), MaxLen(100)]
 
-Name.__origin__       # str
-Name.__metadata__     # (MinLen(1), MaxLen(100))
+Name.__origin__  # str
+Name.__metadata__  # (MinLen(1), MaxLen(100))
 
-get_origin(Name)      # Annotated  ← not str!
+get_origin(Name)  # Annotated  ← not str!
 ```
 
 <!--

@@ -19,8 +19,10 @@ get_annotations(HasName, format=Format.VALUE)
 get_annotations(HasName, format=Format.STRING)
 # {'name': 'Name'}                                   ← source text, no eval
 
+
 class Early:
     sibling: Pending  # not yet defined
+
 
 get_annotations(Early, format=Format.FORWARDREF)
 # {'sibling': ForwardRef('Pending')}                 ← proxy, no NameError

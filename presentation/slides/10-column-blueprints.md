@@ -4,42 +4,65 @@ class: code-center
 ---
 
 
-# Reusable column blueprints
+# <span class="slide-title-code">SQLAlchemy</span>: reusable column blueprints
 
 <div class="divider-blue"></div>
 
-<p class="slide-tagline"><code>mapped_column</code> inside the type alias.</p>
+<p class="slide-tagline">ORM config in the alias — table-specific constraints on the field.</p>
 
 ````md magic-move {lines: true}
 ```python
-# Step 1: Pure Domain Type
+# Step 1: Domain type alias — type constraint only
 RoomId = Annotated[str, MinLen(1), MaxLen(20)]
 TimestampTz = Annotated[datetime.datetime, Timezone(...)]
 ```
 
 ```python
-# Step 2: Overlay SQLAlchemy mapped_column details
+# Step 2: Add ORM config to the alias — type-level only
 RoomId = Annotated[
     str,
     MinLen(1),
     MaxLen(20),
-    mapped_column(sqlalchemy.String(20), nullable=False, index=True, unique=True),
+    mapped_column(sa.String(20)),
 ]
-
 TimestampTz = Annotated[
     datetime.datetime,
     Timezone(...),
     mapped_column(
-        sqlalchemy.DateTime(timezone=True),
-        nullable=False,
-        server_default=sqlalchemy.func.current_timestamp(),
+        sa.DateTime(timezone=True), server_default=sa.func.current_timestamp()
     ),
 ]
+```
+
+```python
+# Step 3: Use the aliases in a model
+Identity = Annotated[
+    int,
+    Gt(0),
+    mapped_column(sa.Integer(), sa.Identity(always=False), primary_key=True),
+]
+
+
+@registry.mapped_as_dataclass
+class Room:
+    __tablename__ = "rooms"
+
+    id: Mapped[Identity] = mapped_column(init=False)
+    room_id: Mapped[RoomId] = mapped_column(unique=True, index=True)
+    rate: Mapped[RoomRateColumn]
+    created_at: Mapped[TimestampTz]
 ```
 ````
 
 <!--
-We can layer database columns directly inside our semantic type definitions.
+The alias carries what's always true about the type — SQL type, nullability, server defaults.
+unique=True and index=True are table decisions, not type decisions. They go on the field.
 
-By wrapping mapped_column inside our Annotated type aliases, we create reusable blueprints. Whenever we write a model and type a field as RoomId or TimestampTz, SQLAlchemy automatically extracts the column properties (like indexes, unique constraints, nullability, and database defaults) without repeating them.
+SQLAlchemy merges both mapped_column() calls: alias provides the type config, field provides the table-specific options.
+
+Mapping approach is a separate choice — any of these work with the same aliases:
+- DeclarativeBase subclass (classic)
+- @registry.mapped_as_dataclass (shown here — keeps the class a plain Python dataclass)
+- MappedAsDataclass base class
+- registry.map_imperatively() for fully separate domain/table definitions
 -->
