@@ -11,20 +11,17 @@ class: code-center
 <p class="slide-tagline">Metadata-driven autowiring — <code>Depends</code> as <code>BaseMetadata</code>.</p>
 
 ```python
+from dataclasses import dataclass
+from annotated_types import BaseMetadata
+
+
 @dataclass(frozen=True)
 class Depends(BaseMetadata):
     dependency: Callable
 
 
-def _resolve(fn):
-    injected = {}
-    for name, hint in get_type_hints(fn, include_extras=True).items():
-        if get_origin(hint) is not Annotated:
-            continue
-        for meta in get_args(hint)[1:]:
-            if isinstance(meta, Depends):
-                injected[name] = meta.dependency(**_resolve(meta.dependency))
-    return injected
+# usage — metadata on the parameter annotation
+def current_user(env: Annotated[str, Depends(settings)]) -> str: ...
 ```
 
 <!--

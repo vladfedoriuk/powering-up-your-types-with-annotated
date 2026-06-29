@@ -11,15 +11,18 @@ class: code-center
 <p class="slide-tagline">Resolve dependency graph, call with <code>**deps</code>.</p>
 
 ```python
-def handle_request(
-    env: Annotated[str, Depends(settings)],
-    user: Annotated[str, Depends(current_user)],
-) -> str:
-    return f"{user} via {env}"
+def config() -> str:
+    return "prod"
+
+def db_url(env: Annotated[str, Depends(config)]) -> str:
+    return f"db://{env}"
+
+def endpoint(url: Annotated[str, Depends(db_url)]) -> str:
+    return f"connected to {url}"
 
 
-with resolve_dependencies(handle_request) as deps:
-    result = handle_request(**deps)
+deps = resolve_dependencies(endpoint)
+endpoint(**deps)  # "connected to db://prod"
 ```
 
 <!--

@@ -14,10 +14,11 @@ class: code-center
 from typing import Annotated
 from annotated_types import MinLen, MaxLen
 
-Annotated[
-    Annotated[int, MinLen(1)],
-    MaxLen(100),
-] == Annotated[int, MinLen(1), MaxLen(100)]  # True
+Inner = Annotated[int, MinLen(1)]
+Outer = Annotated[Inner, MaxLen(100)]  # nested Annotated flattens
+
+Outer.__metadata__  # (MinLen(1), MaxLen(100))  ← inner metadata first
+Outer == Annotated[int, MinLen(1), MaxLen(100)]  # True
 ```
 
 <!--

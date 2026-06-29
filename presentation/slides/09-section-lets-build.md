@@ -1,5 +1,6 @@
 ---
 layout: section
+class: text-center
 ---
 
 # Let's build something

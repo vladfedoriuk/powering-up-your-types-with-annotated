@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# The contracts
+# <span class="slide-title-code">annotated-types</span> contracts
 
 <div class="divider-blue"></div>
 
@@ -29,5 +29,5 @@ BaseMetadata is a frozen dataclass that serves as the base for simple constraint
 
 GroupedMetadata is a protocol that yields BaseMetadata objects. It's used for composite constraints like Interval, which yields Gt and Lt, or Len, which yields MinLen and MaxLen.
 
-The get_constraints idiom we saw earlier is how library authors consume these contracts: isinstance against BaseMetadata, yield from GroupedMetadata, ignore everything else. annotated-types documents the pattern; Pydantic, SQLAlchemy, and Hypothesis all follow it.
+The get_metadata idiom we saw earlier is how library authors consume these contracts: isinstance against BaseMetadata, yield from GroupedMetadata, ignore everything else. annotated-types documents the pattern; Pydantic, SQLAlchemy, and Hypothesis all follow it.
 -->

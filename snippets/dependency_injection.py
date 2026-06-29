@@ -1,9 +1,8 @@
 from collections.abc import Callable, Iterator
-from contextlib import contextmanager
 from dataclasses import dataclass
 from typing import Annotated, Any, get_args, get_origin, get_type_hints
 
-from annotated_types import BaseMetadata
+from annotated_types import BaseMetadata, GroupedMetadata
 
 
 @dataclass(frozen=True)
@@ -15,29 +14,29 @@ class DependencyResolutionError(RuntimeError):
     pass
 
 
-@contextmanager
+def get_constraints(hint: Any) -> Iterator[BaseMetadata]:
+    for meta in get_args(hint)[1:]:
+        if isinstance(meta, BaseMetadata):
+            yield meta
+        elif isinstance(meta, GroupedMetadata):
+            yield from meta  # type: ignore[misc]
+
+
 def resolve_dependencies[**Params, ReturnType](
-    fn: Callable[Params, ReturnType],
-) -> Iterator[dict[str, Any]]:
-    yield _resolve(fn)
-
-
-def _resolve[**Params, ReturnType](
     fn: Callable[Params, ReturnType],
 ) -> dict[str, Any]:
     injected: dict[str, Any] = {}
     for name, hint in get_type_hints(fn, include_extras=True).items():
         if get_origin(hint) is not Annotated:
             continue
-
-        for meta in get_args(hint)[1:]:
-            if isinstance(meta, Depends):
-                try:
-                    injected[name] = meta.dependency(**_resolve(meta.dependency))
-                except Exception as exc:
-                    msg = f"Could not resolve dependency for {name!r}"
-                    raise DependencyResolutionError(msg) from exc
-
+        dep = next((m for m in get_constraints(hint) if isinstance(m, Depends)), None)
+        if dep is None:
+            continue
+        try:
+            injected[name] = dep.dependency(**resolve_dependencies(dep.dependency))
+        except Exception as exc:
+            msg = f"Could not resolve dependency for {name!r}"
+            raise DependencyResolutionError(msg) from exc
     return injected
 
 
@@ -56,5 +55,5 @@ def handle_request(
     return f"{user} via {env}"
 
 
-with resolve_dependencies(handle_request) as deps:
-    result = handle_request(**deps)
+deps = resolve_dependencies(handle_request)
+result = handle_request(**deps)

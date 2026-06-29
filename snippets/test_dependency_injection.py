@@ -22,9 +22,9 @@ def test_resolves_annotated_dependencies() -> None:
     ) -> tuple[str, int]:
         return token_, user_id_
 
-    with resolve_dependencies(endpoint) as deps:
-        assert deps == {"token_": "abc", "user_id_": 42}
-        assert endpoint(**deps) == ("abc", 42)
+    deps = resolve_dependencies(endpoint)
+    assert deps == {"token_": "abc", "user_id_": 42}
+    assert endpoint(**deps) == ("abc", 42)
 
 
 def test_resolves_nested_dependencies() -> None:
@@ -37,9 +37,9 @@ def test_resolves_nested_dependencies() -> None:
     def endpoint(url: Annotated[str, Depends(db_url)]) -> str:
         return url
 
-    with resolve_dependencies(endpoint) as deps:
-        assert deps == {"url": "sqlite:///db.config"}
-        assert endpoint(**deps) == "sqlite:///db.config"
+    deps = resolve_dependencies(endpoint)
+    assert deps == {"url": "sqlite:///db.config"}
+    assert endpoint(**deps) == "sqlite:///db.config"
 
 
 def test_ignores_plain_annotations() -> None:
@@ -52,8 +52,8 @@ def test_ignores_plain_annotations() -> None:
     ) -> tuple[str, str]:
         return query, token_
 
-    with resolve_dependencies(endpoint) as deps:
-        assert deps == {"token_": "abc"}
+    deps = resolve_dependencies(endpoint)
+    assert deps == {"token_": "abc"}
 
 
 def test_wraps_dependency_errors_with_parameter_name() -> None:
@@ -64,7 +64,6 @@ def test_wraps_dependency_errors_with_parameter_name() -> None:
         return token_
 
     with pytest.raises(DependencyResolutionError, match="'token_'") as exc_info:
-        with resolve_dependencies(endpoint):
-            pass
+        resolve_dependencies(endpoint)
 
     assert isinstance(exc_info.value.__cause__, ValueError)

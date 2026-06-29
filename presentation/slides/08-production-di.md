@@ -6,22 +6,22 @@ class: section-patterns
 # What the toy leaves out
 
 <div class="section-patterns-grid">
-  <div class="section-pattern section-pattern--blue">
+  <div v-click class="section-pattern section-pattern--blue">
     <span class="marker-circle section-pattern-marker"></span>
-    <div class="section-pattern-label">Deduplication</div>
-    <div class="section-pattern-detail">same dep resolved once per scope, not N times</div>
+    <div class="section-pattern-label">Deduplication & Caching</div>
+    <div class="section-pattern-detail">same dep resolved once per scope; parsed signatures &amp; type hints cached across calls</div>
   </div>
-  <div class="section-pattern section-pattern--red">
+  <div v-click class="section-pattern section-pattern--red">
     <span class="marker-square section-pattern-marker"></span>
     <div class="section-pattern-label">Async &amp; generators</div>
     <div class="section-pattern-detail"><code>async def</code> deps, <code>yield</code>-based teardown</div>
   </div>
-  <div class="section-pattern section-pattern--yellow">
+  <div v-click class="section-pattern section-pattern--yellow">
     <span class="marker-triangle section-pattern-marker"></span>
     <div class="section-pattern-label">Scoping</div>
     <div class="section-pattern-detail">per-call isolated state — no leaks across concurrent requests</div>
   </div>
-  <div class="section-pattern section-pattern--blue">
+  <div v-click class="section-pattern section-pattern--blue">
     <span class="marker-circle section-pattern-marker"></span>
     <div class="section-pattern-label">Overriding</div>
     <div class="section-pattern-detail">swap deps in tests without touching call sites</div>

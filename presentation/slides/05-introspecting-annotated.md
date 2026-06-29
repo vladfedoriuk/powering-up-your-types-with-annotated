@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# The <span class="slide-title-code">get_constraints</span> idiom
+# The <span class="slide-title-code">get_metadata</span> idiom
 
 <div class="divider-red"></div>
 
@@ -15,7 +15,7 @@ from typing import Annotated, get_args, get_origin
 from annotated_types import BaseMetadata, GroupedMetadata
 
 
-def get_constraints(tp):
+def get_metadata(tp):
     assert get_origin(tp) is Annotated
     for arg in get_args(tp)[1:]:  # [0] is the base type
         if isinstance(arg, BaseMetadata):

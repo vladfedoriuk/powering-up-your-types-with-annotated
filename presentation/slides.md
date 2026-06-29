@@ -12,9 +12,6 @@ fonts:
   provider: google
 drawings:
   persist: false
----
-
----
 src: ./slides/00-cover.md
 ---
 
@@ -35,7 +32,11 @@ src: ./slides/03-annotated-types.md
 ---
 
 ---
-src: ./slides/04-annotated-101.md
+src: ./slides/04-section-annotated-101.md
+---
+
+---
+src: ./slides/04-origin-metadata.md
 ---
 
 ---
@@ -44,38 +45,6 @@ src: ./slides/04-flattening-direct.md
 
 ---
 src: ./slides/04-flattening-type-alias.md
----
-
----
-src: ./slides/05-section-consuming-metadata.md
----
-
----
-src: ./slides/05-hasname-product.md
----
-
----
-src: ./slides/08-contracts.md
----
-
----
-src: ./slides/05-introspecting-annotated.md
----
-
----
-src: ./slides/05-get-annotations-overview.md
----
-
----
-src: ./slides/05-get-annotations.md
----
-
----
-src: ./slides/05-get-type-hints.md
----
-
----
-src: ./slides/07-section-typeform.md
 ---
 
 ---
@@ -91,7 +60,35 @@ src: ./slides/07-typeform-fix.md
 ---
 
 ---
+src: ./slides/05-section-consuming-metadata.md
+---
+
+---
+src: ./slides/05-hasname-product.md
+---
+
+---
+src: ./slides/05-get-annotations-overview.md
+---
+
+---
+src: ./slides/05-get-annotations.md
+---
+
+---
+src: ./slides/05-get-type-hints.md
+---
+
+---
 src: ./slides/08-section-di.md
+---
+
+---
+src: ./slides/08-contracts.md
+---
+
+---
+src: ./slides/05-introspecting-annotated.md
 ---
 
 ---

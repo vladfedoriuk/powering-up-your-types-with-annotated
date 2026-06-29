@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# <span class="slide-title-code">Annotated</span> 101
+# <span class="slide-title-code">__origin__</span> and <span class="slide-title-code">__metadata__</span>
 
 <div class="divider-blue"></div>
 
