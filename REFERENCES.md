@@ -56,7 +56,7 @@
 
 ## Talks & Articles
 
-- **Hynek on Design Pressure**: https://hynek.me/talks/same-pattern/
+- **Hynek on Design Pressure**: https://hynek.me/talks/design-pressure/
 - **svcs Discussion #74**: https://github.com/hynek/svcs/discussions/74
 - **Typing Council #18**: https://github.com/python/typing-council/issues/18
 

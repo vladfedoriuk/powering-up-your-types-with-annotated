@@ -1,6 +1,8 @@
 ---
 theme: default
 title: Powering Up Your Types with Annotated
+addons:
+  - slidev-addon-qrcode
 info: |
   ## Powering Up Your Types with Annotated
   EuroPython — typing.Annotated as a universal metadata engine
@@ -25,10 +27,6 @@ src: ./slides/01-use-case-semantic.md
 
 ---
 src: ./slides/02-use-case-framework.md
----
-
----
-src: ./slides/03-annotated-types.md
 ---
 
 ---
@@ -80,7 +78,11 @@ src: ./slides/05-get-type-hints.md
 ---
 
 ---
-src: ./slides/08-section-di.md
+src: ./slides/08-section-contracts.md
+---
+
+---
+src: ./slides/03-annotated-types.md
 ---
 
 ---
@@ -89,6 +91,10 @@ src: ./slides/08-contracts.md
 
 ---
 src: ./slides/05-introspecting-annotated.md
+---
+
+---
+src: ./slides/08-section-di.md
 ---
 
 ---
@@ -124,6 +130,10 @@ src: ./slides/09-semantic-types.md
 ---
 
 ---
+src: ./slides/09-polyfactory-factory.md
+---
+
+---
 src: ./slides/09-polyfactory.md
 ---
 
@@ -156,6 +166,14 @@ src: ./slides/12-philosophy.md
 ---
 
 ---
+src: ./slides/12-orthogonal.md
+---
+
+---
+src: ./slides/12-section-why.md
+---
+
+---
 src: ./slides/12-not-django.md
 ---
 
@@ -164,15 +182,19 @@ src: ./slides/12-not-sqlmodel.md
 ---
 
 ---
-src: ./slides/12-composition.md
+src: ./slides/12-structural-pressure.md
 ---
 
 ---
-src: ./slides/13-pandera.md
+src: ./slides/13-section-closing.md
 ---
 
 ---
 src: ./slides/14-annotated-doc.md
+---
+
+---
+src: ./slides/14-mkdocs-config.md
 ---
 
 ---

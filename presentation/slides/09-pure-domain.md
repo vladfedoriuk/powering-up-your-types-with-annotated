@@ -4,11 +4,9 @@ class: code-center
 ---
 
 
-# Start with plain dataclasses
+# Room Reservation
 
 <div class="divider-red"></div>
-
-<p class="slide-tagline">No framework. Just data and rules.</p>
 
 ```python
 @dataclass

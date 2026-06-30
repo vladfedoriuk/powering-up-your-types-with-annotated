@@ -17,8 +17,6 @@ class Base(DeclarativeBase):
         RoomRate: sqlalchemy.Numeric(precision=10, scale=2),
         StayDate: sqlalchemy.Date(),
     }
-
-
 @registry.mapped_as_dataclass
 class Reservation:
     id: Mapped[Identity] = mapped_column(init=False)

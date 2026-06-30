@@ -4,11 +4,9 @@ class: code-center
 ---
 
 
-# <span class="slide-title-code">annotated-types</span> contracts
+# <span class="slide-title-code">BaseMetadata</span> + <span class="slide-title-code">GroupedMetadata</span>
 
 <div class="divider-blue"></div>
-
-<p class="slide-tagline"><code>BaseMetadata</code> + <code>GroupedMetadata</code> — two contracts.</p>
 
 ```python
 @dataclass(frozen=True)

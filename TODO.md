@@ -299,7 +299,7 @@ ______________________________________________________________________
     chain of dependency flows top-down from the database layer, not from the domain.
   - In Django/DRF there is no independent domain layer — the ORM model *is* the domain. Swapping the DB, or even changing
     a column name, requires touching the model, the serializer, the views, and any hand-written validation. Hynek's concept
-    of [design pressure](https://hynek.me/talks/same-pattern/) applies directly: the shape of the database table exerts
+    of [design pressure](https://hynek.me/talks/design-pressure/) applies directly: the shape of the database table exerts
     continuous pressure on every other layer of the application.
   - The serializer is structurally subordinate to the model. Even `ModelSerializer` — which auto-generates fields — breaks
     silently when the model evolves, because the generated field set is not declared explicitly and mismatches appear only
@@ -318,7 +318,7 @@ ______________________________________________________________________
     from the table (hide internal fields, expose computed values, accept a different shape on write vs. read), a second
     class appears and the "single source of truth" promise fractures.
   - The design pressure is subtler than in Django but just as real: the base table class exerts pressure on all schemas
-    derived from it. Hynek's [design pressure talk](https://hynek.me/talks/same-pattern/) is directly relevant here too —
+    derived from it. Hynek's [design pressure talk](https://hynek.me/talks/design-pressure/) is directly relevant here too —
     the pressure is just deferred, not eliminated.
   - Additional friction points worth mentioning (to be explored with snippets):
     - `annotated-types` constraints (`Gt`, `MinLen`) don't integrate cleanly with SQLModel's field system.
@@ -386,6 +386,7 @@ ______________________________________________________________________
 
 ## Slide Rework — Content & Design
 
+- [ ] **Taglines earn their space.** No sentence under title unless it adds info the title alone doesn't. Every word must carry weight. If tagline restates the title or adds trivia, cut it. "Form follows function" applies to slide text too.
 - [ ] **Minimise slide text.** Each slide should carry only: a short title, a code snippet or diagram, and at most
   one or two key bullet points. All explanatory prose moves to **speaker notes** (`<!-- ... -->`).
 - [ ] **Speaker notes pass.** Go through every slide and write complete speaker notes — enough to present from

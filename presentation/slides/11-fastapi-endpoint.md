@@ -12,7 +12,7 @@ class: code-center
 @app.get("/rooms/{room_id}")
 async def get_room(
     room_id: Annotated[RoomId, Path(title="Room ID")],
-    services: svcs.fastapi.DepContainer,
+    services: svcs.fastapi.DepContainer,  # Annotated[Container, Depends(container)]
 ) -> RoomResponse: ...
 
 
@@ -21,14 +21,9 @@ async def create_reservation(
     data: CreateReservationSchema,
     services: svcs.fastapi.DepContainer,
 ) -> ReservationSchema:
-    repo = await services.aget(RoomRepository)
-    room = await repo.get_by_room_id(data.room_id)
-    room.add_reservation(
-        reservation := Reservation(
-            room_id=data.room_id, guest_count=data.guest_count, rate=data.rate
-        )
-    )
-    # ...
+    service = await services.aget(ReservationService)
+    reservation = await service.place(data)
+    return ReservationSchema.model_validate(reservation, from_attributes=True)
 ```
 
 <!--

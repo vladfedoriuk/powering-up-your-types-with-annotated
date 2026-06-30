@@ -8,7 +8,7 @@ class: code-center
 
 <div class="divider-yellow"></div>
 
-<p class="slide-tagline">Same types — validation and OpenAPI for free.</p>
+<p class="slide-tagline">Same types for validation and OpenAPI out of the box.</p>
 
 ```python
 class CreateReservationSchema(BaseModel):

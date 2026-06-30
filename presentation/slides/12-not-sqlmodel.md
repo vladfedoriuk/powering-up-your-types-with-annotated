@@ -4,11 +4,9 @@ class: code-center
 ---
 
 
-# "No, it is not like SQLModel"
+# The SQLModel way
 
 <div class="divider-red"></div>
-
-<p class="slide-tagline">One class for ORM + API — breaks when contracts diverge.</p>
 
 ```python
 class RoomBase(SQLModel):

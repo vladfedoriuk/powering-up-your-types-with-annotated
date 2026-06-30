@@ -1,18 +1,21 @@
 import datetime
 import random
+from dataclasses import dataclass
 from decimal import Decimal
 
 import pytest
 from dirty_equals import HasLen, IsPositive
-from hypothesis import given
+from hypothesis import assume, given
 from hypothesis import strategies as st
 from polyfactory.factories.dataclass_factory import DataclassFactory
 from polyfactory.fields import PostGenerated, Use
 
 from .annotated_reservation import (
+    GuestCount,
     Percentage,
     Reservation,
     Room,
+    RoomId,
     TaxRate,
     calculate_stay_total,
 )
@@ -91,6 +94,17 @@ def test_room_rejects_overlapping_reservations() -> None:
         room.add_reservation(overlapping)
 
 
+def test_duplicate_reservation_is_rejected() -> None:
+    reservation = ReservationFactory.build(room_id="101")
+    room = RoomFactory.build(
+        room_id="101",
+        reservations=[reservation],
+    )
+
+    with pytest.raises(ValueError, match="Reservation overlaps existing reservation"):
+        room.add_reservation(reservation)
+
+
 def test_room_accepts_adjacent_reservations() -> None:
     room = Room(room_id="101", capacity=10)
     room.add_reservation(
@@ -151,6 +165,31 @@ def test_stay_total_is_never_negative(
     total = calculate_stay_total(reservation, discount_percent=discount, tax_rate=tax)
 
     assert total >= 0
+
+
+@dataclass
+class StayRequest:
+    guest_count: GuestCount
+    room_id: RoomId
+    starts_at: datetime.date
+    ends_at: datetime.date
+
+
+@given(
+    req=st.builds(StayRequest),
+    discount=st.from_type(Percentage),
+    tax=st.from_type(TaxRate),
+)
+def test_stay_total(req, discount, tax) -> None:
+    assume(req.starts_at <= req.ends_at)
+    reservation = Reservation(
+        room_id=req.room_id,
+        guest_count=req.guest_count,
+        starts_at=req.starts_at,
+        ends_at=req.ends_at,
+        rate=Decimal("100"),
+    )
+    assert calculate_stay_total(reservation, discount, tax) >= 0
 
 
 @given(rate=valid_rates, starts_at=valid_dates)

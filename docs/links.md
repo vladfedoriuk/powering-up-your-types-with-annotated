@@ -79,14 +79,69 @@
 
 ## Dependency Injection via Annotated
 
+- [awesome-dependency-injection-in-python (GitHub)](https://github.com/sfermigier/awesome-dependency-injection-in-python)
+  - A curated list of everything related to dependency inversion / dependency injection in Python. Comprehensive taxonomy of DI frameworks, containers, web framework integrations, articles, and talks — the definitive landscape overview.
 - [Использование Annotated в Python (Habr)](https://habr.com/ru/amp/publications/822827/)
   - Russian-language article demonstrating how to build a primitive dependency injection system and a validation decorator using `Annotated`, `get_type_hints(include_extras=True)`, and `isinstance` on metadata objects. Good minimal worked example of the pattern.
 - [uncalled-for (GitHub)](https://github.com/chrisguidry/uncalled-for)
-  - Standalone `Annotated`-powered dependency injection engine with async context manager lifecycle. Provides `Dependency` base class, `Depends()`, and `get_dependency_parameters()`. Designed to be embedded in other frameworks.
+  - Standalone `Annotated`-powered dependency injection engine with async context manager lifecycle. Provides `Dependency` base class, `Depends()`, and `get_dependency_parameters()`. Powers FastMCP's dependency resolution. Designed to be embedded in other frameworks.
 - [FastDepends (GitHub)](https://github.com/lancetnik/FastDepends)
   - FastAPI's DI system extracted and cleared of all HTTP logic. Uses `Annotated[T, Depends(...)]` and a `@inject` decorator; supports sync and async, dependency overriding via `Provider`, and custom fields. Powers FastStream and Propan. The cleanest standalone port of the FastAPI DI pattern to pure Python.
+- [anydi (GitHub)](https://github.com/python-anydi/anydi)
+  - Simple, type-safe DI library using Python type annotations. Supports singleton/transient/request scopes, `Annotated`-based named providers, auto-scanning, generic TypeVar resolution, and framework integrations (FastAPI, Django, FastStream, Typer).
+- [diwire (GitHub)](https://github.com/maksimzayats/diwire)
+  - Type-safe dependency injection for Python with auto-wiring, scopes, async factories, and zero deps.
+- [python-injection (GitHub)](https://github.com/100nm/python-injection)
+  - Dead-simple dependency injection framework for Python.
+- [myfy (GitHub)](https://github.com/psincraian/myfy)
+  - A modern Python framework combining type-safe dependency injection, modular architecture, and sensible defaults in an async-first design. Uses FastAPI-style routes with constructor injection.
+- [Modern DI (GitHub)](https://github.com/modern-python/modern-di)
+  - Powerful DI framework with scopes and IoC container.
+- [Injex (GitHub)](https://github.com/vshulcz/injex)
+  - Tiny typed DI container with constructor injection, singleton/transient/scoped lifetimes, test overrides, and graph validation.
+  - Blog post: [Fast Dependency Injection in Python Without a Provider Framework](https://dev.to/vshulcz/fast-dependency-injection-in-python-without-a-provider-framework-3dko)
 - [FastMCP server/dependencies.py](https://github.com/PrefectHQ/fastmcp/blob/main/fastmcp_slim/fastmcp/server/dependencies.py)
   - Production use of `uncalled-for` inside FastMCP: `CurrentContext()`, `CurrentFastMCP()`, `TokenClaim()` and friends are all `Annotated` metadata objects resolved at call time. Shows the full arc from toy pattern to framework-grade DI.
+- [python-dependency-injector (GitHub)](https://github.com/ets-labs/python-dependency-injector)
+  - Declarative DI framework with containers, providers, and wiring. The most starred Python DI library overall.
+- [Injector (GitHub)](https://github.com/alecthomas/injector)
+  - Python DI framework inspired by Google Guice. Uses `inject` decorator and module-based binding configuration.
+- [Dishka (GitHub)](https://github.com/reagento/dishka)
+  - Cute DI framework with agreeable API — scopes, modular design, and clean error messages.
+- [Inject (GitHub)](https://github.com/ivankorobkov/python-inject)
+  - Minimal DI via `inject` decorator with automatic parameter resolution and optional Flask/Django integrations.
+- [Kink (GitHub)](https://github.com/kodemore/kink)
+  - DI container with service providers, autowiring, and environment-aware configuration.
+- [Punq (GitHub)](https://github.com/bobthemighty/punq)
+  - IoC container for Python 3.6+ with registration DSL and lifetime management.
+- [svcs (GitHub)](https://github.com/hynek/svcs)
+  - A flexible service locator for Python. Supports async, registry-based registration, and FastAPI integration.
+- [Wireup (GitHub)](https://github.com/maldoinc/wireup)
+  - Concise, type-safe DI library with service configuration, decorators, and FastAPI integration.
+- [di (GitHub)](https://github.com/adriangb/di)
+  - Pythonic DI with async support, scopes, and `Annotated[T, Inject(...)]` syntax. Underlies Xpresso.
+- [Lagom (readthedocs)](https://lagom-di.readthedocs.io/en/latest/)
+  - Type-based auto-wiring DI with async and threading support. Recursively resolves constructor parameters.
+- [That Depends (GitHub)](https://github.com/modern-python/that-depends)
+  - Simple DI framework inspired by `python-dependency-injector`, but without wiring. Synchronous and async support.
+- [Rodi (GitHub)](https://github.com/RobertoPrevato/rodi)
+  - DI implementation for Python 3 with singleton/transient/scoped lifetimes. Underlies BlackSheep.
+- [injectable (GitHub)](https://github.com/allrod5/injectable)
+  - Python DI for Humans — auto-discovery, wiring, and `@injectable` decorator with `Inject[T]` annotations.
+- [Opyoid (GitHub)](https://github.com/illuin-tech/opyoid)
+  - DI library with binding modules, scopes, and tagging support. Inspired by Kotlin's Koin.
+- [Fresh Bakery (GitHub)](https://github.com/Mityuha/fresh-bakery)
+  - Async-first DI: bake dependency injections asynchronously, simple and stupid.
+- [engin (GitHub)](https://github.com/invokermain/engin)
+  - DI-powered application framework inspired by Uber's Fx — lifecycle, hooks, and constructor injection.
+- [ididi (GitHub)](https://github.com/raceychan/ididi)
+  - Single-line DI with graph validation, scopes, and FastAPI integration.
+- [injection (GitHub)](https://github.com/nightblure/injection)
+  - Drop-in replacement for `python-dependency-injector` compatible with Python 3.8–3.12 and FastAPI/DRF/Flask/Litestar.
+- [Clean IoC (GitHub)](https://github.com/peter-daly/clean_ioc)
+  - Unintrusive DI with strong generics support, auto-wiring, and lifetime management.
+- [Overlay (GitHub)](https://github.com/Atry/MIXINv2)
+  - DI framework with pytest-fixture syntax and declarative configuration language.
 
 ## DataFrame Validation — Pandera
 

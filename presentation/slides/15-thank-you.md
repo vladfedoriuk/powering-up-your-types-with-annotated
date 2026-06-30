@@ -1,12 +1,17 @@
 ---
-layout: cover
+layout: section
 class: text-center
 ---
 
 # Thank you!
 
-<div class="flex flex-col items-center justify-center mt-10">
-  <QRCode value="https://github.com/vladfedoriuk/powering-up-your-types-with-annotated" :size="200" render-as="svg" />
+<div class="flex justify-center">
+  <QRCode
+    data="https://github.com/vladfedoriuk/powering-up-your-types-with-annotated"
+    :width="200"
+    :height="200"
+    type="svg"
+  />
 </div>
 
 ## questions?

@@ -8,7 +8,7 @@ class: code-center
 
 <div class="divider-blue"></div>
 
-<p class="slide-tagline">Name what data <em>is</em> — disambiguate identical base types.</p>
+<p class="slide-tagline">Same type — different meaning.</p>
 
 ```python
 from typing import Annotated

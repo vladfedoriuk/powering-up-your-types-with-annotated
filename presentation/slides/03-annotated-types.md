@@ -3,11 +3,7 @@ layout: default
 ---
 
 
-# <span class="slide-title-code">annotated-types</span>
-
-<div class="divider-yellow"></div>
-
-<p class="slide-tagline">Shared constraint vocabulary — PyCon 2022 sprints.</p>
+# Shared constraint vocabulary.
 
 <div class="flex flex-wrap gap-x-3 gap-y-3 mt-4 font-mono text-sm">
   <span class="pill pill--red">Gt</span>

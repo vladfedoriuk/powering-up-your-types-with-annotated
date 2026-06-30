@@ -1,18 +1,13 @@
 ---
-layout: default
+layout: section
+class: text-center
 ---
 
 
-# Three ways to do the same thing
-
-<div class="divider-red"></div>
-
-<p class="slide-tagline">Different tradeoffs, same goal.</p>
-
-- Django/DRF — one model rules everything
-- SQLModel — one class, ORM + schema
-- `Annotated` — each layer reads what it needs
+# Nest. Overlay. Compose.
 
 <!--
-Quick comparison before the code. Not "X is bad" — just different coupling strategies. Django and SQLModel trade flexibility for convenience. Annotated keeps layers independent.
+Three verbs that define the pattern: nest types inside Annotated, overlay orthogonal metadata, compose richer meaning without touching the domain.
+
+This section shows what this looks like in practice — and contrasts it with Django and SQLModel, where adding a concern means a new class, not a new metadata argument.
 -->

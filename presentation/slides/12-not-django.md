@@ -4,11 +4,9 @@ class: code-center
 ---
 
 
-# "No, it is not like Django"
+# The Django way
 
 <div class="divider-red"></div>
-
-<p class="slide-tagline">DB table shape forces API contract.</p>
 
 ```python
 class Room(models.Model):

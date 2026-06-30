@@ -39,7 +39,7 @@ Scoping — each resolution scope gets its own isolated state dict. Concurrent r
 
 Overriding — in tests you want to swap the real database engine for a fixture. Production DI engines provide a Provider or override API so you never have to patch globals.
 
-Libraries that add these layers: uncalled-for (standalone, async lifecycle, embeds in frameworks), FastDepends (FastAPI's DI extracted, sync/async, Provider overrides, powers FastStream and Propan), FastMCP (production consumer of uncalled-for — CurrentContext, CurrentFastMCP, TokenClaim are all Annotated metadata resolved via async context managers at call time).
+The next slide shows the full ecosystem — Annotated-native libraries (FastDepends, svcs, di, Lagom, diwire, anydi, uncalled-for, Picodi, andi) and traditional DI containers (python-dependency-injector, returns, Injector, Dishka, and more).
 
-The mechanism underneath every one of these is the same Annotated pattern from the twenty-line toy.
+The mechanism underneath every one of the Annotated-native ones is the same pattern from the twenty-line toy.
 -->

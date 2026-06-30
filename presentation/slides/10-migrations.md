@@ -1,6 +1,5 @@
 ---
 layout: default
-class: code-center
 ---
 
 

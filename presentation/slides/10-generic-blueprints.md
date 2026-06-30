@@ -8,8 +8,6 @@ class: code-center
 
 <div class="divider-blue"></div>
 
-<p class="slide-tagline">PEP 695 generic column blueprints.</p>
-
 ```python
 type PrimaryKey[T] = Annotated[
     T,

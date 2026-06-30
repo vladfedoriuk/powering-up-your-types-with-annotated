@@ -101,7 +101,7 @@ the `Annotated`-based approach with two common alternatives.
 
 - **The Django/DRF approach** — the central argument is that the ORM `Model` *is* the domain. When the model changes,
   the `ModelSerializer`, the views, and any hand-written validation change with it. There is no independent domain layer:
-  the database table exerts continuous [design pressure](https://hynek.me/talks/same-pattern/) on every other layer of
+  the database table exerts continuous [design pressure](https://hynek.me/talks/design-pressure/) on every other layer of
   the application. Neither the persistence model nor the API schema can evolve independently — they are structurally
   subordinate to the same class. With `Annotated`, the domain type is defined first and is independent; both SQLAlchemy
   and Pydantic hook into it via metadata with zero coupling between them. Extended snippet planned:

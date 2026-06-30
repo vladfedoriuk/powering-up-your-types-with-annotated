@@ -1,6 +1,5 @@
 ---
 layout: default
-class: code-center
 ---
 
 
@@ -8,29 +7,47 @@ class: code-center
 
 <div class="divider-red"></div>
 
-<p class="slide-tagline"><code>st.builds</code> for objects, <code>st.from_type</code> reads <code>Annotated</code> constraints directly.</p>
+<p class="slide-tagline"><code>st.builds</code> builds objects, <code>st.from_type</code> reads <code>Annotated</code> constraints.</p>
+
+<div class="grid grid-cols-2 gap-x-4">
+
+<div>
+
+```python
+@dataclass
+class StayRequest:
+    guest_count: GuestCount
+    room_id: RoomId
+    starts_at: date
+    ends_at: date
+```
+
+</div>
+
+<div>
 
 ```python
 @given(
-    starts_at=st.dates(),
-    nights=st.integers(min_value=1, max_value=30),
-    guest_count=st.from_type(GuestCount),
+    req=st.builds(StayRequest),
     discount=st.from_type(Percentage),
     tax=st.from_type(TaxRate),
 )
-def test_stay_total_never_negative(starts_at, nights, guest_count, discount, tax):
-    reservation = Reservation(
-        room_id="101",
-        guest_count=guest_count,
-        starts_at=starts_at,
-        ends_at=starts_at + timedelta(days=nights),
+def test_stay_total(req, discount, tax):
+    assume(req.starts_at <= req.ends_at)
+    r = Reservation(
+        room_id=req.room_id,
+        guest_count=req.guest_count,
+        starts_at=req.starts_at,
+        ends_at=req.ends_at,
         rate=Decimal("100"),
     )
-    assert calculate_stay_total(reservation, discount, tax) >= 0
+    assert calculate_stay_total(r, discount, tax) >= 0
 ```
 
-<!--
-st.from_type(GuestCount) generates integers between 1 and 10 — straight from the Annotated constraints. Same for Percentage and TaxRate.
+</div>
 
-Limitation: nested or flattened Annotated aliases like RoomRate (which has Predicate metadata) may fail with ResolutionFailed in some Hypothesis versions. Timezone, IsNotNan, IsFinite are also not supported. Use explicit strategies (st.decimals, st.dates) for those cases — as shown here with rate fixed to a safe value.
+</div>
+
+<!--
+st.builds(StayRequest) generates guest_count, room_id, starts_at, ends_at from their types — it reads Annotated constraints automatically. st.from_type(Percentage) and st.from_type(TaxRate) work the same way.
 -->

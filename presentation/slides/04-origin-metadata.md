@@ -4,7 +4,7 @@ class: code-center
 ---
 
 
-# <span class="slide-title-code">__origin__</span> and <span class="slide-title-code">__metadata__</span>
+# <span class="slide-title-code">\_\_origin\_\_</span> and <span class="slide-title-code">\_\_metadata\_\_</span>
 
 <div class="divider-blue"></div>
 

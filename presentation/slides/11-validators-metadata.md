@@ -4,41 +4,45 @@ class: code-center
 ---
 
 
-# Validators as metadata
+# Validation & serialization as metadata
 
 <div class="divider-yellow"></div>
 
-<p class="slide-tagline"><code>BeforeValidator</code> & <code>PlainSerializer</code> as metadata.</p>
+<div class="flex flex-wrap gap-x-3 gap-y-3 mt-4 mb-4 font-mono text-sm">
+  <span class="pill pill--red">BeforeValidator</span>
+  <span class="pill pill--yellow">AfterValidator</span>
+  <span class="pill pill--blue">PlainValidator</span>
+  <span class="pill pill--red">WrapValidator</span>
+  <span class="pill pill--yellow">WithJsonSchema</span>
+  <span class="pill pill--blue">PlainSerializer</span>
+</div>
 
 ````md magic-move {lines: true}
 ```python
 # Step 1: Base constraint type
-Amount = Annotated[Decimal, IsFinite, IsNotNan]
+Amount = Annotated[Decimal, Gt(0)]
 ```
 
 ```python
-# Step 2: Overlay validation & serialization rules
-def trim_str(v: str) -> str:
-    return v.strip()
-
-
-def serialize_amount(v: Decimal) -> float:
-    return float(v.quantize(Decimal("0.01")))
-
-
-RoomId = Annotated[str, BeforeValidator(trim_str), MinLen(1), MaxLen(20)]
-
+# Step 2: Overlay validation, serialization & usage
 Amount = Annotated[
     Decimal,
-    IsFinite,
-    IsNotNan,
-    PlainSerializer(serialize_amount, return_type=float, when_used="json"),
+    Gt(0),
+    WrapValidator(lambda v, handler: handler(v).quantize(Decimal("0.01"))),
+    PlainSerializer(lambda v: float(v), return_type=float, when_used="always"),
 ]
+
+ta = TypeAdapter(Amount)
+assert ta.validate_python(Decimal("10.123")) == Decimal("10.12")
+assert ta.validate_python(10.456) == Decimal("10.46")
+assert ta.dump_json(Decimal("10.12")) == b"10.12"
 ```
 ````
 
 <!--
-Pydantic provides specialized metadata objects like BeforeValidator and PlainSerializer.
+Pydantic provides specialized metadata objects you can place inside Annotated.
 
-We can place these directly inside our Annotated aliases. For example, RoomId automatically strips leading/trailing whitespaces before validation, and Amount automatically serializes Decimal values to float strings during JSON serialization. All this happens transparently.
+WrapValidator gives you full control — here it rounds a Decimal to 2 places after Pydantic validates the type. PlainSerializer converts to float for both Python and JSON output.
+
+The key insight: these aren't decorators or field modifiers. They're metadata, composable the same way as Gt or MinLen.
 -->
