@@ -25,11 +25,9 @@ def current_user(env: Annotated[str, Depends(settings)]) -> str: ...
 ```
 
 <!--
-Now let's see how these contracts enable autowiring with Annotated — not a DI framework, just metadata introspection.
+First, we need a marker. We define a simple `Depends` dataclass that inherits from `BaseMetadata`.
 
-The Depends class is a frozen dataclass that subclasses BaseMetadata. It carries a callable dependency. This is the metadata marker.
+Then, we annotate our function parameters with it, like telling `current_user` to get its `env` string from `settings`.
 
-The _resolve function scans a function's type hints using get_type_hints with include_extras=True. For each parameter, it checks if the hint is an Annotated type. If it is, it walks the metadata tuple looking for Depends instances. When it finds one, it recursively resolves the dependency and stores the result in a dictionary.
-
-This is about twenty lines of code. There's no framework magic here — just the standard Annotated introspection pattern we've been exploring. The type checker sees only the base type of each parameter, so it's completely type-safe. This is intentionally minimal to show that the pattern itself is simple.
+Next, we need the function that actually resolves these dependencies at runtime.
 -->

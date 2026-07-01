@@ -16,9 +16,11 @@ class: text-left
 </div>
 
 <!--
-Welcome everyone. Today we're going to explore typing.Annotated — arguably the most powerful and underappreciated feature in Python's modern type system.
+Hey everyone — first talk at EuroPython, really glad to be here.
 
-Annotated landed in Python 3.9 as PEP 593, and it fundamentally changes what types can do. It breaks the boundary between static analysis — what your type checker sees — and runtime behavior — what your code actually does at execution time.
+Today we're looking at typing.Annotated — introduced in Python 3.9, as a result of PEP 593 (and how long ago was that, right?)
 
-We'll start with two practical use cases, then go deep into the internals, explore how the ecosystem builds on top of it, and look at real-world patterns including dependency injection — all powered by this single typing construct.
+Arguably one of the most powerful features in Python's modern type system, and still, in my view, somehow underused in the wild.
+
+We'll go through the internals, what the ecosystem built on top of it, and write real code along the way. Let's get into it.
 -->

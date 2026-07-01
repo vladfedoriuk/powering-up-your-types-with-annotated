@@ -7,5 +7,7 @@ class: text-center
 # <span class="slide-title-code">annotated-types</span>
 
 <!--
-Before we build our own DI, we need the foundation: the contracts from annotated-types that make metadata scanning possible. BaseMetadata and GroupedMetadata are what every Annotated-aware library uses to find constraints they understand. This short section covers the mechanism, then we apply it directly.
+Now let's look at `annotated-types`.
+
+This is the library that provides a common set of constraints that different libraries can share. Let's see how it works.
 -->

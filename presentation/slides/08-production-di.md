@@ -29,17 +29,15 @@ class: section-patterns
 </div>
 
 <!--
-The toy resolves synchronously, re-resolves the same callable every time, shares no state, and has no teardown. Production engines address all four gaps:
+While our twenty-line tool works, production-grade engines solve a few more engineering problems.
 
-Deduplication — the same dependency callable is resolved exactly once per resolution scope and the result is cached. Calling the same endpoint twice in one request should not create two database connections.
+[click] First: Deduplication and Caching. We don't want to re-resolve the same dependency multiple times within a single request.
 
-Async & generators — dependencies can be async functions or generators with setup + teardown (yield-based). The engine calls __aenter__/__aexit__ or drains async generators after the call completes.
+[click] Second: Async and Generators. We need to handle async functions and yield-based setup and teardown.
 
-Scoping — each resolution scope gets its own isolated state dict. Concurrent requests cannot see each other's resolved values. The toy shares nothing because it resolves fresh every call; production engines share within a scope and isolate across scopes.
+[click] Third: Scoping. We must isolate state per call so concurrent requests don't leak into each other.
 
-Overriding — in tests you want to swap the real database engine for a fixture. Production DI engines provide a Provider or override API so you never have to patch globals.
+[click] And fourth: Overriding. We need to easily swap dependencies in our tests.
 
-The next slide shows the full ecosystem — Annotated-native libraries (FastDepends, svcs, di, Lagom, diwire, anydi, uncalled-for, Picodi, andi) and traditional DI containers (python-dependency-injector, returns, Injector, Dishka, and more).
-
-The mechanism underneath every one of the Annotated-native ones is the same pattern from the twenty-line toy.
+Now, let's look at the libraries in the ecosystem that handle this.
 -->

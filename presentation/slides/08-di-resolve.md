@@ -23,11 +23,9 @@ def resolve_dependencies(fn):
 ```
 
 <!--
-get_metadata is the idiom we just saw — yields BaseMetadata, unpacks GroupedMetadata composites.
+Here is the resolver function. It uses `get_type_hints` with `include_extras=True` to inspect the parameters.
 
-next() picks the first Depends from that stream. None if no Depends on this parameter — the type checker sees only the base type and is unaffected.
+We look for `Annotated` types, find the first `Depends` metadata instance, and recursively resolve its callable.
 
-Recursion handles transitive dependencies: endpoint depends on db_url which depends on config — resolve_dependencies walks the whole chain. No global registry — just type hints and metadata introspection.
-
-This is the same isinstance dispatch that Pydantic and SQLAlchemy use. The only difference is what they're looking for.
+This gives us a dictionary of resolved dependencies that we can pass directly to our target function.
 -->

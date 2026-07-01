@@ -24,11 +24,9 @@ Annotated[Inner, MaxLen(100)] == Annotated[int, MinLen(1), MaxLen(100)]
 ```
 
 <!--
-Put the inner Annotated behind a PEP 695 type alias and flattening stops. PEP 695 aliases are lazy — the compiler does not evaluate them eagerly, so the outer Annotated sees one opaque argument instead of the inner metadata tuple.
+When you put Annotated behind a PEP 695 type alias, flattening stops working.
 
-Equality breaks for the same reason: Python compares the unevaluated alias object, not the resolved Annotated type, so Annotated[Inner, MaxLen(100)] is not equal to Annotated[int, MinLen(1), MaxLen(100)] even though they carry the same intent. This matters whenever library code uses type identity or equality to deduplicate or cache resolved types.
+This is because these type aliases are evaluated lazily. The outer Annotated sees only one opaque object, hiding the inner metadata and breaking direct type comparison.
 
-The same rule applies to generic aliases (Band[int]) — mention in one sentence if the room asks; no separate slide.
-
-Library authors cannot walk __metadata__ alone; they must evaluate the alias to recover inner constraints. Mention call_evaluate_function on alias.evaluate_value only if someone asks.
+Because of this, library authors have to explicitly evaluate aliases to find those hidden constraints.
 -->

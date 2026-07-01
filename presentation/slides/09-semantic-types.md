@@ -3,7 +3,6 @@ layout: default
 class: code-center
 ---
 
-
 # Make your types mean something
 
 <div class="divider-red"></div>
@@ -39,5 +38,11 @@ class Reservation:
 ````
 
 <!--
-Swap raw primitives for Annotated aliases. RoomId is still a str — GuestCount is still an int — but now the constraints live in the type itself, not in docstrings or scattered validation code.
+We swap the raw primitives for Annotated aliases.
+
+`RoomId` is still a string under the hood, and `GuestCount` is still an integer. But now, constraints like minimum length and value ranges live directly inside the type declarations.
+
+This keeps the constraints right next to the specific domain types they describe.
+
+When we say something is a `RoomRate`, we're not just saying it's a decimal — we're saying exactly what kind of decimal it is.
 -->

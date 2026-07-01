@@ -30,7 +30,9 @@ class Room:
 ```
 
 <!--
-Start here. No database, no framework. Plain dataclasses with raw primitives.
+We start with simple Python dataclasses. No databases or frameworks yet.
 
-Room enforces capacity inside add_reservation. That's the only business rule shown. Everything else is just data.
+We have a `Reservation` and a `Room`. The `Room` checks rules like room capacity and date overlaps when we add a new reservation.
+
+Right now, everything uses plain primitives like `str`, `int`, and `Decimal`. Let's change that.
 -->

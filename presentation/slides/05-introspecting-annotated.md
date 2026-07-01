@@ -25,11 +25,9 @@ def get_metadata(tp):
 ```
 
 <!--
-This is not a stdlib API — it is the consumption idiom annotated-types documents for library authors. Walk an Annotated type's metadata tuple and dispatch on the two contracts the package defines.
+This is the recommended helper function to extract those constraints at runtime.
 
-BaseMetadata covers simple constraints: Gt, Le, MinLen, and so on. GroupedMetadata covers composites that unpack via __iter__ — Interval yields Gt and Lt, Len yields MinLen and MaxLen.
+We verify that the type is indeed `Annotated`, and then iterate through its arguments. We yield simple constraints directly and unpack composite ones using the `GroupedMetadata` protocol.
 
-get_args(tp)[0] is always the base type; everything from index 1 onward is metadata. Your library yields what it understands and ignores the rest — that is the loose coupling.
-
-Pydantic, SQLAlchemy, and Hypothesis all follow variants of this same isinstance loop. The annotated-types test suite shows the reference implementation. If your metadata objects implement BaseMetadata or GroupedMetadata, any consumer using this idiom can read them without importing your types.
+This is basically the blueprint libraries like Pydantic or Hypothesis use under the hood.
 -->

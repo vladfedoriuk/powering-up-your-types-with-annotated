@@ -389,8 +389,9 @@ ______________________________________________________________________
 - [ ] **Taglines earn their space.** No sentence under title unless it adds info the title alone doesn't. Every word must carry weight. If tagline restates the title or adds trivia, cut it. "Form follows function" applies to slide text too.
 - [ ] **Minimise slide text.** Each slide should carry only: a short title, a code snippet or diagram, and at most
   one or two key bullet points. All explanatory prose moves to **speaker notes** (`<!-- ... -->`).
-- [ ] **Speaker notes pass.** Go through every slide and write complete speaker notes — enough to present from
+- [/] **Speaker notes pass.** Go through every slide and write complete speaker notes — enough to present from
   without needing the slide text. Notes should read as spoken sentences, not bullet dumps.
+  Style guide captured in `.agents/skills/speaker-notes-style/SKILL.md`.
 - [ ] **Shiki Magic Move animations.** Replace static code blocks with
   [`shiki-magic-move`](https://sli.dev/features/shiki-magic-move) where a concept evolves across steps (e.g.,
   adding metadata layers to a type, refactoring from primitive to `Annotated`). Use `magicmove` fences.

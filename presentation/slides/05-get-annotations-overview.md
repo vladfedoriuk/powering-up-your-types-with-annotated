@@ -27,9 +27,9 @@ HasName.__annotations__
 ```
 
 <!--
-Source: https://docs.python.org/3/howto/annotations.html (Larry Hastings)
+To read annotations, avoid accessing the raw `__annotations__` dictionary directly, as it has inconsistent behaviors on older Python versions.
 
-__annotations__ is the raw underlying dict. On Python 3.10+ getattr(cls, "__annotations__") is safe — it always returns the class's own dict (or {}). On Python 3.9 and earlier, accessing __annotations__ on a class with no annotations of its own would return the parent's dict instead of {}. The fix: use __dict__.get('__annotations__', None) for classes, and getattr(o, '__annotations__', None) for everything else.
+Instead, use `annotationlib.get_annotations` in Python 3.14+, or `inspect.get_annotations` in Python 3.10+.
 
-annotationlib.get_annotations() handles all of this for you — prefer it over raw access. Next slide shows the three Format values in action.
+Keep in mind that these APIs only return the annotations defined directly on the class itself — they do not walk the MRO to merge parent class annotations.
 -->

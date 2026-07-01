@@ -21,11 +21,9 @@ class GroupedMetadata(Protocol):
 ```
 
 <!--
-The annotated-types library establishes two simple contracts that all constraint metadata follows.
+The library defines two simple contracts: `BaseMetadata` and `GroupedMetadata`.
 
-BaseMetadata is a frozen dataclass that serves as the base for simple constraints like Gt, Le, and MinLen. Libraries do isinstance checks against this base to find constraints they understand.
+`BaseMetadata` is the base class for simple constraints, and `GroupedMetadata` is a protocol for composite ones, like `Interval` which yields `Gt` and `Lt`.
 
-GroupedMetadata is a protocol that yields BaseMetadata objects. It's used for composite constraints like Interval, which yields Gt and Lt, or Len, which yields MinLen and MaxLen.
-
-The get_metadata idiom we saw earlier is how library authors consume these contracts: isinstance against BaseMetadata, yield from GroupedMetadata, ignore everything else. annotated-types documents the pattern; Pydantic, SQLAlchemy, and Hypothesis all follow it.
+These contracts let any library safely scan type annotations without having to import or know about specific third-party types they don't own.
 -->

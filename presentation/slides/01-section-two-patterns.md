@@ -19,11 +19,10 @@ class: section-patterns
 </div>
 
 <!--
-This is our narrative pivot — the bow before we launch the first arrow. Everything in this talk flows from one idea: Annotated lets you attach metadata to types. But people reach for it in two fundamentally different ways, and conflating them is how teams get confused.
+Annotated has two distinct use cases.
 
-The first pattern is semantic types. You have two SQLAlchemy engines, both typed as Engine. Annotated lets you create ReaderEngine and WriterEngine — same runtime type, different meaning. The metadata names what the data is in your domain. Your type checker sees Engine; your DI container or code reviewer sees the label.
+The first: semantic types — naming what your data actually is, not just its Python type.
+The second: framework metadata — attaching instructions that tools read at runtime.
 
-The second pattern is framework metadata. Pydantic Field, FastAPI Query, SQLAlchemy mapped_column — instructions that tools read at runtime. Your type checker sees int or str; Pydantic sees ge=0 or min_length=3.
-
-These are not competing uses. They're complementary layers on the same typing construct. The next two slides show one example of each. Keep this contrast in mind — we'll return to it when we build the full domain model later in the talk.
+Next two slides show exactly what that looks like.
 -->

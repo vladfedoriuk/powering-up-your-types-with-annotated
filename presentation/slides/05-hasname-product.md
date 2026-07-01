@@ -29,7 +29,9 @@ class Product(HasName):
 ```
 
 <!--
-Reused through this section for get_annotations and get_type_hints demos. Same as snippets/annotations_introspection.py.
+To demonstrate these runtime tools, we'll use these simple classes.
 
-HasName declares name: Name. Product adds price and discount. Three annotated fields across the hierarchy; only two declared on Product itself — that gap is the point when comparing get_annotations (own only) vs get_type_hints (MRO merge).
+`HasName` has a `name` attribute, and `Product` inherits from it, adding `price` and an optional `discount`.
+
+Notice that only `price` and `discount` are defined directly on `Product`. This distinction will be important in the next few slides.
 -->

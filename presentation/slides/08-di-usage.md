@@ -26,9 +26,9 @@ endpoint(**deps)  # "connected to db://prod"
 ```
 
 <!--
-Here's the full usage pattern from our dependency injection snippet.
+This is what it looks like in practice. We have three simple functions, with dependencies chain-linked to one another.
 
-handle_request declares its dependencies via Annotated metadata — env comes from settings, user comes from current_user which itself depends on env. The resolver walks this graph recursively.
+We run `resolve_dependencies(endpoint)`. Our code walks the tree, runs `config`, then `db_url`, and resolves the final arguments.
 
-At call time, resolve_dependencies builds the injected keyword arguments, and you pass them to the handler. No global container, no magic decorators — just type hints and metadata introspection.
+We get our injected parameters as keyword arguments, ready to call the endpoint.
 -->

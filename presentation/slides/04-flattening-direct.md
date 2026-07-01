@@ -22,7 +22,9 @@ Outer == Annotated[int, MinLen(1), MaxLen(100)]  # True
 ```
 
 <!--
-When you nest Annotated directly, Python flattens automatically. Inner constraints come first, outer constraints after. Same type object, same __metadata__ tuple.
+When you nest Annotated directly, Python automatically flattens it.
 
-This is the happy path — most hand-written nesting behaves as you'd expect.
+The metadata from the inner type comes first, followed by the outer one. This means they combine into a single tuple, and type comparison works exactly as you'd expect.
+
+But this only happens when you nest them directly. Next, we'll see where this breaks.
 -->

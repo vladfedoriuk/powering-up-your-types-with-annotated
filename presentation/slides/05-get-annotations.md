@@ -29,13 +29,9 @@ get_annotations(Early, format=Format.FORWARDREF)
 ```
 
 <!--
-FORMAT.VALUE (default) — calls __annotate__(Format.VALUE); returns fully-evaluated Python objects. Raises NameError if a name is undefined at introspection time.
+The new `annotationlib` API lets you retrieve annotations in three different formats.
 
-FORMAT.STRING — returns the annotation text exactly as written in source; no evaluation, no NameError risk. Useful for documentation tools or when you only need the name.
+`Format.VALUE` gives you fully evaluated Python objects. `Format.STRING` returns the raw source text as written. And `Format.FORWARDREF` returns proxy objects instead of raising a `NameError` if a type is not defined yet.
 
-FORMAT.FORWARDREF — returns ForwardRef proxies for undefined names instead of raising NameError. Proxies resolve to the real type once the name is defined. Shown separately on the next slides.
-
-Product: only 'price' and 'discount' — name lives on HasName. get_annotations never walks the MRO. That's the opposite of get_type_hints (next slide).
-
-In Python 3.14, inspect.get_annotations IS annotationlib.get_annotations (same object).
+This is highly useful for library code that needs to inspect types before they are fully declared.
 -->

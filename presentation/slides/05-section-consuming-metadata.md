@@ -7,9 +7,7 @@ class: text-center
 # Consuming metadata at runtime
 
 <!--
-Bridge slide before the get_metadata idiom. We've seen how Annotated stores metadata in __metadata__ and when flattening does and does not apply. Now: how do library authors actually consume it?
+Now let's talk about the other side: how do we actually read these annotations when our code runs?
 
-The next slides show the annotated-types idiom, then the stdlib and annotationlib APIs for reading annotations off classes and callables. Frame it for the audience: if you write a framework or integrate with Pydantic-style validation, this is the toolkit.
-
-Permission slip: you do not need to memorize every API — know the contracts and where to look.
+We'll look at the built-in tools Python gives us, and some common patterns you'll see.
 -->

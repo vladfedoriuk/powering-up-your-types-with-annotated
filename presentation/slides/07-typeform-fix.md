@@ -34,14 +34,9 @@ register_value(Annotated[int, "x"], 42)  # ✓ OK
 ````
 
 <!--
-PEP 747 — "Annotating Type Forms" — was accepted for Python 3.15. A backport is available in typing_extensions today.
+A possible solution here is `TypeForm`, introduced in PEP 747 and landing in Python 3.15.
 
-TypeForm[T] is a supertype of type[T]: concrete classes still work exactly as before. But now Annotated[int, "x"] is also a valid TypeForm[int] — no type error.
+While `type[T]` only accepts concrete classes, `TypeForm[T]` accepts any valid type expression, including `Annotated` types.
 
-All five major type checkers (mypy, pyright, pyrefly, ty, pylance) accept the TypeForm version.
-
-References:
-- PEP 747: https://peps.python.org/pep-0747/
-- TypeForm spec: https://typing.python.org/en/latest/spec/type-forms.html
-- Python 3.15 docs: https://docs.python.org/3.15/library/typing.html#typing.TypeForm
+Major type checkers have started supporting this experimentally today. If you have a similar use case where you need to pass type expressions around, `TypeForm` is the tool you want to look at.
 -->

@@ -7,5 +7,7 @@ class: text-center
 # Toy <s>Dependency Injection</s> Auto-wiring
 
 <!--
-Section break before the DI slides. The strikethrough is intentional — what looks like a toy is actually a real pattern. The mechanics are trivial (~20 lines), but the underlying idea — metadata-driven autowiring via Annotated — is exactly what production DI engines like uncalled-for and FastDepends are built on.
+Next, we're going to build a toy auto-wiring tool in about twenty lines of code.
+
+It will help us see how the exact same metadata patterns we've been looking at can be used to resolve dependencies at runtime.
 -->
