@@ -16,7 +16,7 @@ plugins:
           options:
             extensions:
               - griffe_typingdoc
-            import_paths: ["snippets"]
+            import_paths: [...]
 ```
 
 <p class="text-xs opacity-60 mt-4">Render <code>Doc</code> annotations automatically — see <a href="https://zensical.org/docs/setup/extensions/mkdocstrings/#configuration-mkdocsyml">zensical docs</a>.</p>

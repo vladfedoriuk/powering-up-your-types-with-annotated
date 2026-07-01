@@ -54,6 +54,11 @@
 - **ty**: https://docs.astral.sh/ty/
 - **pyrefly**: https://pyrefly.org/
 
+## Design References
+
+- **Bauhaus design library**: https://designmd.app/library/bauhaus
+- **Bauhaus color palette**: https://hueatlas.com/color-palettes/bauhaus-color-palette/
+
 ## Talks & Articles
 
 - **Hynek on Design Pressure**: https://hynek.me/talks/design-pressure/
