@@ -18,6 +18,10 @@ src: ./slides/00-cover.md
 ---
 
 ---
+src: ./slides/00-about-me.md
+---
+
+---
 src: ./slides/01-section-two-patterns.md
 ---
 
