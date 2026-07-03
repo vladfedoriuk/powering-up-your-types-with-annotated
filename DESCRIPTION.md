@@ -2,6 +2,9 @@
 
 ## Title: Powering Up Your Types with Annotated
 
+**Status:** Deck complete (48 slides, `presentation/slides/`). This document describes what's actually in the final
+talk; see `TODO.md` for the delivery checklist and the handful of deliberate cuts.
+
 ### The Core Premise
 
 Modern Python typing has evolved far beyond static analysis. `Annotated` (introduced in PEP 593) serves as a
@@ -67,8 +70,9 @@ concrete `type`, and modern type checkers enforce this strictly.
   [typing council confirmed](https://github.com/python/typing-council/issues/18) that stricter enforcement is correct.
   hynek's resolution ([svcs #92](https://github.com/hynek/svcs/pull/92)): document the pattern as unsupported rather than
   weaken the type signature.
-- **Cross-checker demonstration** — showing the same failing snippet against mypy, pyright, pyrefly (Meta), and ty (Astral)
-  to illustrate that the rejection is now an ecosystem-wide consensus, not a single-tool quirk.
+- **Cross-checker consensus** — the same failing snippet is rejected by mypy, pyright, pyrefly (Meta), and ty (Astral)
+  alike. Delivered as a one-line callout on the `svcs` problem slide (`07-svcs-problem.md`) rather than a separate
+  demonstration slide — the point is that it's consensus, not that each tool gets its own slide.
 - **The right fix: `TypeForm[T]`** — PEP 747 (accepted, Python 3.15) introduces `typing.TypeForm`, a new special form that
   describes the full set of type form objects — including `Annotated[…]`. Changing `svc_type: type[T]` to
   `svc_type: TypeForm[T]` makes the signature accept any valid type expression while keeping it fully type-safe.
@@ -96,45 +100,44 @@ the same `Annotated` pattern powers dependency injection:
 
 ### Comparison Slides — Django/DRF and SQLModel (EuroPython Addition)
 
-After completing the full working example, two dedicated slides make the architectural argument concrete by contrasting
-the `Annotated`-based approach with two common alternatives.
+After completing the full working example, two slides make the architectural argument concrete by contrasting
+the `Annotated`-based approach with two common alternatives. The delivered slides use one condensed code example each
+rather than a full side-by-side — enough to land the point in about 30 seconds without slowing the talk down.
 
 - **The Django/DRF approach** — the central argument is that the ORM `Model` *is* the domain. When the model changes,
   the `ModelSerializer`, the views, and any hand-written validation change with it. There is no independent domain layer:
   the database table exerts continuous [design pressure](https://hynek.me/talks/design-pressure/) on every other layer of
   the application. Neither the persistence model nor the API schema can evolve independently — they are structurally
   subordinate to the same class. With `Annotated`, the domain type is defined first and is independent; both SQLAlchemy
-  and Pydantic hook into it via metadata with zero coupling between them. Extended snippet planned:
-  `snippets/comparison_django.py`.
+  and Pydantic hook into it via metadata with zero coupling between them. `snippets/comparison_django.py` has the
+  extended version (full `Model`/`ModelSerializer`/`Serializer`-override/`clean()` chain); the slide itself
+  (`12-not-django.md`) shows the condensed model + serializer pair.
 - **The SQLModel approach** — SQLModel's appeal (one class = ORM + Pydantic model) is real but creates a subtler form
   of the same coupling: the table class structure dictates the schema structure. The moment the API shape needs to diverge
   from the table (hide internal fields, expose computed values, different read/write shapes), a second class appears and
   the "single source of truth" breaks. Hynek's design pressure concept applies here too — it is just deferred, not
-  eliminated. Extended snippet planned: `snippets/comparison_sqlmodel.py`.
+  eliminated. `snippets/comparison_sqlmodel.py` has the extended version (read/write model divergence); the slide
+  (`12-not-sqlmodel.md`) shows the condensed appeal-plus-coupling example.
 
 ### Composition-Based Design — The Synthesis (EuroPython Addition)
 
-The closing argument of the comparison section: after showing what Django/DRF and SQLModel look like, a synthesis
-slide recaps the full `RoomRate` type accumulating metadata one layer at a time — domain constraint, persistence, API
-schema, documentation. Each layer is orthogonal; every tool reads only what it understands and ignores the rest.
-The type itself never changes.
+The closing argument of the comparison section: a single `RoomId` type accumulating metadata one layer at a time —
+domain constraint, persistence, API schema. Each layer is orthogonal; every tool reads only what it understands and
+ignores the rest. The type itself never changes. Delivered on `12-orthogonal.md` — the same slide that introduces the
+orthogonal-metadata idea also carries the synthesis, right where the code is on screen, rather than as a separate
+recap slide.
 
 In Django/DRF that same progression requires separate classes at every layer. In SQLModel it fractures the moment
 API and DB shapes diverge. Here it is one type, one source of truth.
 
-Key phrase: *"The type is the contract. The metadata is the instruction manual — and each reader only reads the
-pages written for them."*
+### Pandera — `Annotated` for DataFrame Validation (cut from the final deck)
 
-### Pandera — `Annotated` for DataFrame Validation (EuroPython Bonus)
-
-[Pandera](https://pypi.org/project/pandera/) demonstrates yet another ecosystem use of the same pattern: its
-`DataFrameModel` API embeds column-level metadata — dtype, validation checks, description, uniqueness — directly
-into the type annotation via `Annotated`, with no default-value assignment needed. The annotation is the single
-source of truth for both the schema and the documentation.
-
-This reinforces the talk's central thesis: `Annotated` is not tied to any one framework or constraint vocabulary.
-The same pattern spans domain validation, ORM columns, API schemas, DI resolution, DataFrame schemas, and
-documentation generation.
+[Pandera](https://pypi.org/project/pandera/) would have been a fourth ecosystem proof point: its `DataFrameModel` API
+embeds column-level metadata — dtype, validation checks, description, uniqueness — directly into the type annotation
+via `Annotated`, with no default-value assignment needed. `snippets/pandera_demo.py` is written and working, but no
+slide was built for it — Pydantic, SQLAlchemy, and FastAPI already carry the "any metadata object, any framework"
+point, and a fourth example didn't earn its slot in the runtime. Kept as bonus material / a ready answer if it comes
+up in Q&A.
 
 ### The Final Garnish: Documentation
 
