@@ -23,7 +23,7 @@ class RoomSerializer(serializers.ModelSerializer):
 ```
 
 <!--
-Django uses the Active Record pattern. The database table shape is the single model that dictates everything.
+Django uses the Active Record pattern — the database table is the one model that dictates everything.
 
-When a DB field evolves, that change ripples through your serializer, validation checks, and views. There is no independent domain layer. The database exerts continuous design pressure on your entire code structure.
+Change a field, and that ripples through the serializer, the validation, the views. There's no separate layer holding your business rules — just the database, pushing pressure onto everything above it.
 -->

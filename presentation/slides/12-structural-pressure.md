@@ -33,11 +33,11 @@ layout: default
 <p class="text-xs opacity-60 mt-8"><em>Design pressure</em> — <a href="https://hynek.me/talks/design-pressure/">https://hynek.me/talks/design-pressure/</a></p>
 
 <!--
-The core insight: when your DB table structure directly dictates your API contract — or vice versa — you have design pressure. Hynek's talk on Design Pressure names this beautifully. Neither direction is bad per se, but you should know when it's happening.
+This is design pressure — when your database structure and your API contract keep pulling on each other. Hynek's got a whole talk on it, linked right there.
 
-Django and SQLModel are fantastic tools when the pressure is irrelevant — CRUD apps, stable domains, internal tools. The point is not that they're wrong, but that the coupling is baked in.
+[click] Change a column, and it ripples straight through your endpoint — one side always ends up in charge.
 
-With Annotated, the domain type is independent. SQLAlchemy reads mapped_column. Pydantic reads BeforeValidator. Neither imposes on the other.
+[click] None of this is bad. For CRUD apps, stable schemas, internal tools, Django and SQLModel shine exactly because of this coupling.
 
-And sometimes, breaking DRY on purpose — writing a separate read model and write model — teaches you more about your domain than forcing a single abstraction. DRY is a means, not a goal.
+[click] And sometimes it's fine to repeat yourself — duplicate first, refactor once you actually understand the shape you need.
 -->

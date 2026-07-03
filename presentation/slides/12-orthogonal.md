@@ -41,9 +41,11 @@ RoomId = Annotated[
 </div>
 
 <!--
-This is the payoff: one RoomId type carries everything. Each tool — SQLAlchemy, Pydantic, FastAPI — hooks into the metadata it knows and skips the rest.
+One RoomId, three concerns stacked in the same alias — SQLAlchemy, Pydantic, and FastAPI each hook into the piece they understand and skip the rest.
 
-Your domain model lives in type aliases, not in model classes. That's the fundamental shift: types as first-class citizens of your architecture.
+[click] The type stays central — stack as many concerns as you need, and neither the database nor the API gets the final say.
 
-And because the ecosystem is converging around annotated-types, these metadata contracts work across libraries without coordination.
+[click] Types stop being just annotations for the type checker — they become central to your data model, defining what the data actually is.
+
+[click] And when the ecosystem agrees on shared standards like annotated-types, that composition goes even further — these contracts work across libraries without anyone coordinating.
 -->

@@ -20,7 +20,7 @@ FIRST_ORDER_DISCOUNT: Annotated[
 ```
 
 <!--
-For our final layer, we look at documentation.
+For our last layer, documentation. annotated-doc adds a Doc object right inside the type — it's built on the revoked PEP 727, championed by Sebastian Ramirez, and it already powers Typer and FastAPI's docs.
 
-annotated-doc introduces the Doc metadata object, which was proposed in the revoked PEP 727. It allows you to document constants, parameters, or fields directly inside their types. Sebastian Ramirez championed this pattern, and it powers Typer and FastAPI's internal documentation rendering.
+Doc has to be the first item in the annotation, and applied directly to the constant or argument, not through an alias — otherwise doc tools won't pick it up.
 -->

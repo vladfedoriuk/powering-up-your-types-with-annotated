@@ -26,7 +26,7 @@ class StayRequest:
 
 <div>
 
-```python
+```python {all|2|3-4|all}
 @given(
     req=st.builds(StayRequest),
     discount=st.from_type(Percentage),
@@ -49,5 +49,11 @@ def test_stay_total(req, discount, tax):
 </div>
 
 <!--
-st.builds(StayRequest) generates guest_count, room_id, starts_at, ends_at from their types — it reads Annotated constraints automatically. st.from_type(Percentage) and st.from_type(TaxRate) work the same way.
+st.builds reads a dataclass's fields and works out how to generate each one — no manual strategy needed, same automatic reading polyfactory did with Annotated constraints.
+
+[click] Here, it generates guest_count, room_id, starts_at, and ends_at straight from their types.
+
+[click] st.from_type(Percentage) and st.from_type(TaxRate) work the same way, but on an individual type basis.
+
+[click] Heads up though — Hypothesis's annotated-types support is still pretty basic. Nested Annotated aliases can fail to resolve entirely, and constraints like Timezone, IsNotNan, or IsFinite aren't well supported yet. Don't lean on it for everything.
 -->

@@ -27,7 +27,9 @@ async def create_reservation(
 ```
 
 <!--
-RoomId defined once — used in SQLAlchemy models, Pydantic schemas, and FastAPI path parameters. Each layer reads only what it understands.
+RoomId shows up here too, now as a FastAPI path parameter.
 
-You can keep layering. Annotated[RoomId, Path(title="Room ID")] adds a framework-level label on top of the domain type without touching the alias. Same pattern — new reader, new metadata, same type underneath.
+Annotated[RoomId, Path(title="Room ID")] is basically what we just did with Field, just for path parameters this time.
+
+DepContainer is Annotated too — it's the dependency injection from earlier.
 -->

@@ -103,23 +103,23 @@ Track which slides have been written and approved in this session:
 - [ ] 08-production-di.md
 - [ ] 08-production-di-libs.md
 - [ ] 09-section-lets-build.md
-- [ ] 09-pure-domain.md
-- [ ] 09-semantic-types.md
-- [ ] 09-polyfactory-factory.md
-- [ ] 09-polyfactory.md
-- [ ] 09-hypothesis.md
-- [ ] 10-column-blueprints.md
-- [ ] 10-migrations.md
-- [ ] 11-api-schemas.md
-- [ ] 11-validators-metadata.md
-- [ ] 11-fastapi-endpoint.md
-- [ ] 12-philosophy.md
-- [ ] 12-orthogonal.md
-- [ ] 12-section-why.md
-- [ ] 12-not-django.md
-- [ ] 12-not-sqlmodel.md
-- [ ] 12-structural-pressure.md
-- [ ] 13-section-closing.md
-- [ ] 14-annotated-doc.md
-- [ ] 14-mkdocs-config.md
-- [ ] 15-thank-you.md
+- [x] 09-pure-domain.md
+- [x] 09-semantic-types.md
+- [x] 09-polyfactory-factory.md
+- [x] 09-polyfactory.md
+- [x] 09-hypothesis.md
+- [x] 10-column-blueprints.md
+- [x] 10-migrations.md
+- [x] 11-api-schemas.md
+- [x] 11-validators-metadata.md
+- [x] 11-fastapi-endpoint.md
+- [x] 12-philosophy.md
+- [x] 12-orthogonal.md
+- [x] 12-section-why.md
+- [x] 12-not-django.md
+- [x] 12-not-sqlmodel.md
+- [x] 12-structural-pressure.md
+- [x] 13-section-closing.md
+- [x] 14-annotated-doc.md
+- [x] 14-mkdocs-config.md
+- [x] 15-thank-you.md

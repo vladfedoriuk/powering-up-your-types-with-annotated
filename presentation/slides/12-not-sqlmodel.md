@@ -19,7 +19,7 @@ class Room(RoomBase, table=True):
 ```
 
 <!--
-SQLModel attempts to merge Pydantic and SQLAlchemy. While this works beautifully for simple CRUD applications, it forces a tight coupling between database tables and API schemas.
+SQLModel merges Pydantic and SQLAlchemy into one class — great for simple CRUD, but it ties your database table to your API schema.
 
-As soon as your write schema needs to hide internal fields or map columns differently than the read schema, you are forced to inherit and split classes, fracturing the "single model" promise and deferring design pressure.
+The moment your write schema needs to hide a field or shape data differently than the read schema, you're splitting classes again.
 -->

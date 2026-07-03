@@ -17,9 +17,7 @@ class: text-center
 ## questions?
 
 <!--
-Thank you for attending this talk on typing.Annotated!
+Thanks for sticking with me through all this. We saw Annotated work as a composable metadata engine — one type, read differently by validation, persistence, and documentation, without any of them depending on each other.
 
-We have covered how Annotated breaks the static/runtime barrier, acts as a composable metadata engine, and decouples our domain from SQL databases, API schemas, and documentation tools.
-
-I am open to any questions you may have.
+Happy to take any questions.
 -->

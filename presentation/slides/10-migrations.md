@@ -27,7 +27,7 @@ op.create_index("ix_rooms_room_id", "rooms", ["room_id"], unique=True)
 ```
 
 <!--
-Alembic scans the SQLAlchemy models and writes the migration. String(20), Numeric(10, 2), DateTime(timezone=True), the index — all come from the Annotated aliases. Nothing to repeat.
+Once the models are defined, generating the migration is the easy part — Alembic scans them and writes it for us. String(20), Numeric(10, 2), DateTime(timezone=True), the index — all of it comes straight from the Annotated aliases.
 
 This is trimmed from the actual generated output in this repo.
 -->

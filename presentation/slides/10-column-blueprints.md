@@ -55,14 +55,9 @@ class Room:
 ````
 
 <!--
-The alias carries what's always true about the type — SQL type, nullability, server defaults.
-unique=True and index=True are table decisions, not type decisions. They go on the field.
+Testing's done, let's move on to persistence. Here are the same aliases we defined earlier — still just the type and its constraint, nothing SQL yet.
 
-SQLAlchemy merges both mapped_column() calls: alias provides the type config, field provides the table-specific options.
+[click] Now the ORM config moves into the alias — SQL type, server defaults — because those are always true for the type.
 
-Mapping approach is a separate choice — any of these work with the same aliases:
-- DeclarativeBase subclass (classic)
-- @registry.mapped_as_dataclass (shown here — keeps the class a plain Python dataclass)
-- MappedAsDataclass base class
-- registry.map_imperatively() for fully separate domain/table definitions
+[click] Here's the model using those aliases. Nullability, uniqueness, and indexes are all table decisions, so they land on the field, and SQLAlchemy merges both mapped_column() calls together — alias for the type, field for the table. And mapped_as_dataclass is just one way to wire this up — a classic DeclarativeBase subclass or the MappedAsDataclass base class work just as well with the same aliases.
 -->

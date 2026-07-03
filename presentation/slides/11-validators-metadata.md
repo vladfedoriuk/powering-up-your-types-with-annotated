@@ -40,9 +40,7 @@ assert ta.dump_json(Decimal("10.12")) == b"10.12"
 ````
 
 <!--
-Pydantic provides specialized metadata objects you can place inside Annotated.
+Pydantic ships its own functional validators and serializers, and they just slot into Annotated right alongside Gt or MinLen.
 
-WrapValidator gives you full control — here it rounds a Decimal to 2 places after Pydantic validates the type. PlainSerializer converts to float for both Python and JSON output.
-
-The key insight: these aren't decorators or field modifiers. They're metadata, composable the same way as Gt or MinLen.
+[click] WrapValidator rounds the Decimal to two places after Pydantic validates it, and PlainSerializer turns it into a float for both Python and JSON output.
 -->

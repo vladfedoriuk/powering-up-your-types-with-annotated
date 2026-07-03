@@ -21,5 +21,5 @@ def test_duplicate_reservation_is_rejected() -> None:
 ```
 
 <!--
-ReservationFactory.build() auto-generates guest_count, rate, room_id from Annotated constraints. RoomFactory.build() takes that reservation as initial state via reservations=[...]. Adding the same reservation again triggers the overlap check — identical starts_at and ends_at means it overlaps itself.
+Now we actually use the factory in a test. ReservationFactory.build() spins up guest_count, rate, and room_id straight from the Annotated constraints. We hand that reservation to RoomFactory.build() as its starting state, then add the exact same reservation again — same starts_at, same ends_at — which trips the overlap check against itself.
 -->

@@ -10,6 +10,7 @@ class: code-center
 
 <p class="slide-tagline">Same types for validation and OpenAPI out of the box.</p>
 
+````md magic-move {lines: true}
 ```python
 class CreateReservationSchema(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -21,10 +22,22 @@ class CreateReservationSchema(BaseModel):
     rate: RoomRate
 ```
 
+```python
+class CreateReservationSchema(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    room_id: Annotated[RoomId, Field(title="Room ID")]
+    guest_count: GuestCount
+    starts_at: StayDate
+    ends_at: StayDate
+    rate: RoomRate
+```
+````
+
 <!--
-Same Annotated types, new reader. Pydantic validates incoming data and FastAPI generates OpenAPI docs — nothing new to declare.
+Now for the API side. Same aliases, new reader — Pydantic validates the incoming data, and FastAPI turns it straight into OpenAPI docs.
 
-RoomId, GuestCount, StayDate, RoomRate are the exact same aliases used in the SQLAlchemy models. Pydantic reads the annotated_types constraints (MinLen, Ge, Le, Gt) for validation. It silently ignores the mapped_column() metadata — each tool reads only what it understands.
+RoomId, GuestCount, StayDate, and RoomRate are exactly the same aliases we declared before. Pydantic reads the annotated-types constraints, MinLen, Ge, Le, Gt, straight off the type and uses them to parse and validate incoming data.
 
-When adding API-specific metadata (description, title, alias), wrap with Annotated and stack a Field — don't use field = Field(...) assignment syntax. The domain alias stays unchanged.
+[click] Need API-only stuff, like a title on room_id here? Wrap it in Annotated and stack a Field.
 -->
