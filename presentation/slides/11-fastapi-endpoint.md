@@ -3,12 +3,11 @@ layout: default
 class: code-center
 ---
 
-
 # Fits together with <span class="slide-title-code">FastAPI</span>
 
 <div class="divider-yellow"></div>
 
-```python
+```python {all|3|4|all}
 @app.get("/rooms/{room_id}")
 async def get_room(
     room_id: Annotated[RoomId, Path(title="Room ID")],
@@ -29,7 +28,9 @@ async def create_reservation(
 <!--
 RoomId shows up here too, now as a FastAPI path parameter.
 
-Annotated[RoomId, Path(title="Room ID")] is basically what we just did with Field, just for path parameters this time.
+[click] The annotated room ID with a path title is basically what we just did with Field, just for path parameters this time.
 
-DepContainer is Annotated too — it's the dependency injection from earlier.
+[click] DepContainer is Annotated too — it's the dependency injection from earlier.
+
+[click] So, where does it bring us from here?
 -->

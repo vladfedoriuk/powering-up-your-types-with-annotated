@@ -2,7 +2,6 @@
 layout: default
 ---
 
-
 # Generating migrations
 
 <div class="divider-blue"></div>
@@ -27,7 +26,7 @@ op.create_index("ix_rooms_room_id", "rooms", ["room_id"], unique=True)
 ```
 
 <!--
-Once the models are defined, generating the migration is the easy part — Alembic scans them and writes it for us. String(20), Numeric(10, 2), DateTime(timezone=True), the index — all of it comes straight from the Annotated aliases.
+Once the models are defined, generating the migration is the easy part — Alembic scans them and writes it for us. Column types, server defaults, indexes — all of it comes straight from the Annotated aliases.
 
-This is trimmed from the actual generated output in this repo.
+This is trimmed from the actual generated output.
 -->

@@ -42,5 +42,5 @@ assert ta.dump_json(Decimal("10.12")) == b"10.12"
 <!--
 Pydantic ships its own functional validators and serializers, and they just slot into Annotated right alongside Gt or MinLen.
 
-[click] WrapValidator rounds the Decimal to two places after Pydantic validates it, and PlainSerializer turns it into a float for both Python and JSON output.
+[click] The `WrapValidator` rounds the Decimal to two places after Pydantic validates it, and the `PlainSerializer` turns it into a float for both Python and JSON output.
 -->

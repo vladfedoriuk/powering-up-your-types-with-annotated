@@ -3,14 +3,13 @@ layout: default
 class: code-center
 ---
 
-
 # Auto-wiring with <span class="slide-title-code">Annotated</span>
 
 <div class="divider-blue"></div>
 
 <p class="slide-tagline">Metadata-driven autowiring — <code>Depends</code> as <code>BaseMetadata</code>.</p>
 
-```python
+```python{all|5-7|10-11|all}
 from dataclasses import dataclass
 from annotated_types import BaseMetadata
 
@@ -25,9 +24,11 @@ def current_user(env: Annotated[str, Depends(settings)]) -> str: ...
 ```
 
 <!--
-First, we need a marker. We define a simple `Depends` dataclass that inherits from `BaseMetadata`.
+First, we need a marker.
 
-Then, we annotate our function parameters with it, like telling `current_user` to get its `env` string from `settings`.
+[click] We define a simple `Depends` dataclass that inherits from `BaseMetadata`.
 
-Next, we need the function that actually resolves these dependencies at runtime.
+[click] Then, we annotate our function parameters with it, like telling `current_user` to get its `env` string from `settings`.
+
+[click] Next, we need the function that actually resolves these dependencies at runtime.
 -->

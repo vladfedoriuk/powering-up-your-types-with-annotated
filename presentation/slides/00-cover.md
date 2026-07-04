@@ -20,7 +20,7 @@ Hey everyone — first talk at EuroPython, really glad to be here.
 
 Today we're looking at typing.Annotated — introduced in Python 3.9, as a result of PEP 593 (and how long ago was that, right?)
 
-Arguably one of the most powerful features in Python's modern type system, and still, in my view, somehow underused in the wild.
+It's one of the most powerful features in Python's type system, but in my view it's still somewhat underused.
 
-We'll go through the internals, what the ecosystem built on top of it, and write real code along the way. Let's get into it.
+We'll walk through how it works, what the ecosystem has built on top of it, and write real code along the way. Let's get into it.
 -->

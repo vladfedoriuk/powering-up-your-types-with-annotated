@@ -19,9 +19,9 @@ WriterEngine = Annotated[Engine, "Writer"]
 ```
 
 <!--
-Two SQLAlchemy engines — reader and writer. Both typed as Engine. Nothing stops you from mixing them up.
+Imagine you need to annotate an engine parameter in a function. Plain `Engine` doesn't tell you whether it's for reading or writing.
 
-Annotated fixes that. You get ReaderEngine and WriterEngine — same runtime type, different meaning. The type checker sees Engine; your code reviewer sees which one you actually meant.
+`Annotated` fixes that. `ReaderEngine` and `WriterEngine` are the same runtime type with different labels. The type checker sees `Engine`; the code reviewer sees the intention.
 
-The metadata here is just a string. It could be anything — Annotated doesn't care.
+The metadata is just a string — it could be anything.
 -->

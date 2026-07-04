@@ -31,7 +31,7 @@ class Product(HasName):
 <!--
 To demonstrate these runtime tools, we'll use these simple classes.
 
-`HasName` has a `name` attribute, and `Product` inherits from it, adding `price` and an optional `discount`.
+The first class has a `name` attribute, and the `Product` class inherits from it, adding `price` and an optional `discount`.
 
-Notice that only `price` and `discount` are defined directly on `Product`. This distinction will be important in the next few slides.
+Notice that only `price` and `discount` are defined directly on the `Product` class. This distinction will be important in the next few slides.
 -->

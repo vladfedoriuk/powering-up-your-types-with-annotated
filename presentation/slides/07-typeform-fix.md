@@ -3,7 +3,6 @@ layout: default
 class: code-center
 ---
 
-
 # The fix — <span class="slide-title-code">TypeForm</span>
 
 <div class="divider-red"></div>
@@ -36,7 +35,7 @@ register_value(Annotated[int, "x"], 42)  # ✓ OK
 <!--
 A possible solution here is `TypeForm`, introduced in PEP 747 and landing in Python 3.15.
 
-While `type[T]` only accepts concrete classes, `TypeForm[T]` accepts any valid type expression, including `Annotated` types.
+While a type object as type annotation only accepts concrete classes, `TypeForm` accepts any valid type expression, including `Annotated` types.
 
-Major type checkers have started supporting this experimentally today. If you have a similar use case where you need to pass type expressions around, `TypeForm` is the tool you want to look at.
+[click] Major type checkers have started supporting this experimentally today. If you have a similar use case where you need to pass type expressions around, `TypeForm` is the tool you might want to look at.
 -->

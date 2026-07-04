@@ -21,9 +21,9 @@ get_type_hints(Product, include_extras=True)
 ```
 
 <!--
-For general application code, `typing.get_type_hints` is often what you'll want instead.
+For general application code, the `get_type_hints` function is often what you'll want instead.
 
-Unlike the low-level `get_annotations` API, it automatically traverses the MRO to collect inherited types and resolves all forward references.
+Unlike the low-level `get_annotations` API, it automatically traverses the `MRO` to collect inherited types and resolves all forward references.
 
-One important detail: by default, it strips `Annotated` wrappers away. You have to pass `include_extras=True` to keep the metadata intact.
+One important detail: by default, it strips `Annotated` wrappers away. You have to pass the `include_extras` flag to keep the metadata intact.
 -->

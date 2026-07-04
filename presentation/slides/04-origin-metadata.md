@@ -23,9 +23,11 @@ get_origin(Name)  # Annotated  ← not str!
 ```
 
 <!--
-Every Annotated type has two main attributes: `__origin__` and `__metadata__`.
+Every Annotated type has two main attributes: dunder `__origin__` and dunder `__metadata__`.
 
-`__origin__` gives you the base type — `str` in this case. `__metadata__` is a tuple that keeps all constraints in the order you defined them.
+Dunder `__origin__` gives you the base type — string in this case.
 
-One quick catch: helper function `get_origin` returns `Annotated` itself, not the base type. To get the base type, read `__origin__` directly.
+Dunder `__metadata__` is a tuple that keeps all constraints in the order you defined them.
+
+One quick catch: the helper function `get_origin()` returns `Annotated` itself, not the base type. To get the base type, read dunder `__origin__` directly.
 -->

@@ -3,7 +3,6 @@ layout: default
 class: code-center
 ---
 
-
 # <span class="slide-title-code">SQLAlchemy</span>: reusable column blueprints
 
 <div class="divider-blue"></div>
@@ -57,7 +56,9 @@ class Room:
 <!--
 Testing's done, let's move on to persistence. Here are the same aliases we defined earlier — still just the type and its constraint, nothing SQL yet.
 
-[click] Now the ORM config moves into the alias — SQL type, server defaults — because those are always true for the type.
+[click] Now we add the ORM config to the alias — SQL type, server defaults — since they're always true for this type.
 
-[click] Here's the model using those aliases. Nullability, uniqueness, and indexes are all table decisions, so they land on the field, and SQLAlchemy merges both mapped_column() calls together — alias for the type, field for the table. And mapped_as_dataclass is just one way to wire this up — a classic DeclarativeBase subclass or the MappedAsDataclass base class work just as well with the same aliases.
+[click] Here's the model using those aliases. Nullability, uniqueness, and indexes are all table decisions, so they land on the field, and SQLAlchemy merges both column configs together — alias for the type, field for the table.
+
+And `mapped_as_dataclass` decorator is just one way to wire this up — a classic declarative base subclass or the dataclass base class work just as well with the same aliases.
 -->

@@ -32,7 +32,7 @@ def search(
 <!--
 The second use case is framework metadata — attaching instructions for external libraries to read.
 
-Here, Pydantic checks if `total` is at least zero, and FastAPI expects the query parameter `q` to be at least three characters.
+`Pydantic` checks if `total` is at least zero, and `FastAPI` expects the query parameter to be at least three characters.
 
-Static typing handles the `int` and `str` checks, while runtime libraries read the annotations to validate or even document our API.
+Static typing handles the integer and string checks, while runtime libraries read the annotations to validate or even document our API.
 -->

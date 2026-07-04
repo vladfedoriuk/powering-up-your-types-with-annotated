@@ -3,7 +3,6 @@ layout: default
 class: code-center
 ---
 
-
 # Aliases block flattening
 
 <div class="divider-blue"></div>
@@ -24,7 +23,7 @@ Annotated[Inner, MaxLen(100)] == Annotated[int, MinLen(1), MaxLen(100)]
 ```
 
 <!--
-When you put Annotated behind a PEP 695 type alias, flattening stops working.
+When you put Annotated behind a type alias, flattening stops working.
 
 This is because these type aliases are evaluated lazily. The outer Annotated sees only one opaque object, hiding the inner metadata and breaking direct type comparison.
 

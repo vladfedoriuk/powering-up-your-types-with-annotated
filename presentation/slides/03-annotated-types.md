@@ -22,9 +22,9 @@ layout: default
 </div>
 
 <!--
-The library `annotated-types` was created at the PyCon 2022 sprints by Samuel Colvin, the maintainer of Pydantic, alongside the Hypothesis maintainers.
+The library `annotated-types` was created at PyCon 2022 by Samuel Colvin, the Pydantic maintainer, alongside the Hypothesis team.
 
-The goal was to establish a shared library of frozen dataclass constraints, so other libraries wouldn't have to reinvent definitions like "greater than" or "minimum length".
+The goal was a shared library of constraints, so other libraries wouldn't have to reinvent definitions like "greater than" or "minimum length".
 
 It gives the community a unified vocabulary, which we'll look at next.
 -->

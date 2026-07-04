@@ -29,9 +29,13 @@ get_annotations(Early, format=Format.FORWARDREF)
 ```
 
 <!--
-The new `annotationlib` API lets you retrieve annotations in three different formats.
+The new `annotationlib` library API lets you retrieve annotations in three different formats.
 
-`Format.VALUE` gives you fully evaluated Python objects. `Format.STRING` returns the raw source text as written. And `Format.FORWARDREF` returns proxy objects instead of raising a `NameError` if a type is not defined yet.
+The `value` format gives you fully evaluated Python objects.
+
+The `string` format returns the raw source text as written.
+
+The `forward-ref` format returns proxy objects instead of raising a `NameError` if a type is not defined yet.
 
 This is highly useful for library code that needs to inspect types before they are fully declared.
 -->

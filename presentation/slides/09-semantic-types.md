@@ -40,7 +40,7 @@ class Reservation:
 <!--
 We swap the raw primitives for Annotated aliases.
 
-`RoomId` is still a string under the hood, and `GuestCount` is still an integer. But now, constraints like minimum length and value ranges live directly inside the type declarations.
+[click] `RoomId` is still a string under the hood, and `GuestCount` is still an integer. But now, constraints like minimum length and value ranges live directly inside the type declarations.
 
 This keeps the constraints right next to the specific domain types they describe.
 

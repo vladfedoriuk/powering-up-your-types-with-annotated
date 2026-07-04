@@ -2,7 +2,6 @@
 layout: default
 ---
 
-
 # Hypothesis: property-based testing
 
 <div class="divider-red"></div>
@@ -49,11 +48,11 @@ def test_stay_total(req, discount, tax):
 </div>
 
 <!--
-st.builds reads a dataclass's fields and works out how to generate each one — no manual strategy needed, same automatic reading polyfactory did with Annotated constraints.
+The factory test was example-based — one scenario, one assertion. Property-based testing flips that: describe properties that should always hold, and Hypothesis generates hundreds of random inputs to verify them.
 
-[click] Here, it generates guest_count, room_id, starts_at, and ends_at straight from their types.
+[click] `st.builds` reads the dataclass and generates every field from their Annotated constraints — guest_count, room_id, starts_at, ends_at, all automatic.
 
-[click] st.from_type(Percentage) and st.from_type(TaxRate) work the same way, but on an individual type basis.
+[click] `st.from_type` does the same for individual types. Percentage and TaxRate both have Annotated constraints, so Hypothesis knows what valid values look like.
 
-[click] Heads up though — Hypothesis's annotated-types support is still pretty basic. Nested Annotated aliases can fail to resolve entirely, and constraints like Timezone, IsNotNan, or IsFinite aren't well supported yet. Don't lean on it for everything.
+[click] One caveat — Hypothesis's Annotated support is still basic. Nested aliases can fail to resolve, and constraints like Timezone or IsFinite aren't well supported yet. You might still write a strategy by hand sometimes.
 -->

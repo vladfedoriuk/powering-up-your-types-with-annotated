@@ -22,7 +22,7 @@ plugins:
 <p class="text-xs opacity-60 mt-4">Render <code>Doc</code> annotations automatically — see <a href="https://zensical.org/docs/setup/extensions/mkdocstrings/#configuration-mkdocsyml">zensical docs</a>.</p>
 
 <!--
-The mkdocstrings griffe_typingdoc extension reads Doc metadata from your Annotated types and renders it in the docs — no need for ambiguous docstring styles like Numpy or Google, and no duplication.
+This extension reads Doc metadata from your Annotated types and renders it in the docs. No need for docstring styles like Numpy or Google, and no duplication.
 
-Add or remove a field, and the docs update automatically — no separate docstring to fall out of sync.
+Add or remove a field, and the docs update automatically.
 -->

@@ -19,10 +19,11 @@ class: section-patterns
 </div>
 
 <!--
-Annotated has two distinct use cases.
+The way I see it, `Annotated` has two main patterns.
 
-The first: semantic types — naming what your data actually is, not just its Python type.
-The second: framework metadata — attaching instructions that tools read at runtime.
+Semantic types — naming what your data actually is, not just its Python type.
 
-Next two slides show exactly what that looks like.
+Framework metadata — attaching instructions that tools read at runtime.
+
+Next slides show what that looks like.
 -->
