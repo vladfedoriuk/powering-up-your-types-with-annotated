@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: unocss-layers-preflights description: CSS layer ordering and raw CSS injection
+---
+name: unocss-layers-preflights
+description: CSS layer ordering and raw CSS injection
+---
 
 # Layers and Preflights
 

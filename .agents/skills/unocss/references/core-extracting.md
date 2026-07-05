@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: unocss-extracting description: How UnoCSS extracts utilities from source code
+---
+name: unocss-extracting
+description: How UnoCSS extracts utilities from source code
+---
 
 # Extracting
 

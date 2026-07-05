@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: transformer-directives description: CSS directives @apply, @screen, theme(), and icon()
+---
+name: transformer-directives
+description: CSS directives @apply, @screen, theme(), and icon()
+---
 
 # Transformer Directives
 

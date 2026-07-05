@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: line-highlighting description: Highlight specific lines in code blocks with static or click-based dynamic highlighting
+---
+name: line-highlighting
+description: Highlight specific lines in code blocks with static or click-based dynamic highlighting
+---
 
 # Line Highlighting
 

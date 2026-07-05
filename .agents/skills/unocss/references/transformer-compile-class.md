@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: transformer-compile-class description: Compile multiple classes into one hashed class
+---
+name: transformer-compile-class
+description: Compile multiple classes into one hashed class
+---
 
 # Transformer Compile Class
 
@@ -93,7 +94,6 @@ Enforce compile class usage across project:
 ```
 
 This rule:
-
 - Warns when class attribute doesn't start with `:uno:`
 - Auto-fixes by adding the prefix
 

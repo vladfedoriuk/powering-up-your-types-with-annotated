@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: eject-theme description: Extract theme to local filesystem for customization
+---
+name: eject-theme
+description: Extract theme to local filesystem for customization
+---
 
 # Eject Theme
 

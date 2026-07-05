@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: preset-wind4 description: Tailwind CSS v4 compatible preset with enhanced features
+---
+name: preset-wind4
+description: Tailwind CSS v4 compatible preset with enhanced features
+---
 
 # Preset Wind4
 
@@ -229,14 +230,12 @@ theme: {
 ## When to Use Wind4
 
 Choose **preset-wind4** when:
-
 - Starting a new project
 - Targeting modern browsers
 - Want built-in reset and CSS variables
 - Following Tailwind v4 conventions
 
 Choose **preset-wind3** when:
-
 - Need legacy browser support
 - Migrating from Tailwind v3
 - Using presetLegacyCompat

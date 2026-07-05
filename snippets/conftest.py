@@ -11,7 +11,7 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from .api_pizza import app, lifespan, metadata
+from .api_reservation import app, lifespan, metadata
 
 
 @pytest.fixture
@@ -50,7 +50,7 @@ async def client() -> AsyncGenerator[httpx.AsyncClient, None]:
         yield client
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def _override_registry(client: httpx.AsyncClient, session: AsyncSession) -> None:
     """Override the AsyncSession in the svcs registry with the test session."""
     lifespan.registry.register_value(AsyncSession, session)

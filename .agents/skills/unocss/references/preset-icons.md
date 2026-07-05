@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: preset-icons description: Pure CSS icons using Iconify with any icon set
+---
+name: preset-icons
+description: Pure CSS icons using Iconify with any icon set
+---
 
 # Preset Icons
 
@@ -27,7 +28,6 @@ export default defineConfig({
 ## Usage
 
 Two naming conventions:
-
 - `<prefix><collection>-<icon>` → `i-ph-anchor-simple-thin`
 - `<prefix><collection>:<icon>` → `i-ph:anchor-simple-thin`
 

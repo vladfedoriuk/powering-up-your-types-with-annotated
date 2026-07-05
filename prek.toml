@@ -13,7 +13,7 @@ hooks = [
 
 [[repos]]
 repo = "https://github.com/astral-sh/ruff-pre-commit"
-rev = "v0.15.1"
+rev = "v0.15.18"
 hooks = [
   { id = "ruff-check", args = ["--fix"] },
   { id = "ruff-format" },
@@ -21,14 +21,14 @@ hooks = [
 
 [[repos]]
 repo = "https://github.com/astral-sh/uv-pre-commit"
-rev = "0.10.2"
+rev = "0.11.23"
 hooks = [
   { id = "uv-lock" },
 ]
 
 [[repos]]
 repo = "https://github.com/tox-dev/pyproject-fmt"
-rev = "v2.16.0"
+rev = "v2.25.0"
 hooks = [
   { id = "pyproject-fmt", args = ["--indent=4"] },
 ]
@@ -37,7 +37,7 @@ hooks = [
 repo = "https://github.com/executablebooks/mdformat"
 rev = "1.0.0"
 hooks = [
-  { id = "mdformat", additional_dependencies = ["mdformat-ruff"], args = ["--number"], exclude = "^presentation/" },
+  { id = "mdformat", additional_dependencies = ["mdformat-ruff"], args = ["--number"], exclude = "^presentation/|.agents/" },
 ]
 
 [[repos]]
@@ -50,6 +50,6 @@ hooks = [
 [[repos]]
 repo = "local"
 hooks = [
-  { id = "mypy", name = "mypy", entry = "uv run mypy", language = "system", types = ["python"] },
+  { id = "mypy", name = "mypy", entry = "uv run --group lint mypy .", language = "system", pass_filenames = false, exclude = "^presentation/|.agents/" },
   { id = "just-fmt", name = "just-fmt", entry = "just --unstable --fmt", language = "system", pass_filenames = false },
 ]

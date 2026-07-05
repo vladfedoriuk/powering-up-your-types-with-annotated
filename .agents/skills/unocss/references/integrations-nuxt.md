@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: unocss-nuxt-integration description: UnoCSS module for Nuxt applications
+---
+name: unocss-nuxt-integration
+description: UnoCSS module for Nuxt applications
+---
 
 # UnoCSS Nuxt Integration
 

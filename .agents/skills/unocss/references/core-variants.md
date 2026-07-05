@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: unocss-variants description: Apply variations like hover:, dark:, responsive to rules
+---
+name: unocss-variants
+description: Apply variations like hover:, dark:, responsive to rules
+---
 
 # UnoCSS Variants
 
@@ -49,58 +50,47 @@ rules: [
 ## Built-in Variants (preset-wind3)
 
 ### Pseudo-classes
-
 - `hover:`, `focus:`, `active:`, `visited:`
 - `first:`, `last:`, `odd:`, `even:`
 - `disabled:`, `checked:`, `required:`
 - `focus-within:`, `focus-visible:`
 
 ### Pseudo-elements
-
 - `before:`, `after:`
 - `placeholder:`, `selection:`
 - `marker:`, `file:`
 
 ### Responsive
-
 - `sm:`, `md:`, `lg:`, `xl:`, `2xl:`
 - `lt-sm:` (less than sm)
 - `at-lg:` (at lg only)
 
 ### Dark Mode
-
 - `dark:` - Class-based dark mode (default)
 - `@dark:` - Media query dark mode
 
 ### Group/Peer
-
 - `group-hover:`, `group-focus:`
 - `peer-checked:`, `peer-focus:`
 
 ### Container Queries
-
 - `@container`, `@sm:`, `@md:`
 
 ### Print
-
 - `print:`
 
 ### Supports
-
 - `supports-[display:grid]:`
 
 ### Aria
-
 - `aria-checked:`, `aria-disabled:`
 
 ### Data Attributes
-
 - `data-[state=open]:`
 
 ## Dark Mode Configuration
 
 ### Class-based (default)
-
 ```ts
 presetWind3({
   dark: 'class'
@@ -114,7 +104,6 @@ presetWind3({
 Generates: `.dark .dark\:bg-gray-800 { ... }`
 
 ### Media Query
-
 ```ts
 presetWind3({
   dark: 'media'
@@ -124,7 +113,6 @@ presetWind3({
 Generates: `@media (prefers-color-scheme: dark) { ... }`
 
 ### Opt-in Media Query
-
 Use `@dark:` regardless of config:
 
 ```html
@@ -132,7 +120,6 @@ Use `@dark:` regardless of config:
 ```
 
 ### Custom Selectors
-
 ```ts
 presetWind3({
   dark: {
@@ -151,7 +138,6 @@ Native CSS `@layer` support:
 ```
 
 Generates:
-
 ```css
 @layer foo {
   .layer-foo\:p-4 { padding: 1rem; }
@@ -175,7 +161,6 @@ Addresses sticky hover on touch devices:
 ```
 
 Generates:
-
 ```css
 @media (hover: hover) and (pointer: fine) {
   .\@hover-text-red:hover { color: rgb(248 113 113); }

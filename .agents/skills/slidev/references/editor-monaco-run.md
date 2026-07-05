@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: monaco-run description: Run code directly in the editor and see results
+---
+name: monaco-run
+description: Run code directly in the editor and see results
+---
 
 # Monaco Runner
 

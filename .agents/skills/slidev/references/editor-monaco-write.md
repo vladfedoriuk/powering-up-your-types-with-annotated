@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: monaco-write description: Edit code and save changes back to the file
+---
+name: monaco-write
+description: Edit code and save changes back to the file
+---
 
 # Writable Monaco Editor
 

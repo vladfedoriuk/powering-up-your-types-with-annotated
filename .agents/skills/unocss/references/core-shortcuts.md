@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: unocss-shortcuts description: Combine multiple utility rules into single shorthand classes
+---
+name: unocss-shortcuts
+description: Combine multiple utility rules into single shorthand classes
+---
 
 # UnoCSS Shortcuts
 
@@ -21,7 +22,6 @@ shortcuts: {
 ```
 
 Usage:
-
 ```html
 <button class="btn btn-green">Click me</button>
 ```

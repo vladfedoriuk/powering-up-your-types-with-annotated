@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: unocss-rules description: Static and dynamic rules for generating CSS utilities in UnoCSS
+---
+name: unocss-rules
+description: Static and dynamic rules for generating CSS utilities in UnoCSS
+---
 
 # UnoCSS Rules
 
@@ -36,7 +37,6 @@ rules: [
 ```
 
 The function receives:
-
 1. RegExp match result (destructure to get captured groups)
 2. Context object with `theme`, `symbols`, etc.
 
@@ -154,7 +154,6 @@ UnoCSS merges rules with identical CSS bodies:
 ```
 
 Generates:
-
 ```css
 .hover\:m2:hover, .m-2 { margin: 0.5rem; }
 ```

@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: icons description: Using open-source icons in slides
+---
+name: icons
+description: Using open-source icons in slides
+---
 
 # Icons
 

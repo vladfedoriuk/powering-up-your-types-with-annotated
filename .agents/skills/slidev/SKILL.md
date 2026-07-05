@@ -1,27 +1,116 @@
-______________________________________________________________________
-
-## name: slidev description: Create and present web-based slides for developers using Markdown, Vue components, code highlighting, animations, and interactive features. Use when building technical presentations, conference talks, or teaching materials.
+---
+name: slidev
+description: Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features. Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks. For this repo, deck lives in presentation/ with one slide per file under slides/.
+---
 
 # Slidev - Presentation Slides for Developers
 
 Web-based slides maker built on Vite, Vue, and Markdown.
 
+## This repository — deck layout
+
+```
+presentation/
+├── slides.md              # headmatter + ordered src: imports only
+├── slides/
+│   ├── 00-cover.md
+│   ├── 01-section-two-patterns.md
+│   ├── 04-annotated-101.md
+│   └── …                  # one slide per file (~45 files)
+├── styles/index.css       # Bauhaus global styles — see slidev-styling skill
+└── package.json           # pnpm dev | build | export
+```
+
+**Content sources:** `DESCRIPTION.md` (narrative arc) · `TODO.md` (checklist) · `snippets/` (runnable code — slides should match).
+
+### `slides.md` pattern
+
+Headmatter closes with `---`, then **only** `src:` imports — no inline slide bodies (cover stays in `00-cover.md`).
+
+```markdown
+---
+theme: default
+title: Powering Up Your Types with Annotated
+fonts:
+  sans: 'Josefin Sans'
+  mono: 'JetBrains Mono'
+  provider: google
+mdc: true
+---
+
+---
+src: ./slides/00-cover.md
+---
+
+---
+src: ./slides/01-section-two-patterns.md
+---
+```
+
+**Known quirk:** Slidev may render an empty slide 1 at `/1`; cover appears at `/2`. Accepted — do not inline cover into `slides.md`.
+
+### File naming
+
+`{phase}-{topic}.md` — e.g. `04-flattening-direct.md`, `05-get-type-hints.md`. Number prefix = talk section; multiple files share a prefix when one idea = one slide.
+
+### Slide content rules
+
+1. **One takeaway per slide** — title + optional tagline + minimal code.
+2. **Speaker notes** in HTML comments — depth, PEP links, delivery; not duplicated on slide.
+3. **Code** — prefer copying from `snippets/`; keep runnable and tested.
+4. **magic-move** — sparingly (type evolution: semantic types, validators, typeform fix). Not for teaching exceptions (flattening uses separate static slides).
+5. **Layouts used here:** `cover`, `section`, `default` (+ `class: code-center`).
+
+### Styling
+
+See [.agents/skills/slidev-styling/SKILL.md](../slidev-styling/SKILL.md) — `slide-title-code`, `slide-tagline`, dividers, DESIGN.md tokens.
+
+### Commands
+
+```bash
+cd presentation
+pnpm install
+pnpm dev          # http://localhost:3030
+pnpm run build    # verify after structural changes
+pnpm run export   # PDF — needs playwright-chromium (in devDependencies)
+```
+
+### Features used in this deck
+
+| Feature | Where |
+|---------|--------|
+| `src:` imports | `slides.md` |
+| `mdc: true` | headmatter |
+| `magic-move` | semantic types, column blueprints, validators, typeform |
+| HTML in titles | `<span class="slide-title-code">` |
+| Presenter notes | `<!-- -->` on every content slide |
+
+### Features **not** used (available via references)
+
+Monaco run, twoslash, `<<<` snippet import, v-click stepping, Mermaid, two-cols — add only if they improve a specific slide.
+
+---
+
 ## When to Use
 
-- Technical presentations with live code examples
+- Technical presentations or slidedecks with live code examples
 - Syntax-highlighted code snippets with animations
 - Interactive demos (Monaco editor, runnable code)
 - Mathematical equations (LaTeX) or diagrams (Mermaid, PlantUML)
 - Record presentations with presenter notes
 - Export to PDF, PPTX, or host as SPA
+- Code walkthroughs for developer talks or workshops
 
 ## Quick Start
 
 ```bash
 pnpm create slidev    # Create project
-pnpm run dev          # Start dev server
-pnpm run export       # Export to PDF
+pnpm run dev          # Start dev server (opens http://localhost:3030)
+pnpm run build        # Build static SPA
+pnpm run export       # Export to PDF (requires playwright-chromium)
 ```
+
+**Verify**: After `pnpm run dev`, confirm slides load at `http://localhost:3030`. After `pnpm run export`, check the output PDF exists in the project root.
 
 ## Basic Syntax
 
@@ -71,24 +160,24 @@ Presenter notes go here
 
 | Feature | Usage | Reference |
 |---------|-------|-----------|
-| Line highlighting | ```` ```ts {2,3} ```` | [code-line-highlighting](references/code-line-highlighting.md) |
-| Click-based highlighting | ```` ```ts {1\|2-3\|all} ```` | [code-line-highlighting](references/code-line-highlighting.md) |
+| Line highlighting | `` ```ts {2,3} `` | [code-line-highlighting](references/code-line-highlighting.md) |
+| Click-based highlighting | `` ```ts {1\|2-3\|all} `` | [code-line-highlighting](references/code-line-highlighting.md) |
 | Line numbers | `lineNumbers: true` or `{lines:true}` | [code-line-numbers](references/code-line-numbers.md) |
 | Scrollable code | `{maxHeight:'100px'}` | [code-max-height](references/code-max-height.md) |
-| Code tabs | `::code-group` (requires `mdc: true`) | [code-groups](references/code-groups.md) |
-| Monaco editor | ```` ```ts {monaco} ```` | [editor-monaco](references/editor-monaco.md) |
-| Run code | ```` ```ts {monaco-run} ```` | [editor-monaco-run](references/editor-monaco-run.md) |
+| Code tabs | `::code-group` (requires `comark: true`) | [code-groups](references/code-groups.md) |
+| Monaco editor | `` ```ts {monaco} `` | [editor-monaco](references/editor-monaco.md) |
+| Run code | `` ```ts {monaco-run} `` | [editor-monaco-run](references/editor-monaco-run.md) |
 | Edit files | `<<< ./file.ts {monaco-write}` | [editor-monaco-write](references/editor-monaco-write.md) |
-| Code animations | ````` ````md magic-move ````` | [code-magic-move](references/code-magic-move.md) |
-| TypeScript types | ```` ```ts twoslash ```` | [code-twoslash](references/code-twoslash.md) |
+| Code animations | `` ````md magic-move `` | [code-magic-move](references/code-magic-move.md) |
+| TypeScript types | `` ```ts twoslash `` | [code-twoslash](references/code-twoslash.md) |
 | Import code | `<<< @/snippets/file.js` | [code-import-snippet](references/code-import-snippet.md) |
 
 ### Diagrams & Math
 
 | Feature | Usage | Reference |
 |---------|-------|-----------|
-| Mermaid diagrams | ```` ```mermaid ```` | [diagram-mermaid](references/diagram-mermaid.md) |
-| PlantUML diagrams | ```` ```plantuml ```` | [diagram-plantuml](references/diagram-plantuml.md) |
+| Mermaid diagrams | `` ```mermaid `` | [diagram-mermaid](references/diagram-mermaid.md) |
+| PlantUML diagrams | `` ```plantuml `` | [diagram-plantuml](references/diagram-plantuml.md) |
 | LaTeX math | `$inline$` or `$$block$$` | [diagram-latex](references/diagram-latex.md) |
 
 ### Layout & Styling
@@ -118,8 +207,8 @@ Presenter notes go here
 
 | Feature | Usage | Reference |
 |---------|-------|-----------|
-| MDC syntax | `mdc: true` + `{style="color:red"}` | [syntax-mdc](references/syntax-mdc.md) |
-| Block frontmatter | ```` ```yaml ```` instead of `---` | [syntax-block-frontmatter](references/syntax-block-frontmatter.md) |
+| Comark syntax | `comark: true` + `{style="color:red"}` | [syntax-comark](references/syntax-comark.md) |
+| Block frontmatter | `` ```yaml `` instead of `---` | [syntax-block-frontmatter](references/syntax-block-frontmatter.md) |
 | Import slides | `src: ./other.md` | [syntax-importing-slides](references/syntax-importing-slides.md) |
 | Merge frontmatter | Main entry wins | [syntax-frontmatter-merging](references/syntax-frontmatter-merging.md) |
 
@@ -142,6 +231,8 @@ Presenter notes go here
 | Cache images | Automatic for remote URLs | [build-remote-assets](references/build-remote-assets.md) |
 | OG image | `seoMeta.ogImage` or `og-image.png` | [build-og-image](references/build-og-image.md) |
 | SEO tags | `seoMeta:` | [build-seo-meta](references/build-seo-meta.md) |
+
+**Export prerequisite**: `pnpm add -D playwright-chromium` is required for PDF/PPTX/PNG export. If export fails with a browser error, install this dependency first.
 
 ### Editor & Tools
 

@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: side-editor description: Edit slides source alongside the presentation
+---
+name: side-editor
+description: Edit slides source alongside the presentation
+---
 
 # Integrated Editor
 

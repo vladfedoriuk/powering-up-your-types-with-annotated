@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: unocss-theme description: Theming system for colors, breakpoints, and design tokens
+---
+name: unocss-theme
+description: Theming system for colors, breakpoints, and design tokens
+---
 
 # UnoCSS Theme
 

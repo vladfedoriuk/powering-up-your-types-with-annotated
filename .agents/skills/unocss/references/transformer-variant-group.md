@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: transformer-variant-group description: Shorthand for grouping utilities with common prefixes
+---
+name: transformer-variant-group
+description: Shorthand for grouping utilities with common prefixes
+---
 
 # Transformer Variant Group
 

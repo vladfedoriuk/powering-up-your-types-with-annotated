@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: canvas-size description: Configure slide canvas dimensions and aspect ratio
+---
+name: canvas-size
+description: Configure slide canvas dimensions and aspect ratio
+---
 
 # Slide Canvas Size
 

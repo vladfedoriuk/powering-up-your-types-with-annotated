@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: slot-sugar description: Shorthand syntax for layout named slots in multi-column layouts
+---
+name: slot-sugar
+description: Shorthand syntax for layout named slots in multi-column layouts
+---
 
 # Slot Sugar for Layouts
 

@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: max-height description: Set a fixed height for code blocks with scrolling for long code
+---
+name: max-height
+description: Set a fixed height for code blocks with scrolling for long code
+---
 
 # Code Block Max Height
 

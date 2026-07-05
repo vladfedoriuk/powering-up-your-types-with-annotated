@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: preset-web-fonts description: Easy Google Fonts and other web fonts integration
+---
+name: preset-web-fonts
+description: Easy Google Fonts and other web fonts integration
+---
 
 # Preset Web Fonts
 

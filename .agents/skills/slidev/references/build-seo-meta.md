@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: seo-meta description: Configure SEO and social media meta tags
+---
+name: seo-meta
+description: Configure SEO and social media meta tags
+---
 
 # SEO Meta Tags
 
@@ -27,14 +28,12 @@ seoMeta:
 ## Available Options
 
 **Open Graph (Facebook, LinkedIn):**
-
 - `ogTitle` - Title
 - `ogDescription` - Description
 - `ogImage` - Preview image URL
 - `ogUrl` - Canonical URL
 
 **Twitter Card:**
-
 - `twitterCard` - Card type (summary, summary_large_image)
 - `twitterTitle` - Title
 - `twitterDescription` - Description

@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: unocss-vite-integration description: Setting up UnoCSS with Vite and framework-specific tips
+---
+name: unocss-vite-integration
+description: Setting up UnoCSS with Vite and framework-specific tips
+---
 
 # UnoCSS Vite Integration
 

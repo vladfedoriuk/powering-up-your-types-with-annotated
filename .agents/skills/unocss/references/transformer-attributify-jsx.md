@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: transformer-attributify-jsx description: Support valueless attributify in JSX/TSX
+---
+name: transformer-attributify-jsx
+description: Support valueless attributify in JSX/TSX
+---
 
 # Transformer Attributify JSX
 
@@ -66,7 +67,6 @@ transformerAttributifyJsx({
 ## When to Use
 
 Required when using:
-
 - React
 - Preact
 - Solid

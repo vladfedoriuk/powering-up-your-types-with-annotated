@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: preset-typography description: Prose classes for typographic defaults on vanilla HTML content
+---
+name: preset-typography
+description: Prose classes for typographic defaults on vanilla HTML content
+---
 
 # Preset Typography
 
@@ -39,7 +40,6 @@ export default defineConfig({
 ```
 
 Responsive:
-
 ```html
 <article class="prose prose-sm md:prose-base lg:prose-lg">
   Responsive typography

@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: prettier-plugin description: Format Slidev markdown files correctly
+---
+name: prettier-plugin
+description: Format Slidev markdown files correctly
+---
 
 # Prettier Plugin
 

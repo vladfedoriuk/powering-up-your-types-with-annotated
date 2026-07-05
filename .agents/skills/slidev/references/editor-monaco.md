@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: monaco description: Turn code blocks into fully-featured editors
+---
+name: monaco
+description: Turn code blocks into fully-featured editors
+---
 
 # Monaco Editor
 

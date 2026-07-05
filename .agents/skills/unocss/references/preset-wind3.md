@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: preset-wind3 description: Tailwind CSS / Windi CSS compatible preset for UnoCSS
+---
+name: preset-wind3
+description: Tailwind CSS / Windi CSS compatible preset for UnoCSS
+---
 
 # Preset Wind3
 
@@ -181,7 +182,6 @@ Addresses sticky hover on touch devices:
 ```
 
 Generates:
-
 ```css
 @media (hover: hover) and (pointer: fine) {
   .\@hover-text-red:hover { ... }

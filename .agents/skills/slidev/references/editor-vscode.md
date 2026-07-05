@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: vscode-extension description: Manage slides visually in VS Code
+---
+name: vscode-extension
+description: Manage slides visually in VS Code
+---
 
 # VS Code Extension
 

@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: preset-rem-to-px description: Convert rem units to px for utilities
+---
+name: preset-rem-to-px
+description: Convert rem units to px for utilities
+---
 
 # Preset Rem to Px
 
@@ -28,13 +29,11 @@ Transforms all rem values to px:
 ```
 
 Without preset:
-
 ```css
 .p-4 { padding: 1rem; }
 ```
 
 With preset:
-
 ```css
 .p-4 { padding: 16px; }
 ```

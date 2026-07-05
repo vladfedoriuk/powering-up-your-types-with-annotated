@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: twoslash description: Show TypeScript type information inline or on hover in code blocks
+---
+name: twoslash
+description: Show TypeScript type information inline or on hover in code blocks
+---
 
 # TwoSlash Integration
 

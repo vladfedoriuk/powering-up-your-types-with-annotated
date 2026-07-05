@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: preset-tagify description: Use utilities as HTML tag names
+---
+name: preset-tagify
+description: Use utilities as HTML tag names
+---
 
 # Preset Tagify
 
@@ -96,7 +97,6 @@ presetTagify({
 ## Excluded Tags
 
 By default, these tags are excluded:
-
 - `b` (bold)
 - `h1` through `h6` (headings)
 - `table`

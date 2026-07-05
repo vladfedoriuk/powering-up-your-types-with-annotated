@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: block-frontmatter description: Using YAML code blocks as slide frontmatter for syntax highlighting
+---
+name: block-frontmatter
+description: Using YAML code blocks as slide frontmatter for syntax highlighting
+---
 
 # Block Frontmatter
 

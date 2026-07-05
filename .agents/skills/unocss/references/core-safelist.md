@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: unocss-safelist-blocklist description: Force include or exclude specific utilities
+---
+name: unocss-safelist-blocklist
+description: Force include or exclude specific utilities
+---
 
 # Safelist and Blocklist
 

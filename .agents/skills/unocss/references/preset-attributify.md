@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: preset-attributify description: Group utilities in HTML attributes instead of class
+---
+name: preset-attributify
+description: Group utilities in HTML attributes instead of class
+---
 
 # Preset Attributify
 

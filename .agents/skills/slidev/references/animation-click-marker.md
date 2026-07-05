@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: click-marker description: Highlight and auto-scroll presenter notes based on click progress
+---
+name: click-marker
+description: Highlight and auto-scroll presenter notes based on click progress
+---
 
 # Click Markers
 

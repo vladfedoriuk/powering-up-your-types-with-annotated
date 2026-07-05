@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: mermaid description: Create diagrams from text descriptions
+---
+name: mermaid
+description: Create diagrams from text descriptions
+---
 
 # Mermaid Diagrams
 

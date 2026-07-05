@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: remote-access description: Share presentation across network or internet
+---
+name: remote-access
+description: Share presentation across network or internet
+---
 
 # Remote Access
 

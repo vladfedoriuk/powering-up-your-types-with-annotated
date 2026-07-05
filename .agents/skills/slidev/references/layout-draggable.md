@@ -1,6 +1,7 @@
-______________________________________________________________________
-
-## name: draggable-elements description: Move, resize, and rotate elements by dragging during presentation
+---
+name: draggable-elements
+description: Move, resize, and rotate elements by dragging during presentation
+---
 
 # Draggable Elements
 
