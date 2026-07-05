@@ -1,6 +1,7 @@
 # Powering Up Your Types with Annotated
 
 Code samples and materials for the EuroPython talk **"Powering Up Your Types with Annotated"**.
+View the slides at: https://powering-up-your-types-with-annotated.pages.dev/
 
 ## Overview
 

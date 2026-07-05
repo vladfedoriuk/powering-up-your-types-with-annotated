@@ -6,12 +6,15 @@
     "vue": "^3.5.27"
   },
   "devDependencies": {
-    "playwright-chromium": "^1.58.2"
+    "playwright-chromium": "^1.58.2",
+    "wrangler": "^4.107.0"
   },
   "name": "presentation",
   "private": true,
   "scripts": {
     "build": "slidev build",
+    "deploy": "slidev build && wrangler pages deploy dist --project-name=powering-up-your-types-with-annotated",
+    "deploy:no-notes": "slidev build --without-notes && wrangler pages deploy dist --project-name=powering-up-your-types-with-annotated",
     "dev": "slidev --open",
     "export": "slidev export"
   },
