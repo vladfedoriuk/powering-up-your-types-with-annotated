@@ -19,7 +19,7 @@ WriterEngine = Annotated[Engine, "Writer"]
 ```
 
 <!--
-Imagine you need to annotate an engine parameter in a function. Plain `Engine` doesn't tell you whether it's for reading or writing.
+Imagine you have a replicated database setup with separate reader and writer instances. You need to annotate an engine parameter in a function, but plain `Engine` doesn't tell you which one you're using.
 
 `Annotated` fixes that. `ReaderEngine` and `WriterEngine` are the same runtime type with different labels. The type checker sees `Engine`; the code reviewer sees the intention.
 

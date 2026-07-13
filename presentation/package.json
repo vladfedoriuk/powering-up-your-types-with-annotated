@@ -16,7 +16,10 @@
     "deploy": "slidev build && wrangler pages deploy dist --project-name=powering-up-your-types-with-annotated",
     "deploy:no-notes": "slidev build --without-notes && wrangler pages deploy dist --project-name=powering-up-your-types-with-annotated",
     "dev": "slidev --open",
-    "export": "slidev export"
+    "export": "slidev export",
+    "export:notes": "slidev export-notes",
+    "export:slides": "slidev export",
+    "setup": "pnpm exec playwright install"
   },
   "type": "module"
 }
