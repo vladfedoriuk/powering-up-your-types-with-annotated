@@ -211,7 +211,6 @@ pizza.db
 reservations.db
 reservations_django.db
 reservations_sqlmodel.db
-**/slides-export.pdf
 
 # nanodjango generated migrations
 **/nanodjango_reservation_migrations/
