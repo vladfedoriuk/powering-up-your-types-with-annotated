@@ -22,7 +22,7 @@ def resolve_dependencies(fn):
 ```
 
 <!--
-Here is the resolver function.
+This is exactly what a third-party package consuming annotated-types would have to do — scan the annotations, find the metadata it cares about, and act on it.
 
 [click] It uses `get_type_hints` with `include_extras` set to `True` to inspect the parameters.
 
