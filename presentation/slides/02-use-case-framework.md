@@ -3,7 +3,6 @@ layout: default
 class: code-center
 ---
 
-
 # Use case: framework metadata
 
 <div class="divider-red"></div>
@@ -30,9 +29,9 @@ def search(
 ```
 
 <!--
-The second use case is framework metadata — attaching instructions for external libraries to read.
+Here we're attaching instructions for external libraries to read.
 
 `Pydantic` checks if `total` is at least zero, and `FastAPI` expects the query parameter to be at least three characters.
 
-Static typing handles the integer and string checks, while runtime libraries read the annotations to validate or even document our API.
+These libraries check both the types and the metadata — static typing only handles the integer and string checks, while runtime libraries additionally read the annotations to validate or even document our API.
 -->

@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, NewType
 
 # ---------------------------------------------------------------------------
 # Runtime evidence — Annotated is not a concrete class
@@ -96,4 +96,22 @@ test_type_form(Annotated[int, "x"], 42)
 # enableExperimentalFeatures = true
 # OK
 # mypy --enable-incomplete-feature=TypeForm
+# OK
+
+# ---------------------------------------------------------------------------
+# NewType also passes TypeForm
+#
+# `NewType` creates a distinct type at the type-checker level, but at runtime
+# it is still a callable that returns its argument — not a `type` subclass.
+# `TypeForm` accepts it because `NewType(...)` is a valid type expression.
+
+UserId = NewType("UserId", int)
+
+test_type_form(UserId, 42)
+test_type_form(Annotated[UserId, "x"], 42)
+# > mypy --enable-incomplete-feature=TypeForm
+# OK
+# > pyright
+# [tool.pyright]
+# enableExperimentalFeatures = true
 # OK

@@ -9,6 +9,8 @@ layout: default
 <p class="slide-tagline">5+ years of working with Python · Software Engineer @ <strong>ActiveCampaign</strong></p>
 
 <!--
+Before we dig in, let me start with a quick introduction.
+
 Vlad Fedoriuk — software engineer at ActiveCampaign, five-plus years with Python. And as I said — first talk at EuroPython, not nervous at all. (I'm lying.)
 
 We also have a booth in the hallway, so come say hi after.

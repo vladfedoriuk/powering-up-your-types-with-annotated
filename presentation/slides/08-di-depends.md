@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from annotated_types import BaseMetadata
 
 
-@dataclass(frozen=True)
+@dataclass
 class Depends(BaseMetadata):
     dependency: Callable
 
@@ -24,7 +24,7 @@ def current_user(env: Annotated[str, Depends(settings)]) -> str: ...
 ```
 
 <!--
-First, we need a marker.
+What if `annotated-types` shipped `Depends` as a primitive?
 
 [click] We define a simple `Depends` dataclass that inherits from `BaseMetadata`.
 
