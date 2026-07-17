@@ -7,7 +7,7 @@
 **Core Message:** `Annotated` is a universal metadata engine that enables cleaner architecture through composition and
 metadata layering, breaking the boundary between static analysis and runtime execution.
 
-**Status:** Deck complete — 48 slides across `presentation/slides/`, all with finished speaker notes. Build verified
+**Status:** Deck complete — 49 slides across `presentation/slides/`, all with finished speaker notes. Build verified
 (`pnpm run build`). Remaining open items below are either deliberately cut for time or left as bonus/snippet-only
 material (noted inline).
 
@@ -77,7 +77,7 @@ Delivered in `04-section-annotated-101.md`, `04-origin-metadata.md`, `04-flatten
 
 ## Phase 3.6: `Annotated` is Not a Type — Exploiting Type Checker Behavior
 
-Delivered in `07-annotated-not-a-type.md`, `07-svcs-problem.md`, `07-typeform-fix.md`.
+Delivered in `07-annotated-not-a-type.md`, `07-svcs-problem.md`, `07-typeform-fix.md`, `07-typeform-update.md`.
 
 - [x] **Slide: `Annotated` is a special form, not a `type`.** Delivered in `07-annotated-not-a-type.md`.
 - [x] **Slide: The `svcs` problem — a real-world collision.** Delivered in `07-svcs-problem.md`.
@@ -85,6 +85,8 @@ Delivered in `07-annotated-not-a-type.md`, `07-svcs-problem.md`, `07-typeform-fi
   (`# ↑ type error in mypy, pyright, ty, pyrefly`) instead of a separate conformance-table slide — the same
   information, without adding another slide to the deck.
 - [x] **Slide: The proper fix — `TypeForm[T]`.** Delivered in `07-typeform-fix.md`, as a magic-move before/after.
+- [x] **Slide: svcs 26.1.0 ships TypeForm — plot twist.** Delivered in `07-typeform-update.md`. Added after the
+  conference friend flagged the release on the evening of July 14th. Links the svcs changelog to `docs/links.md`.
 - [x] **Snippet:** `snippets/type_checker_annotated.py` — done.
 
 ## Phase 3.7: `annotated-types` Contracts & Annotated-Powered Dependency Injection
@@ -224,7 +226,7 @@ ______________________________________________________________________
   doesn't already carry, or are omitted.
 - [x] **Minimise slide text.** Every slide carries a short title, a code snippet or diagram, and at most a couple of
   key points; explanatory prose lives in speaker notes.
-- [x] **Speaker notes pass.** Every slide (48/48) has finished speaker notes, written as flowing spoken prose per
+- [x] **Speaker notes pass.** Every slide (49/49) has finished speaker notes, written as flowing spoken prose per
   `.claude/skills/speaker-notes-style/SKILL.md`, with `[click]` markers synced to on-slide reveals/highlights where
   the slide has clickable steps.
 - [x] **Shiki Magic Move animations.** In use on `09-semantic-types.md`, `10-column-blueprints.md`,

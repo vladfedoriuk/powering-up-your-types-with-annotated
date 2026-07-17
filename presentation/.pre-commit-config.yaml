@@ -1,0 +1,21 @@
+repos:
+  - repo: local
+    hooks:
+      - id: playwright-setup
+        name: playwright-setup
+        entry: pnpm run setup
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+      - id: slidev-export-notes
+        name: slidev-export-notes
+        entry: sh -c 'pnpm run export:notes || true'
+        language: system
+        pass_filenames: false
+        stages: [post-commit]
+      - id: slidev-export-slides
+        name: slidev-export-slides
+        entry: sh -c 'pnpm run export:slides || true'
+        language: system
+        pass_filenames: false
+        stages: [post-commit]

@@ -76,6 +76,10 @@
 - [hynek/svcs pull #92 — Warn against `Annotated` & PEP 695 as registry keys](https://github.com/hynek/svcs/pull/92)
   - The resolution: `svcs` adds a warning in its docs that `Annotated[…]` and PEP 695 `type` aliases should not be used as
     registry keys under strict type checking, because neither is a `type`. The proper fix requires `TypeForm` (Python 3.15+).
+- [hynek/svcs CHANGELOG — 26.1.0 (2026-07-13)](https://github.com/hynek/svcs/blob/main/CHANGELOG.md#2610---2026-07-13)
+  - `svcs` 26.1.0 ships `TypeForm` support (via PEP 747 / `typing-extensions`), deprecating `get_abstract()` and its
+    siblings. Abstract types like `Protocol`s and ABCs can now be used directly as registry keys — the proper fix for
+    the `Annotated`-as-`type[T]` collision that motivated the earlier docs warning.
 
 ## Dependency Injection via Annotated
 

@@ -62,6 +62,10 @@ src: ./slides/07-typeform-fix.md
 ---
 
 ---
+src: ./slides/07-typeform-update.md
+---
+
+---
 src: ./slides/05-section-consuming-metadata.md
 ---
 
